@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瓦轴集团财务培训课件中心</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #c8102e 0%, #8b0a1f 100%);
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 42pt;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 18pt;
+            opacity: 0.95;
+        }
+
+        .header .company {
+            font-size: 14pt;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section-title {
+            font-size: 24pt;
+            color: #fff;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #c8102e;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title .icon {
+            font-size: 28pt;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .course-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #c8102e, #ff6b6b);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(200,16,46,0.3);
+            border-color: #c8102e;
+        }
+
+        .course-card .group-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #c8102e, #ff6b6b);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 11pt;
+            margin-bottom: 15px;
+        }
+
+        .course-card .group-tag.gemini {
+            background: linear-gradient(135deg, #4285f4, #34a853);
+        }
+
+        .course-card h3 {
+            font-size: 18pt;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .course-card .description {
+            color: rgba(255,255,255,0.7);
+            font-size: 11pt;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .course-card .topics {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .course-card .topics li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: rgba(255,255,255,0.8);
+            font-size: 10pt;
+        }
+
+        .course-card .topics li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .course-card .enter-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #c8102e 0%, #8b0a1f 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 11pt;
+        }
+
+        .course-card .enter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(200,16,46,0.5);
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item .number {
+            font-size: 36pt;
+            font-weight: bold;
+            color: #c8102e;
+            display: block;
+        }
+
+        .stat-item .label {
+            font-size: 12pt;
+            color: rgba(255,255,255,0.7);
+            margin-top: 10px;
+        }
+
+        .footer {
+            background: rgba(0,0,0,0.3);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            color: rgba(255,255,255,0.6);
+            font-size: 11pt;
+            margin: 10px 0;
+        }
+
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .quick-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            transition: all 0.3s;
+            font-size: 11pt;
+        }
+
+        .quick-links a:hover {
+            background: #c8102e;
+            border-color: #c8102e;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 28pt; }
+            .course-grid { grid-template-columns: 1fr; }
+            .stat-item .number { font-size: 28pt; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎓 财务培训课件中心</h1>
+        <div class="subtitle">业财融合 · 成本管控 · 价值创造</div>
+        <div class="company">瓦轴集团 ZWZ GROUP</div>
+    </div>
+
+    <div class="container">
+        <!-- 统计概览 -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="number">9</span>
+                <span class="label">培训专题</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">50+</span>
+                <span class="label">知识模块</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">ABC</span>
+                <span class="label">核心方法论</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">实战</span>
+                <span class="label">案例驱动</span>
+            </div>
+        </div>
+
+        <!-- 课题组培训课程 -->
+        <h2 class="section-title"><span class="icon">📚</span> 课题组专题培训</h2>
+        <div class="course-grid">
+            <!-- 第一组 -->
+            <div class="course-card">
+                <span class="group-tag">第一组</span>
+                <h3>质量成本管理</h3>
+                <p class="description">深入分析轴承行业质量成本痛点，建立ABC成本模型，实现质量成本精准管控。</p>
+                <ul class="topics">
+                    <li>基础财务知识</li>
+                    <li>作业成本法详解</li>
+                    <li>成本效益分析</li>
+                    <li>ABC成本模型实施</li>
+                </ul>
+                <a href="质量成本相关讲义（第一组）/财务知识讲义-引导页.html" class="enter-btn">进入课程 →</a>
+            </div>
+
+            <!-- 第二组 -->
+            <div class="course-card">
+                <span class="group-tag">第二组</span>
+                <h3>单产品成本核算</h3>
+                <p class="description">基于BOM和工序路线的产品成本精细化核算，含交互式成本模型计算器。</p>
+                <ul class="topics">
+                    <li>成本核算基础</li>
+                    <li>BOM与材料成本</li>
+                    <li>工序与人工成本</li>
+                    <li>成本模型计算器</li>
+                </ul>
+                <a href="财务讲义-单个成本组（第二组）/财务理论讲义-引导页.html" class="enter-btn">进入课程 →</a>
+            </div>
+
+            <!-- 第三组 -->
+            <div class="course-card">
+                <span class="group-tag">第三组</span>
+                <h3>供应链财务思维</h3>
+                <p class="description">培养供应链人员的财务视角，实现业财深度融合，提升供应链价值创造能力。</p>
+                <ul class="topics">
+                    <li>财务基础知识</li>
+                    <li>ABC作业成本法</li>
+                    <li>库存成本管理</li>
+                    <li>TCO全生命周期分析</li>
+                </ul>
+                <a href="供应链财务思维（第三组）/index.html" class="enter-btn">进入课程 →</a>
+            </div>
+
+            <!-- 第四组 -->
+            <div class="course-card">
+                <span class="group-tag">第四组</span>
+                <h3>智能化升级财务分析</h3>
+                <p class="description">智能制造项目的成本识别、效益评估、投资决策与风险分析方法论。</p>
+                <ul class="topics">
+                    <li>成本识别与分类</li>
+                    <li>效益评估方法</li>
+                    <li>投资决策分析</li>
+                    <li>风险分析与综合案例</li>
+                </ul>
+                <a href="财务讲义-智能化升级（第四组）/智能化升级财务理论讲义-引导页.html" class="enter-btn">进入课程 →</a>
+            </div>
+
+            <!-- 第六组 -->
+            <div class="course-card">
+                <span class="group-tag">第六组</span>
+                <h3>加工工艺成本管理</h3>
+                <p class="description">从工艺角度理解成本形成，掌握定额管理与成本控制的核心方法。</p>
+                <ul class="topics">
+                    <li>作业成本法核心理论</li>
+                    <li>成本核算基础</li>
+                    <li>定额管理与成本控制</li>
+                    <li>财务分析方法</li>
+                </ul>
+                <a href="财务讲义-加工工艺（第六组）/财务讲义-加工工艺（第六组）/财务理论知识讲义-引导页.html" class="enter-btn">进入课程 →</a>
+            </div>
+
+            <!-- 第七组 -->
+            <div class="course-card">
+                <span class="group-tag">第七组</span>
+                <h3>全产业链财务管理</h3>
+                <p class="description">贯穿产业链上下游的财务管理视角，构建端到端的成本管控体系。</p>
+                <ul class="topics">
+                    <li>产业链成本分析</li>
+                    <li>供应商财务管理</li>
+                    <li>客户盈利分析</li>
+                    <li>全链条价值优化</li>
+                </ul>
+                <a href="财务-全产业链（第七组）/index.html" class="enter-btn">进入课程 →</a>
+            </div>
+
+            <!-- 第九组 -->
+            <div class="course-card">
+                <span class="group-tag">第九组</span>
+                <h3>营销财务知识</h3>
+                <p class="description">面向营销人员的财务基础培训，提升业务决策的财务敏感度。</p>
+                <ul class="topics">
+                    <li>财务基础概念</li>
+                    <li>成本费用管理</li>
+                    <li>预算管理</li>
+                    <li>财务分析与ROI</li>
+                </ul>
+                <a href="财务知识讲义-营销组（第九组）/00_讲义引导页.html" class="enter-btn">进入课程 →</a>
+            </div>
+
+            <!-- Gemini生成 - 业财融合供应链 -->
+            <div class="course-card">
+                <span class="group-tag gemini">Gemini3 生成</span>
+                <h3>业财融合供应链管理</h3>
+                <p class="description">采购总成本分析管控模型及价值采购分析方法，实现从"价格采购"向"价值采购"转型。</p>
+                <ul class="topics">
+                    <li>业财融合基础</li>
+                    <li>作业成本法 (ABC)</li>
+                    <li>总成本与价值采购</li>
+                    <li>实战模型构建</li>
+                </ul>
+                <a href="Financial_Training_Materials/index.html" class="enter-btn">进入课程 →</a>
+            </div>
+
+            <!-- Gemini生成 - 营销费用精益化 -->
+            <div class="course-card">
+                <span class="group-tag gemini">Gemini3 生成</span>
+                <h3>营销费用精益化管理</h3>
+                <p class="description">业财融合导向的营销费用管控，运用ABC精准核算营销成本，建立科学的ROI评价体系。</p>
+                <ul class="topics">
+                    <li>财务基础概念</li>
+                    <li>作业成本法 (ABC)</li>
+                    <li>预算与管控</li>
+                    <li>ROI与效能分析</li>
+                </ul>
+                <a href="Financial_Training_Marketing_Group9/index.html" class="enter-btn">进入课程 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="quick-links">
+            <a href="质量成本相关讲义（第一组）/瓦轴集团ABC成本模型.html">📊 ABC成本模型</a>
+            <a href="财务讲义-单个成本组（第二组）/model/成本模型计算器.html">🧮 成本计算器</a>
+            <a href="质量成本相关讲义（第一组）/中国轴承行业质量成本痛点分析报告.html">📋 行业分析报告</a>
+        </div>
+        <p>瓦轴集团财务培训中心 | ZWZ Group Financial Training Center</p>
+        <p>© 2025 All Rights Reserved</p>
+    </div>
+</body>
+</html>
