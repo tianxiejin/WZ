@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轴承供应链总成本管控模型 - 瓦轴集团</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; color: #fff; }
+        .header { background: linear-gradient(90deg, #0f3460, #533483); padding: 20px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .header h1 { font-size: 2em; margin-bottom: 10px; }
+        .header p { color: #a0a0a0; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .tab { padding: 12px 24px; background: rgba(255,255,255,0.1); border: none; color: #fff; cursor: pointer; border-radius: 8px; transition: all 0.3s; }
+        .tab:hover { background: rgba(255,255,255,0.2); }
+        .tab.active { background: linear-gradient(135deg, #e94560, #533483); }
+        .panel { display: none; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 25px; }
+        .panel.active { display: block; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .card h3 { color: #e94560; margin-bottom: 15px; font-size: 1.1em; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #a0a0a0; font-size: 0.9em; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: #fff; }
+        .form-group input:focus { outline: none; border-color: #e94560; }
+        .btn { padding: 12px 30px; background: linear-gradient(135deg, #e94560, #533483); border: none; color: #fff; border-radius: 8px; cursor: pointer; font-size: 1em; transition: transform 0.2s; }
+        .btn:hover { transform: scale(1.02); }
+        .result-card { background: linear-gradient(135deg, rgba(83,52,131,0.3), rgba(233,69,96,0.3)); border-radius: 12px; padding: 25px; margin-top: 20px; }
+        .result-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .result-item:last-child { border-bottom: none; }
+        .result-item .label { color: #a0a0a0; }
+        .result-item .value { font-weight: bold; color: #4ade80; font-size: 1.1em; }
+        .total-cost { font-size: 2em; color: #e94560; text-align: center; padding: 20px; background: rgba(233,69,96,0.2); border-radius: 10px; margin-top: 20px; }
+        .chart-container { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 20px; margin-top: 20px; }
+        .formula-box { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; margin: 10px 0; border-left: 4px solid #e94560; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        th { background: rgba(233,69,96,0.2); color: #e94560; }
+        .back-btn { position: fixed; bottom: 20px; right: 20px; padding: 15px 25px; background: linear-gradient(135deg, #533483, #0f3460); border-radius: 50px; text-decoration: none; color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔧 轴承供应链总成本管控模型</h1>
+        <p>瓦轴集团 | 基于作业成本法的全供应链成本分析工具</p>
+    </div>
+    
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" onclick="showPanel('overview')">📊 模型概述</button>
+            <button class="tab" onclick="showPanel('direct')">💰 直接成本</button>
+            <button class="tab" onclick="showPanel('activity')">⚙️ 作业成本</button>
+            <button class="tab" onclick="showPanel('capital')">💵 资金成本</button>
+            <button class="tab" onclick="showPanel('risk')">⚠️ 风险成本</button>
+            <button class="tab" onclick="showPanel('summary')">📈 成本汇总</button>
+        </div>
+
+        <!-- 模型概述面板 -->
+        <div id="overview" class="panel active">
+            <h2 style="margin-bottom: 20px;">总成本构成体系</h2>
+            <div class="formula-box">
+                <strong>总成本计算公式：</strong><br>
+                总成本 = 直接材料成本 + 直接人工成本 + 直接制造费用 + 作业成本 + 资金成本 + 风险成本
+            </div>
+            <div class="grid" style="margin-top: 20px;">
+                <div class="card">
+                    <h3>💰 直接成本</h3>
+                    <p>原材料成本：钢材、滚珠、保持架、密封圈</p>
+                    <p>直接人工：生产工人工资、奖金、津贴</p>
+                    <p>直接制造费用：设备折旧、能源消耗</p>
+                </div>
+                <div class="card">
+                    <h3>⚙️ 作业成本（ABC法）</h3>
+                    <p>采购作业：供应商开发、询价比价、合同管理</p>
+                    <p>质检作业：进料检验、过程检验、成品检验</p>
+                    <p>仓储作业：入库、存储保管、出库作业</p>
+                    <p>运输作业：内部运输、外部配送</p>
+                </div>
+                <div class="card">
+                    <h3>💵 资金成本</h3>
+                    <p>库存资金占用：原材料、在制品、产成品</p>
+                    <p>应收账款成本：客户账期产生的资金成本</p>
+                </div>
+                <div class="card">
+                    <h3>⚠️ 风险成本</h3>
+                    <p>质量损失：退货、索赔、品牌影响</p>
+                    <p>供应中断：缺货损失、紧急采购溢价</p>
+                    <p>价格波动：原材料价格波动风险</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 直接成本面板 -->
+        <div id="direct" class="panel">
+            <h2 style="margin-bottom: 20px;">直接成本核算</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>📦 原材料成本</h3>
+                    <div class="form-group">
+                        <label>钢材成本（元/件）</label>
+                        <input type="number" id="steel_cost" value="45.00" onchange="updateDirectCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>滚珠成本（元/件）</label>
+                        <input type="number" id="ball_cost" value="12.50" onchange="updateDirectCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>保持架成本（元/件）</label>
+                        <input type="number" id="cage_cost" value="8.00" onchange="updateDirectCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>密封圈成本（元/件）</label>
+                        <input type="number" id="seal_cost" value="3.50" onchange="updateDirectCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>生产数量（件）</label>
+                        <input type="number" id="production_qty" value="10000" onchange="updateDirectCost()">
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>👷 直接人工成本</h3>
+                    <div class="form-group">
+                        <label>工人数量（人）</label>
+                        <input type="number" id="worker_count" value="50" onchange="updateDirectCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>人均月工资（元）</label>
+                        <input type="number" id="avg_salary" value="6500" onchange="updateDirectCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>月生产天数（天）</label>
+                        <input type="number" id="work_days" value="22" onchange="updateDirectCost()">
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🏭 直接制造费用</h3>
+                    <div class="form-group">
+                        <label>设备折旧（元/月）</label>
+                        <input type="number" id="depreciation" value="85000" onchange="updateDirectCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>能源费用（元/月）</label>
+                        <input type="number" id="energy_cost" value="45000" onchange="updateDirectCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>其他制造费用（元/月）</label>
+                        <input type="number" id="other_mfg" value="25000" onchange="updateDirectCost()">
+                    </div>
+                </div>
+            </div>
+            <div class="result-card">
+                <h3 style="margin-bottom: 15px;">📊 直接成本汇总</h3>
+                <div class="result-item"><span class="label">原材料总成本</span><span class="value" id="material_total">¥690,000.00</span></div>
+                <div class="result-item"><span class="label">直接人工成本</span><span class="value" id="labor_total">¥325,000.00</span></div>
+                <div class="result-item"><span class="label">直接制造费用</span><span class="value" id="overhead_total">¥155,000.00</span></div>
+                <div class="result-item"><span class="label"><strong>直接成本合计</strong></span><span class="value" id="direct_total" style="color:#e94560;font-size:1.3em;">¥1,170,000.00</span></div>
+            </div>
+        </div>
+
+        <!-- 作业成本面板 -->
+        <div id="activity" class="panel">
+            <h2 style="margin-bottom: 20px;">作业成本核算（ABC法）</h2>
+            <div class="formula-box">
+                <strong>作业成本计算：</strong><br>
+                作业成本 = ∑(作业成本池金额 × 作业动因消耗量 ÷ 作业动因总量)
+            </div>
+            <div class="grid" style="margin-top: 20px;">
+                <div class="card">
+                    <h3>📋 采购作业成本</h3>
+                    <div class="form-group">
+                        <label>采购部门月费用（元）</label>
+                        <input type="number" id="proc_dept_cost" value="180000" onchange="updateActivityCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>月采购订单总数（笔）</label>
+                        <input type="number" id="total_orders" value="200" onchange="updateActivityCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>本产品订单数（笔）</label>
+                        <input type="number" id="product_orders" value="25" onchange="updateActivityCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <small>分配率：<span id="proc_rate">¥900.00</span>/笔</small><br>
+                        <strong>采购成本：<span id="proc_cost" style="color:#4ade80;">¥22,500.00</span></strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🔍 质检作业成本</h3>
+                    <div class="form-group">
+                        <label>质检部门月费用（元）</label>
+                        <input type="number" id="qc_dept_cost" value="120000" onchange="updateActivityCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>月检验批次总数（批）</label>
+                        <input type="number" id="total_batches" value="150" onchange="updateActivityCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>本产品检验批次（批）</label>
+                        <input type="number" id="product_batches" value="20" onchange="updateActivityCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <small>分配率：<span id="qc_rate">¥800.00</span>/批</small><br>
+                        <strong>质检成本：<span id="qc_cost" style="color:#4ade80;">¥16,000.00</span></strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🏪 仓储作业成本</h3>
+                    <div class="form-group">
+                        <label>仓储部门月费用（元）</label>
+                        <input type="number" id="wh_dept_cost" value="95000" onchange="updateActivityCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>月出入库总次数（次）</label>
+                        <input type="number" id="total_movements" value="500" onchange="updateActivityCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>本产品出入库次数（次）</label>
+                        <input type="number" id="product_movements" value="60" onchange="updateActivityCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <small>分配率：<span id="wh_rate">¥190.00</span>/次</small><br>
+                        <strong>仓储成本：<span id="wh_cost" style="color:#4ade80;">¥11,400.00</span></strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🚚 运输作业成本</h3>
+                    <div class="form-group">
+                        <label>运输部门月费用（元）</label>
+                        <input type="number" id="trans_dept_cost" value="75000" onchange="updateActivityCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>月运输总重量（吨）</label>
+                        <input type="number" id="total_weight" value="300" onchange="updateActivityCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>本产品运输重量（吨）</label>
+                        <input type="number" id="product_weight" value="35" onchange="updateActivityCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <small>分配率：<span id="trans_rate">¥250.00</span>/吨</small><br>
+                        <strong>运输成本：<span id="trans_cost" style="color:#4ade80;">¥8,750.00</span></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="result-card">
+                <h3 style="margin-bottom: 15px;">📊 作业成本汇总</h3>
+                <div class="result-item"><span class="label">采购作业成本</span><span class="value" id="proc_summary">¥22,500.00</span></div>
+                <div class="result-item"><span class="label">质检作业成本</span><span class="value" id="qc_summary">¥16,000.00</span></div>
+                <div class="result-item"><span class="label">仓储作业成本</span><span class="value" id="wh_summary">¥11,400.00</span></div>
+                <div class="result-item"><span class="label">运输作业成本</span><span class="value" id="trans_summary">¥8,750.00</span></div>
+                <div class="result-item"><span class="label"><strong>作业成本合计</strong></span><span class="value" id="activity_total" style="color:#e94560;font-size:1.3em;">¥58,650.00</span></div>
+            </div>
+        </div>
+
+        <!-- 资金成本面板 -->
+        <div id="capital" class="panel">
+            <h2 style="margin-bottom: 20px;">资金占用成本</h2>
+            <div class="formula-box">
+                <strong>资金占用成本计算：</strong><br>
+                资金占用成本 = 平均库存金额 × 资金成本率 × 库存周转天数 ÷ 365
+            </div>
+            <div class="grid" style="margin-top: 20px;">
+                <div class="card">
+                    <h3>📦 库存资金占用成本</h3>
+                    <div class="form-group">
+                        <label>原材料平均库存（元）</label>
+                        <input type="number" id="raw_inventory" value="850000" onchange="updateCapitalCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>在制品平均库存（元）</label>
+                        <input type="number" id="wip_inventory" value="320000" onchange="updateCapitalCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>产成品平均库存（元）</label>
+                        <input type="number" id="fg_inventory" value="580000" onchange="updateCapitalCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>资金成本率（%/年）</label>
+                        <input type="number" id="capital_rate" value="6.5" step="0.1" onchange="updateCapitalCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>平均库存周转天数</label>
+                        <input type="number" id="turnover_days" value="45" onchange="updateCapitalCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <small>库存总额：<span id="total_inventory">¥1,750,000.00</span></small><br>
+                        <strong>库存资金成本：<span id="inv_capital_cost" style="color:#4ade80;">¥14,024.66</span></strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>💳 应收账款资金成本</h3>
+                    <div class="form-group">
+                        <label>应收账款余额（元）</label>
+                        <input type="number" id="receivable_balance" value="2500000" onchange="updateCapitalCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>平均账期（天）</label>
+                        <input type="number" id="avg_credit_days" value="60" onchange="updateCapitalCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>资金成本率（%/年）</label>
+                        <input type="number" id="ar_capital_rate" value="6.5" step="0.1" onchange="updateCapitalCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <strong>应收款资金成本：<span id="ar_capital_cost" style="color:#4ade80;">¥26,712.33</span></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="result-card">
+                <h3 style="margin-bottom: 15px;">📊 资金成本汇总</h3>
+                <div class="result-item"><span class="label">库存资金占用成本</span><span class="value" id="inv_summary">¥14,024.66</span></div>
+                <div class="result-item"><span class="label">应收账款资金成本</span><span class="value" id="ar_summary">¥26,712.33</span></div>
+                <div class="result-item"><span class="label"><strong>资金成本合计</strong></span><span class="value" id="capital_total" style="color:#e94560;font-size:1.3em;">¥40,736.99</span></div>
+            </div>
+        </div>
+
+        <!-- 风险成本面板 -->
+        <div id="risk" class="panel">
+            <h2 style="margin-bottom: 20px;">风险成本评估</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🔴 质量损失成本</h3>
+                    <div class="form-group">
+                        <label>月退货数量（件）</label>
+                        <input type="number" id="return_qty" value="150" onchange="updateRiskCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>单件退货处理成本（元）</label>
+                        <input type="number" id="return_unit_cost" value="85" onchange="updateRiskCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>月索赔金额（元）</label>
+                        <input type="number" id="claim_amount" value="25000" onchange="updateRiskCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>品牌影响估值（元/月）</label>
+                        <input type="number" id="brand_impact" value="15000" onchange="updateRiskCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <strong>质量损失成本：<span id="quality_risk_cost" style="color:#f97316;">¥52,750.00</span></strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🟠 供应中断成本</h3>
+                    <div class="form-group">
+                        <label>月缺货次数（次）</label>
+                        <input type="number" id="stockout_times" value="3" onchange="updateRiskCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>单次缺货损失（元）</label>
+                        <input type="number" id="stockout_loss" value="8500" onchange="updateRiskCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>紧急采购溢价（元/月）</label>
+                        <input type="number" id="urgent_premium" value="12000" onchange="updateRiskCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <strong>供应中断成本：<span id="supply_risk_cost" style="color:#f97316;">¥37,500.00</span></strong>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🟡 价格波动成本</h3>
+                    <div class="form-group">
+                        <label>月采购金额（元）</label>
+                        <input type="number" id="monthly_purchase" value="690000" onchange="updateRiskCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>价格波动率（%）</label>
+                        <input type="number" id="price_volatility" value="3.5" step="0.1" onchange="updateRiskCost()">
+                    </div>
+                    <div class="form-group">
+                        <label>风险敞口比例（%）</label>
+                        <input type="number" id="risk_exposure" value="40" onchange="updateRiskCost()">
+                    </div>
+                    <div style="background:rgba(0,0,0,0.2);padding:10px;border-radius:6px;margin-top:10px;">
+                        <strong>价格波动成本：<span id="price_risk_cost" style="color:#f97316;">¥9,660.00</span></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="result-card">
+                <h3 style="margin-bottom: 15px;">📊 风险成本汇总</h3>
+                <div class="result-item"><span class="label">质量损失成本</span><span class="value" id="quality_summary">¥52,750.00</span></div>
+                <div class="result-item"><span class="label">供应中断成本</span><span class="value" id="supply_summary">¥37,500.00</span></div>
+                <div class="result-item"><span class="label">价格波动成本</span><span class="value" id="price_summary">¥9,660.00</span></div>
+                <div class="result-item"><span class="label"><strong>风险成本合计</strong></span><span class="value" id="risk_total" style="color:#e94560;font-size:1.3em;">¥99,910.00</span></div>
+            </div>
+        </div>
+
+        <!-- 成本汇总面板 -->
+        <div id="summary" class="panel">
+            <h2 style="margin-bottom: 20px;">总成本分析汇总</h2>
+            <div class="total-cost">
+                <div style="font-size:0.5em;color:#a0a0a0;margin-bottom:10px;">供应链总成本</div>
+                <span id="grand_total">¥1,369,296.99</span>
+                <div style="font-size:0.4em;color:#a0a0a0;margin-top:10px;">单件成本：<span id="unit_cost">¥136.93</span></div>
+            </div>
+            <div class="grid" style="margin-top:20px;">
+                <div class="chart-container">
+                    <h3 style="margin-bottom:15px;">📊 成本结构分析</h3>
+                    <canvas id="costPieChart" width="400" height="300"></canvas>
+                </div>
+                <div class="card">
+                    <h3>📋 成本明细表</h3>
+                    <table>
+                        <thead>
+                            <tr><th>成本类别</th><th>金额（元）</th><th>占比</th></tr>
+                        </thead>
+                        <tbody id="costTableBody">
+                            <tr><td>直接材料成本</td><td id="tb_material">690,000.00</td><td id="tb_material_pct">50.4%</td></tr>
+                            <tr><td>直接人工成本</td><td id="tb_labor">325,000.00</td><td id="tb_labor_pct">23.7%</td></tr>
+                            <tr><td>直接制造费用</td><td id="tb_overhead">155,000.00</td><td id="tb_overhead_pct">11.3%</td></tr>
+                            <tr><td>作业成本</td><td id="tb_activity">58,650.00</td><td id="tb_activity_pct">4.3%</td></tr>
+                            <tr><td>资金成本</td><td id="tb_capital">40,736.99</td><td id="tb_capital_pct">3.0%</td></tr>
+                            <tr><td>风险成本</td><td id="tb_risk">99,910.00</td><td id="tb_risk_pct">7.3%</td></tr>
+                            <tr style="background:rgba(233,69,96,0.2);font-weight:bold;">
+                                <td>合计</td><td id="tb_total">1,369,296.99</td><td>100%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="grid" style="margin-top:20px;">
+                <div class="card">
+                    <h3>💡 成本优化建议</h3>
+                    <div id="suggestions" style="line-height:1.8;">
+                        <p>📌 <strong>直接材料</strong>占比超过50%，建议加强供应商谈判和批量采购</p>
+                        <p>📌 <strong>风险成本</strong>占比7.3%，建议强化质量管控和供应商多元化</p>
+                        <p>📌 <strong>资金成本</strong>可通过缩短库存周转天数降低</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📈 关键指标</h3>
+                    <div class="result-item"><span class="label">单位产品总成本</span><span class="value" id="kpi_unit_cost">¥136.93</span></div>
+                    <div class="result-item"><span class="label">隐性成本占比</span><span class="value" id="kpi_hidden_pct">14.6%</span></div>
+                    <div class="result-item"><span class="label">作业成本动因效率</span><span class="value" id="kpi_abc_efficiency">良好</span></div>
+                    <div class="result-item"><span class="label">资金周转效率</span><span class="value" id="kpi_turnover">45天</span></div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:20px;">
+                <button class="btn" onclick="recalculateAll()">🔄 重新计算所有成本</button>
+                <button class="btn" style="margin-left:10px;background:linear-gradient(135deg,#0f3460,#16213e);" onclick="exportReport()">📥 导出报表</button>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-btn">← 返回引导页</a>
+
+    <script>
+        // 面板切换函数
+        function showPanel(panelId) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(panelId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // 成本数据对象
+        const costData = {
+            direct: { material: 0, labor: 0, overhead: 0 },
+            activity: { procurement: 0, quality: 0, warehouse: 0, transport: 0, order: 0 },
+            capital: { inventory: 0, receivable: 0 },
+            risk: { quality: 0, supply: 0, price: 0 }
+        };
+
+        // 格式化金额
+        function formatMoney(num) {
+            return num.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // 计算总成本
+        function calculateTotalCost() {
+            const directTotal = costData.direct.material + costData.direct.labor + costData.direct.overhead;
+            const activityTotal = Object.values(costData.activity).reduce((a, b) => a + b, 0);
+            const capitalTotal = costData.capital.inventory + costData.capital.receivable;
+            const riskTotal = Object.values(costData.risk).reduce((a, b) => a + b, 0);
+            return directTotal + activityTotal + capitalTotal + riskTotal;
+        }
+
+        // 更新直接成本
+        function updateDirectCost() {
+            const steel = parseFloat(document.getElementById('steel_cost').value) || 0;
+            const ball = parseFloat(document.getElementById('ball_cost').value) || 0;
+            const cage = parseFloat(document.getElementById('cage_cost').value) || 0;
+            const seal = parseFloat(document.getElementById('seal_cost').value) || 0;
+            const qty = parseFloat(document.getElementById('production_qty').value) || 0;
+            
+            const materialTotal = (steel + ball + cage + seal) * qty;
+            costData.direct.material = materialTotal;
+            document.getElementById('material_total').textContent = '¥' + formatMoney(materialTotal);
+            
+            const workers = parseFloat(document.getElementById('worker_count').value) || 0;
+            const salary = parseFloat(document.getElementById('avg_salary').value) || 0;
+            const laborTotal = workers * salary;
+            costData.direct.labor = laborTotal;
+            document.getElementById('labor_total').textContent = '¥' + formatMoney(laborTotal);
+            
+            const depreciation = parseFloat(document.getElementById('depreciation').value) || 0;
+            const energy = parseFloat(document.getElementById('energy_cost').value) || 0;
+            const other = parseFloat(document.getElementById('other_mfg').value) || 0;
+            const overheadTotal = depreciation + energy + other;
+            costData.direct.overhead = overheadTotal;
+            document.getElementById('overhead_total').textContent = '¥' + formatMoney(overheadTotal);
+            
+            const directTotal = materialTotal + laborTotal + overheadTotal;
+            document.getElementById('direct_total').textContent = '¥' + formatMoney(directTotal);
+            updateSummary();
+        }
+
+        // 更新作业成本
+        function updateActivityCost() {
+            // 采购作业
+            const procDept = parseFloat(document.getElementById('proc_dept_cost').value) || 0;
+            const totalOrders = parseFloat(document.getElementById('total_orders').value) || 1;
+            const productOrders = parseFloat(document.getElementById('product_orders').value) || 0;
+            const procRate = procDept / totalOrders;
+            const procCost = procRate * productOrders;
+            costData.activity.procurement = procCost;
+            document.getElementById('proc_rate').textContent = '¥' + formatMoney(procRate);
+            document.getElementById('proc_cost').textContent = '¥' + formatMoney(procCost);
+            document.getElementById('proc_summary').textContent = '¥' + formatMoney(procCost);
+            
+            // 质检作业
+            const qcDept = parseFloat(document.getElementById('qc_dept_cost').value) || 0;
+            const totalBatches = parseFloat(document.getElementById('total_batches').value) || 1;
+            const productBatches = parseFloat(document.getElementById('product_batches').value) || 0;
+            const qcRate = qcDept / totalBatches;
+            const qcCost = qcRate * productBatches;
+            costData.activity.quality = qcCost;
+            document.getElementById('qc_rate').textContent = '¥' + formatMoney(qcRate);
+            document.getElementById('qc_cost').textContent = '¥' + formatMoney(qcCost);
+            document.getElementById('qc_summary').textContent = '¥' + formatMoney(qcCost);
+            
+            // 仓储作业
+            const whDept = parseFloat(document.getElementById('wh_dept_cost').value) || 0;
+            const totalMove = parseFloat(document.getElementById('total_movements').value) || 1;
+            const productMove = parseFloat(document.getElementById('product_movements').value) || 0;
+            const whRate = whDept / totalMove;
+            const whCost = whRate * productMove;
+            costData.activity.warehouse = whCost;
+            document.getElementById('wh_rate').textContent = '¥' + formatMoney(whRate);
+            document.getElementById('wh_cost').textContent = '¥' + formatMoney(whCost);
+            document.getElementById('wh_summary').textContent = '¥' + formatMoney(whCost);
+            
+            // 运输作业
+            const transDept = parseFloat(document.getElementById('trans_dept_cost').value) || 0;
+            const totalWeight = parseFloat(document.getElementById('total_weight').value) || 1;
+            const productWeight = parseFloat(document.getElementById('product_weight').value) || 0;
+            const transRate = transDept / totalWeight;
+            const transCost = transRate * productWeight;
+            costData.activity.transport = transCost;
+            document.getElementById('trans_rate').textContent = '¥' + formatMoney(transRate);
+            document.getElementById('trans_cost').textContent = '¥' + formatMoney(transCost);
+            document.getElementById('trans_summary').textContent = '¥' + formatMoney(transCost);
+            
+            const activityTotal = procCost + qcCost + whCost + transCost;
+            document.getElementById('activity_total').textContent = '¥' + formatMoney(activityTotal);
+            updateSummary();
+        }
+
+        // 更新资金成本
+        function updateCapitalCost() {
+            const rawInv = parseFloat(document.getElementById('raw_inventory').value) || 0;
+            const wipInv = parseFloat(document.getElementById('wip_inventory').value) || 0;
+            const fgInv = parseFloat(document.getElementById('fg_inventory').value) || 0;
+            const capitalRate = parseFloat(document.getElementById('capital_rate').value) || 0;
+            const turnoverDays = parseFloat(document.getElementById('turnover_days').value) || 0;
+            
+            const totalInv = rawInv + wipInv + fgInv;
+            const invCapitalCost = totalInv * (capitalRate / 100) * turnoverDays / 365;
+            costData.capital.inventory = invCapitalCost;
+            document.getElementById('total_inventory').textContent = '¥' + formatMoney(totalInv);
+            document.getElementById('inv_capital_cost').textContent = '¥' + formatMoney(invCapitalCost);
+            document.getElementById('inv_summary').textContent = '¥' + formatMoney(invCapitalCost);
+            
+            const arBalance = parseFloat(document.getElementById('receivable_balance').value) || 0;
+            const creditDays = parseFloat(document.getElementById('avg_credit_days').value) || 0;
+            const arRate = parseFloat(document.getElementById('ar_capital_rate').value) || 0;
+            const arCapitalCost = arBalance * (arRate / 100) * creditDays / 365;
+            costData.capital.receivable = arCapitalCost;
+            document.getElementById('ar_capital_cost').textContent = '¥' + formatMoney(arCapitalCost);
+            document.getElementById('ar_summary').textContent = '¥' + formatMoney(arCapitalCost);
+            
+            const capitalTotal = invCapitalCost + arCapitalCost;
+            document.getElementById('capital_total').textContent = '¥' + formatMoney(capitalTotal);
+            document.getElementById('kpi_turnover').textContent = turnoverDays + '天';
+            updateSummary();
+        }
+
+        // 更新风险成本
+        function updateRiskCost() {
+            const returnQty = parseFloat(document.getElementById('return_qty').value) || 0;
+            const returnUnitCost = parseFloat(document.getElementById('return_unit_cost').value) || 0;
+            const claimAmount = parseFloat(document.getElementById('claim_amount').value) || 0;
+            const brandImpact = parseFloat(document.getElementById('brand_impact').value) || 0;
+            const qualityCost = returnQty * returnUnitCost + claimAmount + brandImpact;
+            costData.risk.quality = qualityCost;
+            document.getElementById('quality_risk_cost').textContent = '¥' + formatMoney(qualityCost);
+            document.getElementById('quality_summary').textContent = '¥' + formatMoney(qualityCost);
+            
+            const stockoutTimes = parseFloat(document.getElementById('stockout_times').value) || 0;
+            const stockoutLoss = parseFloat(document.getElementById('stockout_loss').value) || 0;
+            const urgentPremium = parseFloat(document.getElementById('urgent_premium').value) || 0;
+            const supplyCost = stockoutTimes * stockoutLoss + urgentPremium;
+            costData.risk.supply = supplyCost;
+            document.getElementById('supply_risk_cost').textContent = '¥' + formatMoney(supplyCost);
+            document.getElementById('supply_summary').textContent = '¥' + formatMoney(supplyCost);
+            
+            const monthlyPurchase = parseFloat(document.getElementById('monthly_purchase').value) || 0;
+            const volatility = parseFloat(document.getElementById('price_volatility').value) || 0;
+            const exposure = parseFloat(document.getElementById('risk_exposure').value) || 0;
+            const priceCost = monthlyPurchase * (volatility / 100) * (exposure / 100);
+            costData.risk.price = priceCost;
+            document.getElementById('price_risk_cost').textContent = '¥' + formatMoney(priceCost);
+            document.getElementById('price_summary').textContent = '¥' + formatMoney(priceCost);
+            
+            const riskTotal = qualityCost + supplyCost + priceCost;
+            document.getElementById('risk_total').textContent = '¥' + formatMoney(riskTotal);
+            updateSummary();
+        }
+
+        // 图表实例
+        let pieChart = null;
+
+        // 更新汇总面板
+        function updateSummary() {
+            const material = costData.direct.material;
+            const labor = costData.direct.labor;
+            const overhead = costData.direct.overhead;
+            const activity = Object.values(costData.activity).reduce((a, b) => a + b, 0);
+            const capital = costData.capital.inventory + costData.capital.receivable;
+            const risk = Object.values(costData.risk).reduce((a, b) => a + b, 0);
+            const total = material + labor + overhead + activity + capital + risk;
+            const qty = parseFloat(document.getElementById('production_qty').value) || 1;
+            
+            document.getElementById('grand_total').textContent = '¥' + formatMoney(total);
+            document.getElementById('unit_cost').textContent = '¥' + formatMoney(total / qty);
+            document.getElementById('kpi_unit_cost').textContent = '¥' + formatMoney(total / qty);
+            
+            const hiddenPct = ((activity + capital + risk) / total * 100).toFixed(1);
+            document.getElementById('kpi_hidden_pct').textContent = hiddenPct + '%';
+            
+            // 更新表格
+            document.getElementById('tb_material').textContent = formatMoney(material);
+            document.getElementById('tb_labor').textContent = formatMoney(labor);
+            document.getElementById('tb_overhead').textContent = formatMoney(overhead);
+            document.getElementById('tb_activity').textContent = formatMoney(activity);
+            document.getElementById('tb_capital').textContent = formatMoney(capital);
+            document.getElementById('tb_risk').textContent = formatMoney(risk);
+            document.getElementById('tb_total').textContent = formatMoney(total);
+            
+            document.getElementById('tb_material_pct').textContent = (material/total*100).toFixed(1) + '%';
+            document.getElementById('tb_labor_pct').textContent = (labor/total*100).toFixed(1) + '%';
+            document.getElementById('tb_overhead_pct').textContent = (overhead/total*100).toFixed(1) + '%';
+            document.getElementById('tb_activity_pct').textContent = (activity/total*100).toFixed(1) + '%';
+            document.getElementById('tb_capital_pct').textContent = (capital/total*100).toFixed(1) + '%';
+            document.getElementById('tb_risk_pct').textContent = (risk/total*100).toFixed(1) + '%';
+            
+            updateChart(material, labor, overhead, activity, capital, risk);
+        }
+
+        // 更新饼图
+        function updateChart(material, labor, overhead, activity, capital, risk) {
+            const ctx = document.getElementById('costPieChart').getContext('2d');
+            if (pieChart) pieChart.destroy();
+            pieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['直接材料', '直接人工', '制造费用', '作业成本', '资金成本', '风险成本'],
+                    datasets: [{
+                        data: [material, labor, overhead, activity, capital, risk],
+                        backgroundColor: ['#e94560', '#533483', '#0f3460', '#4ade80', '#f97316', '#fbbf24'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'right', labels: { color: '#fff', font: { size: 12 } } }
+                    }
+                }
+            });
+        }
+
+        // 重新计算所有
+        function recalculateAll() {
+            updateDirectCost();
+            updateActivityCost();
+            updateCapitalCost();
+            updateRiskCost();
+            alert('所有成本已重新计算！');
+        }
+
+        // 导出报表
+        function exportReport() {
+            const total = calculateTotalCost();
+            const qty = parseFloat(document.getElementById('production_qty').value) || 1;
+            const report = `轴承供应链总成本管控报表\n生成时间: ${new Date().toLocaleString()}\n` +
+                `============================\n` +
+                `直接材料成本: ¥${formatMoney(costData.direct.material)}\n` +
+                `直接人工成本: ¥${formatMoney(costData.direct.labor)}\n` +
+                `直接制造费用: ¥${formatMoney(costData.direct.overhead)}\n` +
+                `作业成本合计: ¥${formatMoney(Object.values(costData.activity).reduce((a,b)=>a+b,0))}\n` +
+                `资金成本合计: ¥${formatMoney(costData.capital.inventory + costData.capital.receivable)}\n` +
+                `风险成本合计: ¥${formatMoney(Object.values(costData.risk).reduce((a,b)=>a+b,0))}\n` +
+                `============================\n` +
+                `供应链总成本: ¥${formatMoney(total)}\n` +
+                `单件成本: ¥${formatMoney(total/qty)}\n`;
+            const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = '供应链总成本报表.txt';
+            a.click();
+        }
+
+        // 页面加载初始化
+        window.onload = function() {
+            updateDirectCost();
+            updateActivityCost();
+            updateCapitalCost();
+            updateRiskCost();
+        };
+    </script>
+</body>
+</html>
