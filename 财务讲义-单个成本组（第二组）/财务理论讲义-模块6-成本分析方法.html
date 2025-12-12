@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块6：成本分析方法 - 财务理论讲义</title>
+    <style>
+        @media print {
+            @page { size: A4; margin: 2cm 1.5cm; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.8;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+            color: white;
+            padding: 40px;
+            margin: -50px -50px 40px -50px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32pt;
+            margin-bottom: 15px;
+        }
+
+        .header .module-number {
+            font-size: 18pt;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 20pt;
+            color: #ff6f00;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff6f00;
+        }
+
+        h3 {
+            font-size: 16pt;
+            color: #f57c00;
+            margin: 30px 0 15px 0;
+            padding-left: 15px;
+            border-left: 5px solid #f57c00;
+        }
+
+        h4 {
+            font-size: 14pt;
+            color: #e65100;
+            margin: 25px 0 12px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 5px solid #ff6f00;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .concept-box h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .formula-box {
+            background: #f8f9fa;
+            border: 2px solid #ff6f00;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-family: "Courier New", monospace;
+            font-size: 12pt;
+            line-height: 2;
+        }
+
+        .formula-box .formula-title {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-weight: bold;
+            color: #ff6f00;
+            margin-bottom: 15px;
+            font-size: 14pt;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 11pt;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: #ff6f00;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background: #fff3e0;
+        }
+
+        .highlight {
+            background: #fff59d;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .important {
+            color: #ff6f00;
+            font-weight: bold;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 35px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .tip-box:before {
+            content: "💡 应用建议";
+            display: block;
+            font-weight: bold;
+            color: #1565c0;
+            font-size: 13pt;
+            margin-bottom: 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #ff6f00;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #e65100;
+            transform: scale(1.05);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .key-points {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 3px solid #ff6f00;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .key-points h3 {
+            color: #ff6f00;
+            margin-top: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding: 10px 0;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "★";
+            color: #ff6f00;
+            position: absolute;
+            left: 0;
+            font-size: 16pt;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 5px solid #f44336;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .alert-box:before {
+            content: "⚠️ 重要提醒";
+            display: block;
+            font-weight: bold;
+            color: #c62828;
+            font-size: 13pt;
+            margin-bottom: 10px;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .success-box:before {
+            content: "✓ 改善机会";
+            display: block;
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 13pt;
+            margin-bottom: 10px;
+        }
+
+        .chart-container {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="module-number">模块 6</div>
+            <h1>成本分析方法</h1>
+            <p>让数据说话——从成本数据中发现管理价值</p>
+        </div>
+
+        <h2>一、为什么要做成本分析?</h2>
+
+        <div class="concept-box">
+            <h4>📖 成本分析的意义</h4>
+            <p><strong>成本核算</strong>告诉我们"花了多少钱"，<strong>成本分析</strong>则要回答：</p>
+            <ul style="margin-top: 10px;">
+                <li>钱花在哪里了？（成本构成分析）</li>
+                <li>花得对不对？（与标准、目标对比）</li>
+                <li>有没有异常？（异常识别）</li>
+                <li>如何改进？（发现降本机会）</li>
+            </ul>
+            <p style="margin-top: 15px;"><span class="important">成本分析是把数字变成管理决策的过程！</span></p>
+        </div>
+
+        <div class="example-box">
+            <h4>💼 实际场景</h4>
+            <p><strong>场景1：</strong>6206轴承成本19.30元，这个数字本身意义不大。</p>
+            <p><strong>通过分析：</strong></p>
+            <ul>
+                <li>材料占比65%，人工17%，费用18% → 了解成本结构</li>
+                <li>与标准成本19.80元对比，低了0.50元 → 成本控制良好</li>
+                <li>与去年同期19.60元对比，降低了0.30元 → 持续改善</li>
+                <li>与同行业20.50元对比，有竞争优势 → 市场定位</li>
+            </ul>
+            <p><strong>得出结论：</strong>这个产品成本控制良好，有价格竞争力！</p>
+        </div>
+
+        <h2 class="page-break">二、成本构成分析（料工费占比）</h2>
+
+        <h3>2.1 料工费占比分析</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">料工费占比计算公式</div>
+            <strong>材料占比 = 直接材料成本 ÷ 产品总成本 × 100%</strong><br>
+            <strong>人工占比 = 直接人工成本 ÷ 产品总成本 × 100%</strong><br>
+            <strong>费用占比 = 制造费用 ÷ 产品总成本 × 100%</strong>
+            <br><br>
+            材料占比 + 人工占比 + 费用占比 = 100%
+        </div>
+
+        <div class="example-box">
+            <h4>📊 案例：三种轴承的成本构成对比</h4>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>产品</th>
+                        <th>材料成本</th>
+                        <th>占比</th>
+                        <th>人工成本</th>
+                        <th>占比</th>
+                        <th>制造费用</th>
+                        <th>占比</th>
+                        <th>总成本</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>6206</strong><br>标准品</td>
+                        <td>12.50</td>
+                        <td>65%</td>
+                        <td>3.20</td>
+                        <td>17%</td>
+                        <td>3.50</td>
+                        <td>18%</td>
+                        <td>19.20</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6306</strong><br>中型</td>
+                        <td>18.80</td>
+                        <td>68%</td>
+                        <td>3.80</td>
+                        <td>14%</td>
+                        <td>5.00</td>
+                        <td>18%</td>
+                        <td>27.60</td>
+                    </tr>
+                    <tr>
+                        <td><strong>定制轴承</strong><br>特殊品</td>
+                        <td>25.00</td>
+                        <td>45%</td>
+                        <td>12.00</td>
+                        <td>22%</td>
+                        <td>18.50</td>
+                        <td>33%</td>
+                        <td>55.50</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;"><strong>分析结论：</strong></p>
+            <ul>
+                <li><strong>6206标准品：</strong>材料占比65%，属于材料密集型，降本重点是材料采购和损耗控制</li>
+                <li><strong>6306中型：</strong>材料占比68%，规格大材料多，符合预期</li>
+                <li><strong>定制轴承：</strong>人工占22%、费用占33%，属于加工密集型，降本重点是提高效率、减少换产</li>
+            </ul>
+
+            <div class="success-box">
+                <strong>改善建议：</strong>
+                <ul style="margin-top: 10px;">
+                    <li>标准品：批量采购钢材争取价格优惠，降低损耗率</li>
+                    <li>定制品：提高批量、减少换产次数，优化工艺降低工时</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>2.2 行业基准对比</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>产品类型</th>
+                    <th>材料占比</th>
+                    <th>人工占比</th>
+                    <th>费用占比</th>
+                    <th>特征</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>大批量标准品</strong></td>
+                    <td>65-75%</td>
+                    <td>10-15%</td>
+                    <td>15-20%</td>
+                    <td>自动化程度高</td>
+                </tr>
+                <tr>
+                    <td><strong>中批量常规品</strong></td>
+                    <td>60-70%</td>
+                    <td>15-20%</td>
+                    <td>15-20%</td>
+                    <td>半自动化</td>
+                </tr>
+                <tr>
+                    <td><strong>小批量定制品</strong></td>
+                    <td>40-50%</td>
+                    <td>20-30%</td>
+                    <td>30-40%</td>
+                    <td>手工操作多</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert-box">
+            <strong>占比异常预警：</strong>
+            <ul style="margin-top: 10px;">
+                <li>材料占比 &gt; 80% → 可能存在材料浪费或价格过高</li>
+                <li>人工占比 &gt; 35% → 可能效率低下或工艺复杂</li>
+                <li>费用占比 &gt; 45% → 可能设备利用率低或产量不足</li>
+            </ul>
+        </div>
+
+        <h2 class="page-break">三、成本差异分析</h2>
+
+        <h3>3.1 标准成本与实际成本差异</h3>
+
+        <div class="concept-box">
+            <h4>📖 什么是成本差异?</h4>
+            <p><strong>成本差异 = 实际成本 - 标准成本</strong></p>
+            <ul style="margin-top: 10px;">
+                <li>差异为负（实际&lt;标准）→ 成本节约，有利差异</li>
+                <li>差异为正（实际&gt;标准）→ 成本超支，不利差异</li>
+            </ul>
+        </div>
+
+        <h3>3.2 材料成本差异分析</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">材料成本差异分解</div>
+            <strong>材料成本差异 = 价格差异 + 用量差异</strong>
+            <br><br>
+            <strong>价格差异 = (实际单价 - 标准单价) × 实际用量</strong><br>
+            <strong>用量差异 = (实际用量 - 标准用量) × 标准单价</strong>
+        </div>
+
+        <div class="example-box">
+            <h4>📊 案例：6206轴承材料成本差异分析</h4>
+
+            <p><strong>GCr15钢材数据：</strong></p>
+            <ul>
+                <li>标准单价：12.50元/kg</li>
+                <li>实际单价：13.00元/kg</li>
+                <li>标准用量：0.42kg</li>
+                <li>实际用量：0.44kg</li>
+            </ul>
+
+            <div class="formula-box">
+                <strong>计算过程：</strong>
+                <br><br>
+                <strong>标准成本</strong> = 0.42 × 12.50 = 5.25元<br>
+                <strong>实际成本</strong> = 0.44 × 13.00 = 5.72元<br>
+                <strong>成本差异</strong> = 5.72 - 5.25 = <strong>+0.47元（不利）</strong>
+                <br><br>
+                <strong>分解差异：</strong><br>
+                价格差异 = (13.00 - 12.50) × 0.44 = +0.22元（不利）<br>
+                用量差异 = (0.44 - 0.42) × 12.50 = +0.25元（不利）<br>
+                合计 = 0.22 + 0.25 = <strong>0.47元</strong>
+            </div>
+
+            <p style="margin-top: 20px;"><strong>差异原因分析：</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>差异项</th>
+                        <th>金额</th>
+                        <th>可能原因</th>
+                        <th>责任部门</th>
+                        <th>改进措施</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>价格差异</td>
+                        <td>+0.22元</td>
+                        <td>钢材市场价上涨</td>
+                        <td>采购部</td>
+                        <td>锁价合同、批量采购</td>
+                    </tr>
+                    <tr>
+                        <td>用量差异</td>
+                        <td>+0.25元</td>
+                        <td>加工损耗增加</td>
+                        <td>生产部</td>
+                        <td>优化工艺、提高技能</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>3.3 人工成本差异分析</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">人工成本差异分解</div>
+            <strong>人工成本差异 = 工资率差异 + 效率差异</strong>
+            <br><br>
+            <strong>工资率差异 = (实际工资率 - 标准工资率) × 实际工时</strong><br>
+            <strong>效率差异 = (实际工时 - 标准工时) × 标准工资率</strong>
+        </div>
+
+        <div class="example-box">
+            <h4>📊 案例：车削工序人工成本差异</h4>
+
+            <p><strong>数据：</strong></p>
+            <ul>
+                <li>标准工资率：35元/小时</li>
+                <li>实际工资率：38元/小时</li>
+                <li>标准工时：0.06小时</li>
+                <li>实际工时：0.07小时</li>
+            </ul>
+
+            <div class="formula-box">
+                标准人工成本 = 0.06 × 35 = 2.10元<br>
+                实际人工成本 = 0.07 × 38 = 2.66元<br>
+                人工成本差异 = 2.66 - 2.10 = <strong>+0.56元（不利）</strong>
+                <br><br>
+                工资率差异 = (38 - 35) × 0.07 = +0.21元<br>
+                效率差异 = (0.07 - 0.06) × 35 = +0.35元<br>
+                合计 = 0.21 + 0.35 = 0.56元
+            </div>
+
+            <p><strong>原因分析：</strong></p>
+            <ul>
+                <li><strong>工资率差异+0.21元：</strong>工资上调（人力成本上升趋势）</li>
+                <li><strong>效率差异+0.35元：</strong>实际工时超标准16.7%，可能是设备老化或工人技能不足</li>
+            </ul>
+
+            <div class="success-box">
+                <strong>改进措施：</strong>
+                <ul style="margin-top: 10px;">
+                    <li>工资率：属于市场因素，可接受；但要通过效率提升抵消</li>
+                    <li>效率：加强技能培训，设备保养，优化工艺参数</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="page-break">四、异常成本识别</h2>
+
+        <h3>4.1 异常成本的定义</h3>
+
+        <div class="concept-box">
+            <h4>📖 什么是异常成本?</h4>
+            <p><strong>异常成本</strong>是指明显偏离正常水平、需要特别关注和分析的成本。</p>
+            <p><strong>识别标准：</strong></p>
+            <ul style="margin-top: 10px;">
+                <li>超出标准成本±10%</li>
+                <li>料工费占比异常（偏离行业标准）</li>
+                <li>环比、同比波动过大（&gt;20%）</li>
+                <li>工序成本明显异常</li>
+            </ul>
+        </div>
+
+        <h3>4.2 异常识别规则</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>异常类型</th>
+                    <th>识别规则</th>
+                    <th>可能原因</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>总成本异常</strong></td>
+                    <td>实际成本超标准成本±10%</td>
+                    <td>材料涨价、效率下降、设备故障</td>
+                </tr>
+                <tr>
+                    <td><strong>材料占比异常</strong></td>
+                    <td>材料占比&gt;75%或&lt;50%</td>
+                    <td>浪费、价格变动、核算错误</td>
+                </tr>
+                <tr>
+                    <td><strong>人工占比异常</strong></td>
+                    <td>人工占比&gt;30%或&lt;10%</td>
+                    <td>效率低、工艺问题、工资异常</td>
+                </tr>
+                <tr>
+                    <td><strong>费用占比异常</strong></td>
+                    <td>费用占比&gt;40%或&lt;10%</td>
+                    <td>产量低、分摊不合理</td>
+                </tr>
+                <tr>
+                    <td><strong>工序成本异常</strong></td>
+                    <td>单工序超标准&gt;15%</td>
+                    <td>该工序设备、人员、物料问题</td>
+                </tr>
+                <tr>
+                    <td><strong>波动异常</strong></td>
+                    <td>环比变动&gt;20%</td>
+                    <td>季节性因素、偶发事件</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4.3 异常成本分析案例</h3>
+
+        <div class="example-box">
+            <h4>🚨 案例：发现6406轴承成本异常</h4>
+
+            <p><strong>数据对比：</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>本月实际</th>
+                        <th>标准成本</th>
+                        <th>上月实际</th>
+                        <th>差异</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>材料成本</td>
+                        <td>28.50</td>
+                        <td>25.00</td>
+                        <td>24.80</td>
+                        <td>+14.0%</td>
+                    </tr>
+                    <tr>
+                        <td>人工成本</td>
+                        <td>4.50</td>
+                        <td>4.20</td>
+                        <td>4.10</td>
+                        <td>+7.1%</td>
+                    </tr>
+                    <tr>
+                        <td>制造费用</td>
+                        <td>7.60</td>
+                        <td>7.00</td>
+                        <td>6.90</td>
+                        <td>+8.6%</td>
+                    </tr>
+                    <tr style="background: #ffebee; font-weight: bold;">
+                        <td>总成本</td>
+                        <td>40.60</td>
+                        <td>36.20</td>
+                        <td>35.80</td>
+                        <td>+12.2%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;"><strong>异常识别：</strong></p>
+            <div class="alert-box">
+                <ul style="margin: 0;">
+                    <li>总成本超标准12.2% → <strong>异常！</strong></li>
+                    <li>材料成本超标准14.0% → <strong>重点关注！</strong></li>
+                </ul>
+            </div>
+
+            <p><strong>深入分析：</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>材料</th>
+                        <th>标准用量</th>
+                        <th>实际用量</th>
+                        <th>标准单价</th>
+                        <th>实际单价</th>
+                        <th>原因</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GCr15钢材</td>
+                        <td>0.80kg</td>
+                        <td>0.90kg</td>
+                        <td>12.5元/kg</td>
+                        <td>13.2元/kg</td>
+                        <td><span style="color: #f44336;">用量+12.5%，价格+5.6%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>追查原因：</strong></p>
+            <ol>
+                <li>调阅生产记录，发现磨削工序废品率高达8%（正常2%）</li>
+                <li>询问车间，磨床精度下降，需要增加磨削余量</li>
+                <li>钢材价格上涨5.6%，市场因素</li>
+            </ol>
+
+            <div class="success-box">
+                <strong>改进措施：</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>立即行动：</strong>安排磨床大修，恢复精度</li>
+                    <li><strong>短期措施：</strong>加强首件检验，减少废品</li>
+                    <li><strong>中期措施：</strong>优化工艺，降低磨削余量</li>
+                    <li><strong>材料价格：</strong>与供应商谈判锁价</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 20px;"><strong>预期效果：</strong>改进后材料用量恢复至0.82kg，成本降至37.50元，接近标准。</p>
+        </div>
+
+        <h2 class="page-break">五、成本对标分析</h2>
+
+        <h3>5.1 什么是成本对标?</h3>
+
+        <div class="concept-box">
+            <h4>📖 成本对标</h4>
+            <p><strong>成本对标</strong>是将本企业的成本与标杆（内部标杆、竞争对手、行业最佳）进行比较，找出差距和改进方向。</p>
+        </div>
+
+        <h3>5.2 对标对象选择</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>对标类型</th>
+                    <th>对标对象</th>
+                    <th>数据来源</th>
+                    <th>适用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>内部对标</strong></td>
+                    <td>公司内不同车间、不同时期</td>
+                    <td>内部数据</td>
+                    <td>查找内部差距</td>
+                </tr>
+                <tr>
+                    <td><strong>竞争对标</strong></td>
+                    <td>同行业竞争对手</td>
+                    <td>市场调研、产品拆解</td>
+                    <td>了解竞争地位</td>
+                </tr>
+                <tr>
+                    <td><strong>行业对标</strong></td>
+                    <td>行业平均水平</td>
+                    <td>行业报告、协会数据</td>
+                    <td>行业定位</td>
+                </tr>
+                <tr>
+                    <td><strong>最佳实践对标</strong></td>
+                    <td>世界一流企业</td>
+                    <td>公开数据、学习交流</td>
+                    <td>学习先进</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>5.3 对标分析案例</h3>
+
+        <div class="example-box">
+            <h4>📊 案例：6206轴承成本对标分析</h4>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>瓦轴</th>
+                        <th>国内竞争对手A</th>
+                        <th>国际标杆SKF</th>
+                        <th>差距</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>材料成本</td>
+                        <td>12.50</td>
+                        <td>12.00</td>
+                        <td>11.50</td>
+                        <td>-8.0%</td>
+                    </tr>
+                    <tr>
+                        <td>人工成本</td>
+                        <td>3.20</td>
+                        <td>3.50</td>
+                        <td>2.00</td>
+                        <td>+37.5%</td>
+                    </tr>
+                    <tr>
+                        <td>制造费用</td>
+                        <td>3.50</td>
+                        <td>3.80</td>
+                        <td>2.80</td>
+                        <td>+20.0%</td>
+                    </tr>
+                    <tr style="background: #fff3e0; font-weight: bold;">
+                        <td>总成本</td>
+                        <td>19.20</td>
+                        <td>19.30</td>
+                        <td>16.30</td>
+                        <td>+15.1%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;"><strong>对标结论：</strong></p>
+            <ul>
+                <li>与国内竞争对手基本持平（差距0.5%）</li>
+                <li>与国际标杆有15.1%差距</li>
+                <li>材料成本差距8%，主要是规模采购优势</li>
+                <li>人工成本差距37.5%，主要是自动化水平差距</li>
+            </ul>
+
+            <div class="success-box">
+                <strong>改进方向：</strong>
+                <ul style="margin-top: 10px;">
+                    <li><strong>材料：</strong>扩大采购批量，集中采购降低价格</li>
+                    <li><strong>人工：</strong>推进自动化改造，提高劳动生产率</li>
+                    <li><strong>制造费用：</strong>提高设备利用率，优化能源管理</li>
+                    <li><strong>目标：</strong>3年内缩小与SKF的差距至10%以内</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="page-break">六、成本改善机会分析</h2>
+
+        <h3>6.1 降本增效的突破口</h3>
+
+        <div class="chart-container">
+            <h4 style="text-align: center; color: #ff6f00; margin-top: 0;">成本改善优先级矩阵</h4>
+
+            <table style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>改善领域</th>
+                        <th>成本占比</th>
+                        <th>改善空间</th>
+                        <th>实施难度</th>
+                        <th>优先级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>材料采购成本</td>
+                        <td>高(65%)</td>
+                        <td>中(5-8%)</td>
+                        <td>低</td>
+                        <td><span style="color: #f44336; font-weight: bold;">★★★★★</span></td>
+                    </tr>
+                    <tr>
+                        <td>材料损耗率</td>
+                        <td>高(影响材料)</td>
+                        <td>中(2-5%)</td>
+                        <td>中</td>
+                        <td><span style="color: #ff9800; font-weight: bold;">★★★★</span></td>
+                    </tr>
+                    <tr>
+                        <td>人工效率</td>
+                        <td>中(17%)</td>
+                        <td>高(10-20%)</td>
+                        <td>中</td>
+                        <td><span style="color: #ff9800; font-weight: bold;">★★★★</span></td>
+                    </tr>
+                    <tr>
+                        <td>自动化改造</td>
+                        <td>高(降人工)</td>
+                        <td>高(30%+)</td>
+                        <td>高</td>
+                        <td><span style="color: #ffc107; font-weight: bold;">★★★</span></td>
+                    </tr>
+                    <tr>
+                        <td>能源管理</td>
+                        <td>低(5%)</td>
+                        <td>中(10-15%)</td>
+                        <td>低</td>
+                        <td><span style="color: #4caf50; font-weight: bold;">★★</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px; font-size: 11pt; color: #666;">
+                <strong>优先级说明：</strong>重点抓"高占比+低难度"的项目，快速见效；
+                "高难度+高收益"的项目作为中长期规划。
+            </p>
+        </div>
+
+        <h3>6.2 具体改善措施</h3>
+
+        <div class="success-box">
+            <strong>材料成本改善（占比65%，优先级最高）</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong>集中采购：</strong>年用量1000吨以上的钢材，集中招标采购，预计降价3-5%</li>
+                <li><strong>国产替代：</strong>部分进口辅料用国产品牌替代，降低10-15%</li>
+                <li><strong>损耗控制：</strong>优化工艺，损耗率从5%降至4%，节约材料1%</li>
+                <li><strong>预期节约：</strong>材料成本降低5%，总成本降低3.25%</li>
+            </ul>
+        </div>
+
+        <div class="success-box">
+            <strong>人工效率提升（占比17%）</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong>技能培训：</strong>车工、磨工技能提升，工时效率提高10%</li>
+                <li><strong>工艺优化：</strong>减少不必要的工序，合并部分工序</li>
+                <li><strong>标准化作业：</strong>推行作业标准，减少变动</li>
+                <li><strong>预期节约：</strong>人工成本降低8%，总成本降低1.36%</li>
+            </ul>
+        </div>
+
+        <div class="success-box">
+            <strong>制造费用控制（占比18%）</strong>
+            <ul style="margin-top: 10px;">
+                <li><strong>提高产能利用率：</strong>从75%提升至85%，摊薄固定费用</li>
+                <li><strong>节能降耗：</strong>优化热处理工艺，电费降低8%</li>
+                <li><strong>预防性维护：</strong>减少设备故障，维修费降低15%</li>
+                <li><strong>预期节约：</strong>制造费用降低10%，总成本降低1.80%</li>
+            </ul>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 25px; border-radius: 10px; margin: 30px 0; border: 3px solid #4caf50;">
+            <h4 style="color: #2e7d32; margin-top: 0; text-align: center;">💰 总体改善潜力</h4>
+            <table style="margin-top: 15px;">
+                <thead>
+                    <tr>
+                        <th>改善项</th>
+                        <th>节约率</th>
+                        <th>对总成本影响</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>材料成本</td>
+                        <td>-5%</td>
+                        <td>-3.25%</td>
+                    </tr>
+                    <tr>
+                        <td>人工成本</td>
+                        <td>-8%</td>
+                        <td>-1.36%</td>
+                    </tr>
+                    <tr>
+                        <td>制造费用</td>
+                        <td>-10%</td>
+                        <td>-1.80%</td>
+                    </tr>
+                    <tr style="background: #4caf50; color: white; font-weight: bold; font-size: 13pt;">
+                        <td>合计</td>
+                        <td>-</td>
+                        <td>-6.41%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; margin-top: 15px; font-size: 13pt;">
+                <strong>成本从19.20元降至18.00元，年节约成本约300-500万元！</strong>
+            </p>
+        </div>
+
+        <h2 class="page-break">七、本模块要点总结</h2>
+
+        <div class="key-points">
+            <h3>📚 核心知识点回顾</h3>
+            <ul>
+                <li><strong>成本构成分析：</strong>料工费占比，了解成本结构，找到重点</li>
+                <li><strong>成本差异分析：</strong>实际vs标准，分解为价格差异和数量差异</li>
+                <li><strong>异常成本识别：</strong>总成本±10%、占比异常、波动过大</li>
+                <li><strong>成本对标分析：</strong>与内部、竞争对手、行业标杆对比</li>
+                <li><strong>改善机会分析：</strong>抓"高占比+低难度"的项目优先改善</li>
+                <li><strong>分析工具：</strong>对比分析、差异分析、结构分析、趋势分析</li>
+                <li><strong>最终目的：</strong>从数据中发现问题，找到改善方向，降本增效</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <strong>成本分析的"四问"框架：</strong>
+            <ol style="margin-top: 10px;">
+                <li><strong>钱花在哪里了？</strong>→ 成本构成分析（料工费占比）</li>
+                <li><strong>花得对不对？</strong>→ 成本差异分析（与标准对比）</li>
+                <li><strong>有没有异常？</strong>→ 异常成本识别（超出合理范围）</li>
+                <li><strong>如何改进？</strong>→ 改善机会分析（降本增效方向）</li>
+            </ol>
+            <p style="margin-top: 15px;">每月成本分析报告，都应该回答这四个问题！</p>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); padding: 35px; border-radius: 15px; margin: 40px 0; border: 3px solid #ff6f00;">
+            <h3 style="color: #e65100; margin-top: 0; text-align: center; font-size: 18pt;">🎓 课程总结</h3>
+            <p style="text-align: center; font-size: 14pt; line-height: 2.2;">
+                恭喜您完成全部6个模块的学习！<br>
+                您已经掌握了产品成本核算的完整知识体系：<br>
+                <strong>成本基础 → 成本构成 → ABC法 → BOM → 工序成本 → 成本分析</strong>
+            </p>
+
+            <div style="background: white; padding: 25px; border-radius: 10px; margin-top: 25px;">
+                <h4 style="color: #ff6f00; margin-top: 0;">下一步行动建议：</h4>
+                <ol style="line-height: 2;">
+                    <li><strong>实战演练：</strong>选择1-2个产品，完整做一遍成本核算</li>
+                    <li><strong>建立模型：</strong>用Excel搭建成本计算模型</li>
+                    <li><strong>数据收集：</strong>收集BOM、工时、价格等基础数据</li>
+                    <li><strong>应用ABC：</strong>识别关键作业，建立作业成本库</li>
+                    <li><strong>持续改进：</strong>每月做成本分析，发现改善机会</li>
+                </ol>
+            </div>
+
+            <p style="text-align: center; margin-top: 25px; font-size: 13pt; color: #666;">
+                学以致用，知行合一！<br>
+                祝课题组顺利完成任务，为瓦轴成本管理提升做出贡献！
+            </p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="财务理论讲义-模块5-工序与人工成本.html" class="nav-btn secondary">← 上一模块</a>
+            <a href="财务理论讲义-引导页.html" class="nav-btn">返回引导页</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e0e0e0; color: #999; font-size: 10pt;">
+            <p>瓦轴集团 · 产品成本模型构建课题组 | 模块6：成本分析方法</p>
+            <p>东北财经大学提供学术支持 | 内部培训资料</p>
+            <p style="margin-top: 15px; font-weight: bold;">全部课程已完成 | 祝学习顺利！</p>
+        </div>
+    </div>
+</body>
+</html>

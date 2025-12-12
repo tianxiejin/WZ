@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块4：BOM与材料成本 - 财务理论讲义</title>
+    <style>
+        @media print {
+            @page { size: A4; margin: 2cm 1.5cm; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.8;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+            color: white;
+            padding: 40px;
+            margin: -50px -50px 40px -50px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32pt;
+            margin-bottom: 15px;
+        }
+
+        .header .module-number {
+            font-size: 18pt;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 20pt;
+            color: #2196f3;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2196f3;
+        }
+
+        h3 {
+            font-size: 16pt;
+            color: #1976d2;
+            margin: 30px 0 15px 0;
+            padding-left: 15px;
+            border-left: 5px solid #1976d2;
+        }
+
+        h4 {
+            font-size: 14pt;
+            color: #1565c0;
+            margin: 25px 0 12px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .concept-box h4 {
+            color: #1565c0;
+            margin-top: 0;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 5px solid #ff9800;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #f57c00;
+            margin-top: 0;
+        }
+
+        .formula-box {
+            background: #f8f9fa;
+            border: 2px solid #2196f3;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-family: "Courier New", monospace;
+            font-size: 12pt;
+            line-height: 2;
+        }
+
+        .formula-box .formula-title {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-weight: bold;
+            color: #2196f3;
+            margin-bottom: 15px;
+            font-size: 14pt;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 11pt;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: #2196f3;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background: #e3f2fd;
+        }
+
+        .highlight {
+            background: #fff59d;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .important {
+            color: #2196f3;
+            font-weight: bold;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 35px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .tip-box:before {
+            content: "💡 实用技巧";
+            display: block;
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 13pt;
+            margin-bottom: 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #2196f3;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #1565c0;
+            transform: scale(1.05);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .key-points {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 3px solid #2196f3;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .key-points h3 {
+            color: #2196f3;
+            margin-top: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding: 10px 0;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "★";
+            color: #2196f3;
+            position: absolute;
+            left: 0;
+            font-size: 16pt;
+        }
+
+        .tree-box {
+            background: #f8f9fa;
+            border: 2px dashed #2196f3;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 11pt;
+            line-height: 2;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box:before {
+            content: "⚠️ 注意事项";
+            display: block;
+            font-weight: bold;
+            color: #856404;
+            font-size: 13pt;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="module-number">模块 4</div>
+            <h1>BOM与材料成本</h1>
+            <p>物料清单是成本核算的数据之源</p>
+        </div>
+
+        <h2>一、什么是BOM?</h2>
+
+        <div class="concept-box">
+            <h4>📖 BOM的定义</h4>
+            <p><strong>BOM (Bill of Material)</strong> 物料清单，是列明一个产品所需全部零件、组件、原材料的清单，包括每种物料的名称、规格、数量等信息。</p>
+            <p><strong>形象理解：</strong>BOM就像做菜的<span class="important">"菜谱"</span>，告诉你做这道菜需要哪些食材、各需要多少。</p>
+        </div>
+
+        <div class="example-box">
+            <h4>🍳 生活案例：做一个汉堡的BOM</h4>
+            <p><strong>产品：</strong>汉堡 × 1个</p>
+            <ul>
+                <li>面包 × 2片</li>
+                <li>牛肉饼 × 1个(100g)</li>
+                <li>生菜 × 2片</li>
+                <li>番茄 × 2片</li>
+                <li>芝士 × 1片</li>
+                <li>沙拉酱 × 10ml</li>
+            </ul>
+            <p>知道了BOM，就能算出做一个汉堡需要多少钱！</p>
+        </div>
+
+        <h3>1.1 BOM在成本核算中的作用</h3>
+
+        <div class="key-points">
+            <h3>BOM的三大作用</h3>
+            <ul>
+                <li><strong>数据源头：</strong>提供材料消耗量的基础数据</li>
+                <li><strong>成本计算：</strong>材料成本 = Σ(BOM用量 × 单价)</li>
+                <li><strong>成本追溯：</strong>追溯每一分钱花在了什么材料上</li>
+            </ul>
+        </div>
+
+        <p><span class="highlight">没有准确的BOM，就不可能有准确的成本！</span></p>
+
+        <h2 class="page-break">二、BOM的三种类型</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">BOM类型</th>
+                    <th style="width: 30%;">用途</th>
+                    <th style="width: 25%;">编制部门</th>
+                    <th style="width: 25%;">特点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>EBOM</strong><br>工程BOM</td>
+                    <td>产品设计、技术管理</td>
+                    <td>技术部/设计部</td>
+                    <td>体现设计结构</td>
+                </tr>
+                <tr>
+                    <td><strong>MBOM</strong><br>制造BOM</td>
+                    <td>生产计划、物料需求</td>
+                    <td>工艺部</td>
+                    <td>体现制造过程</td>
+                </tr>
+                <tr>
+                    <td><strong>CBOM</strong><br>成本BOM</td>
+                    <td>成本核算、成本分析</td>
+                    <td>财务部</td>
+                    <td>包含成本信息</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="example-box">
+            <h4>🔧 以6206轴承为例</h4>
+
+            <p><strong>EBOM (工程BOM)：</strong></p>
+            <div class="tree-box" style="font-family: 'Microsoft YaHei';">
+6206深沟球轴承
+├── 内圈组件
+│   └── GCr15钢材
+├── 外圈组件
+│   └── GCr15钢材
+├── 滚动体组件 (9个钢球)
+│   └── GCr15钢材
+└── 保持架组件
+    └── 低碳钢板
+
+<span style="color: #666;">→ 设计师视角：产品由哪些部件组成</span>
+            </div>
+
+            <p><strong>MBOM (制造BOM)：</strong></p>
+            <div class="tree-box" style="font-family: 'Microsoft YaHei';">
+6206深沟球轴承
+├── 锻造工序
+│   └── GCr15钢棒 φ30×150mm
+├── 车削工序
+│   └── (使用锻件)
+├── 热处理工序
+│   └── (使用车削件)
+├── 磨削工序
+│   └── (使用热处理件)
+└── 装配工序
+    ├── 内圈 (自制件)
+    ├── 外圈 (自制件)
+    ├── 钢球 (外购件) × 9
+    ├── 保持架 (自制件)
+    └── 润滑脂 5g
+
+<span style="color: #666;">→ 生产视角：按工序需要什么材料</span>
+            </div>
+
+            <p><strong>CBOM (成本BOM)：</strong></p>
+            <table style="margin-top: 15px;">
+                <thead>
+                    <tr>
+                        <th>物料编码</th>
+                        <th>物料名称</th>
+                        <th>规格</th>
+                        <th>用量</th>
+                        <th>单价</th>
+                        <th>金额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>M001</td>
+                        <td>GCr15钢材</td>
+                        <td>φ30mm</td>
+                        <td>0.42kg</td>
+                        <td>12.5元/kg</td>
+                        <td>5.25元</td>
+                    </tr>
+                    <tr>
+                        <td>M002</td>
+                        <td>钢球</td>
+                        <td>φ9.525mm</td>
+                        <td>9个</td>
+                        <td>0.15元/个</td>
+                        <td>1.35元</td>
+                    </tr>
+                    <tr>
+                        <td>M003</td>
+                        <td>润滑脂</td>
+                        <td>锂基脂</td>
+                        <td>5g</td>
+                        <td>80元/kg</td>
+                        <td>0.40元</td>
+                    </tr>
+                    <tr>
+                        <td>M004</td>
+                        <td>包装材料</td>
+                        <td>-</td>
+                        <td>1套</td>
+                        <td>0.30元/套</td>
+                        <td>0.30元</td>
+                    </tr>
+                    <tr style="background: #e3f2fd; font-weight: bold;">
+                        <td colspan="5">材料成本合计</td>
+                        <td>7.30元</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="color: #666; font-size: 11pt;">→ 财务视角：每种材料花了多少钱</p>
+        </div>
+
+        <div class="tip-box">
+            <strong>课题中的BOM应用：</strong>
+            <p>我们主要使用<span class="important">MBOM + 价格信息 = CBOM</span></p>
+            <ul style="margin-top: 10px;">
+                <li>从技术部获取EBOM</li>
+                <li>从工艺部获取MBOM(制造用料)</li>
+                <li>从采购部/财务部获取物料价格</li>
+                <li>组合成CBOM用于成本核算</li>
+            </ul>
+        </div>
+
+        <h2 class="page-break">三、BOM的层级结构</h2>
+
+        <h3>3.1 单层BOM vs 多层BOM</h3>
+
+        <div class="example-box">
+            <h4>📦 单层BOM（简单产品）</h4>
+            <div class="tree-box" style="font-family: 'Microsoft YaHei';">
+<strong>产品：包装盒</strong>
+├── 纸板 500g
+├── 胶水 10ml
+└── 标签 1张
+
+<span style="color: #666;">→ 只有一层：产品→原材料</span>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <h4>🏗️ 多层BOM（复杂产品）</h4>
+            <div class="tree-box" style="font-family: 'Microsoft YaHei';">
+<strong>0级：产品 - 6206轴承</strong>
+│
+├── <strong>1级：内圈组件</strong>
+│   └── 2级：GCr15钢材 0.126kg
+│
+├── <strong>1级：外圈组件</strong>
+│   └── 2级：GCr15钢材 0.189kg
+│
+├── <strong>1级：滚动体组件</strong>
+│   ├── 2级：钢球 × 9个
+│   │   └── 3级：GCr15钢材 0.085kg
+│   └── 2级：保持架 × 1个
+│       └── 3级：低碳钢板 0.016kg
+│
+└── <strong>1级：辅助材料</strong>
+    ├── 润滑脂 5g
+    ├── 防锈纸 10g
+    └── 塑料袋 5g
+
+<span style="color: #666;">→ 多层：产品→组件→零件→原材料</span>
+            </div>
+        </div>
+
+        <h3>3.2 BOM展开与成本滚加</h3>
+
+        <div class="concept-box">
+            <h4>📖 什么是BOM展开?</h4>
+            <p><strong>BOM展开</strong>就是把多层BOM"摊平"，计算出产品总共需要多少原材料。</p>
+            <p><strong>成本滚加</strong>是指自制件的成本要加上加工成本，然后滚入上一层。</p>
+        </div>
+
+        <div class="example-box">
+            <h4>💰 成本滚加计算示例</h4>
+
+            <p><strong>场景：</strong>6206轴承的内圈是自制件</p>
+
+            <div class="formula-box">
+                <div class="formula-title">内圈成本计算（自制件）</div>
+                <strong>第一步：计算材料成本</strong><br>
+                GCr15钢材：0.126kg × 12.5元/kg = 1.58元
+                <br><br>
+                <strong>第二步：加上加工成本</strong><br>
+                锻造工序成本：0.25元<br>
+                车削工序成本：2.04元<br>
+                热处理工序成本：4.27元<br>
+                磨削工序成本：6.67元<br>
+                加工成本合计：13.23元
+                <br><br>
+                <strong>第三步：滚加得到内圈总成本</strong><br>
+                内圈成本 = 材料成本 + 加工成本<br>
+                = 1.58 + 13.23<br>
+                = <strong style="color: #2196f3;">14.81元</strong>
+            </div>
+
+            <p><strong>第四步：内圈成本"滚入"轴承总成本</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>部件</th>
+                        <th>类型</th>
+                        <th>成本(元)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>内圈</td>
+                        <td>自制件</td>
+                        <td>14.81</td>
+                    </tr>
+                    <tr>
+                        <td>外圈</td>
+                        <td>自制件</td>
+                        <td>18.55</td>
+                    </tr>
+                    <tr>
+                        <td>钢球(9个)</td>
+                        <td>外购件</td>
+                        <td>1.35</td>
+                    </tr>
+                    <tr>
+                        <td>保持架</td>
+                        <td>自制件</td>
+                        <td>2.50</td>
+                    </tr>
+                    <tr>
+                        <td>辅助材料</td>
+                        <td>-</td>
+                        <td>0.80</td>
+                    </tr>
+                    <tr>
+                        <td>装配工序</td>
+                        <td>-</td>
+                        <td>0.93</td>
+                    </tr>
+                    <tr style="background: #e3f2fd; font-weight: bold;">
+                        <td colspan="2">轴承总成本</td>
+                        <td>38.94</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="page-break">四、材料成本计算公式</h2>
+
+        <div class="formula-box">
+            <div class="formula-title">材料成本核心公式</div>
+            <strong>直接材料成本 = Σ(材料消耗量 × 材料单价)</strong>
+            <br><br>
+            其中：<br>
+            <strong>材料消耗量 = 净用量 × (1 + 损耗率)</strong>
+            <br><br>
+            展开：<br>
+            材料成本 = Σ[(净用量 × (1 + 损耗率)) × 单价]
+        </div>
+
+        <h3>4.1 净用量的确定</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">确定方法</th>
+                    <th style="width: 40%;">说明</th>
+                    <th style="width: 35%;">数据来源</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>图纸计算</strong></td>
+                    <td>根据产品图纸计算理论重量/用量</td>
+                    <td>产品图纸、技术文件</td>
+                </tr>
+                <tr>
+                    <td><strong>BOM取数</strong></td>
+                    <td>直接从EBOM/MBOM中获取</td>
+                    <td>PDM系统、ERP系统</td>
+                </tr>
+                <tr>
+                    <td><strong>实测法</strong></td>
+                    <td>实际称重或测量产品净重</td>
+                    <td>样品实测</td>
+                </tr>
+                <tr>
+                    <td><strong>统计法</strong></td>
+                    <td>统计历史实际消耗的平均值</td>
+                    <td>生产记录、领料单</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4.2 损耗率的确定</h3>
+
+        <div class="concept-box">
+            <h4>📖 什么是损耗?</h4>
+            <p><strong>损耗</strong>是指生产过程中不可避免的材料浪费，包括：</p>
+            <ul>
+                <li>切削损耗（车削、磨削产生的铁屑）</li>
+                <li>废品损失（不良品报废）</li>
+                <li>工艺损耗（试模、试切等）</li>
+                <li>运输损耗（搬运过程中的损坏）</li>
+            </ul>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%;">材料类型</th>
+                    <th style="width: 25%;">典型损耗率</th>
+                    <th style="width: 45%;">损耗主要来源</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>钢材（车削件）</td>
+                    <td>5-8%</td>
+                    <td>切削、磨削产生的铁屑</td>
+                </tr>
+                <tr>
+                    <td>钢材（锻造件）</td>
+                    <td>3-5%</td>
+                    <td>锻造飞边、氧化烧损</td>
+                </tr>
+                <tr>
+                    <td>润滑脂</td>
+                    <td>2-3%</td>
+                    <td>涂抹过程中的损失</td>
+                </tr>
+                <tr>
+                    <td>包装材料</td>
+                    <td>1-2%</td>
+                    <td>包装操作中的破损</td>
+                </tr>
+                <tr>
+                    <td>外购标准件</td>
+                    <td>1-2%</td>
+                    <td>装配过程中的损坏</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="warning-box">
+            <strong>损耗率不是越大越好！</strong>
+            <ul style="margin-top: 10px;">
+                <li>损耗率定得太高 → 成本虚高，报价失去竞争力</li>
+                <li>损耗率定得太低 → 成本虚低，实际可能亏损</li>
+                <li>应该根据<span class="important">历史实际数据</span>合理确定</li>
+                <li>定期回顾和修订（建议每季度或每年）</li>
+            </ul>
+        </div>
+
+        <h3>4.3 材料单价的确定</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">计价方法</th>
+                    <th style="width: 35%;">计算方式</th>
+                    <th style="width: 20%;">优点</th>
+                    <th style="width: 20%;">缺点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>移动平均法</strong></td>
+                    <td>每次采购后重新计算平均价</td>
+                    <td>平滑价格波动</td>
+                    <td>计算复杂</td>
+                </tr>
+                <tr>
+                    <td><strong>月加权平均</strong></td>
+                    <td>(期初+本期采购)÷总数量</td>
+                    <td>计算简单</td>
+                    <td>月末才能算</td>
+                </tr>
+                <tr>
+                    <td><strong>先进先出</strong></td>
+                    <td>先买的先用</td>
+                    <td>符合实物流转</td>
+                    <td>价格上涨时低估成本</td>
+                </tr>
+                <tr>
+                    <td><strong>计划价格法</strong></td>
+                    <td>使用预定的标准价格</td>
+                    <td>便于成本控制</td>
+                    <td>需差异分析</td>
+                </tr>
+                <tr>
+                    <td><strong>最新采购价</strong></td>
+                    <td>使用最近一次采购价</td>
+                    <td>贴近市场</td>
+                    <td>波动大</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="tip-box">
+            <strong>课题建议：</strong>
+            <p>采用<span class="important">移动平均法</span>或<span class="important">月加权平均法</span>，原因：</p>
+            <ul style="margin-top: 10px;">
+                <li>可以从ERP系统直接获取</li>
+                <li>平滑了价格波动，成本相对稳定</li>
+                <li>符合财务核算习惯</li>
+            </ul>
+            <p style="margin-top: 10px;">如果要做标准成本管理，可以考虑<span class="important">计划价格法</span>。</p>
+        </div>
+
+        <h2 class="page-break">五、BOM数据质量管理</h2>
+
+        <h3>5.1 常见的BOM问题</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 30%;">问题</th>
+                    <th style="width: 35%;">影响</th>
+                    <th style="width: 35%;">解决方法</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>BOM不准确</strong></td>
+                    <td>成本计算错误</td>
+                    <td>与图纸核对，定期审核</td>
+                </tr>
+                <tr>
+                    <td><strong>BOM不完整</strong></td>
+                    <td>漏算材料成本</td>
+                    <td>检查是否包含所有辅料</td>
+                </tr>
+                <tr>
+                    <td><strong>BOM不及时</strong></td>
+                    <td>技术更改未同步</td>
+                    <td>建立变更通知机制</td>
+                </tr>
+                <tr>
+                    <td><strong>单位不统一</strong></td>
+                    <td>数量换算错误</td>
+                    <td>统一计量单位标准</td>
+                </tr>
+                <tr>
+                    <td><strong>编码不规范</strong></td>
+                    <td>物料混淆</td>
+                    <td>建立物料编码规则</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>5.2 BOM数据质量检查清单</h3>
+
+        <div class="example-box">
+            <h4>✅ BOM质量检查要点</h4>
+
+            <p><strong>完整性检查：</strong></p>
+            <ul>
+                <li>☑ 所有主材料都包含了吗？</li>
+                <li>☑ 辅助材料（润滑脂、防锈油）包含了吗？</li>
+                <li>☑ 包装材料包含了吗？</li>
+                <li>☑ 外购标准件包含了吗？</li>
+            </ul>
+
+            <p><strong>准确性检查：</strong></p>
+            <ul>
+                <li>☑ 用量与图纸/样品实测一致吗？</li>
+                <li>☑ 计量单位正确吗（kg、个、m）？</li>
+                <li>☑ 物料编码、名称、规格准确吗？</li>
+                <li>☑ 损耗率合理吗（参考历史数据）？</li>
+            </ul>
+
+            <p><strong>及时性检查：</strong></p>
+            <ul>
+                <li>☑ 技术更改是否已更新到BOM？</li>
+                <li>☑ 物料价格是最新的吗？</li>
+                <li>☑ 是否有停用或替代的物料？</li>
+            </ul>
+        </div>
+
+        <h3>5.3 BOM维护流程</h3>
+
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin: 25px 0; border: 2px dashed #2196f3;">
+            <pre style="font-family: 'Microsoft YaHei'; font-size: 11pt; line-height: 2.2; margin: 0; white-space: pre-line;">
+<strong style="color: #2196f3; font-size: 14pt;">BOM变更管理流程</strong>
+
+<strong>第一步：变更发起</strong>
+技术更改通知单 → 技术部发起
+   ↓
+
+<strong>第二步：影响评估</strong>
+├─ 技术部：评估技术可行性
+├─ 工艺部：评估工艺影响
+├─ 采购部：评估物料供应
+└─ 财务部：评估成本影响
+   ↓
+
+<strong>第三步：审批</strong>
+技术、工艺、采购、财务会签 → 总工程师批准
+   ↓
+
+<strong>第四步：执行</strong>
+├─ 技术部：更新EBOM
+├─ 工艺部：更新MBOM
+├─ 财务部：更新CBOM
+└─ IT部：更新ERP系统
+   ↓
+
+<strong>第五步：验证</strong>
+成本部门验证成本计算是否正确
+            </pre>
+        </div>
+
+        <h2 class="page-break">六、实战演练：建立6206轴承的CBOM</h2>
+
+        <div class="example-box">
+            <h4>📊 完整案例：构建6206轴承成本BOM</h4>
+
+            <p><strong>第一步：收集MBOM数据</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>层级</th>
+                        <th>物料编码</th>
+                        <th>物料名称</th>
+                        <th>规格</th>
+                        <th>单位</th>
+                        <th>净用量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>P-6206</td>
+                        <td>6206深沟球轴承</td>
+                        <td>-</td>
+                        <td>套</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>M-001</td>
+                        <td>GCr15钢材</td>
+                        <td>φ30mm</td>
+                        <td>kg</td>
+                        <td>0.40</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>M-002</td>
+                        <td>钢球</td>
+                        <td>φ9.525mm</td>
+                        <td>个</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>M-003</td>
+                        <td>润滑脂</td>
+                        <td>锂基脂</td>
+                        <td>g</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>M-004</td>
+                        <td>防锈纸</td>
+                        <td>-</td>
+                        <td>g</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>M-005</td>
+                        <td>塑料袋</td>
+                        <td>PE袋</td>
+                        <td>个</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>第二步：确定损耗率</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>物料</th>
+                        <th>净用量</th>
+                        <th>损耗率</th>
+                        <th>消耗量</th>
+                        <th>计算</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GCr15钢材</td>
+                        <td>0.40 kg</td>
+                        <td>5%</td>
+                        <td>0.42 kg</td>
+                        <td>0.40 × 1.05</td>
+                    </tr>
+                    <tr>
+                        <td>钢球</td>
+                        <td>9 个</td>
+                        <td>2%</td>
+                        <td>9.18 个</td>
+                        <td>9 × 1.02</td>
+                    </tr>
+                    <tr>
+                        <td>润滑脂</td>
+                        <td>5 g</td>
+                        <td>3%</td>
+                        <td>5.15 g</td>
+                        <td>5 × 1.03</td>
+                    </tr>
+                    <tr>
+                        <td>防锈纸</td>
+                        <td>10 g</td>
+                        <td>2%</td>
+                        <td>10.2 g</td>
+                        <td>10 × 1.02</td>
+                    </tr>
+                    <tr>
+                        <td>塑料袋</td>
+                        <td>1 个</td>
+                        <td>1%</td>
+                        <td>1.01 个</td>
+                        <td>1 × 1.01</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>第三步：获取物料单价</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>物料</th>
+                        <th>单价来源</th>
+                        <th>单价</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GCr15钢材</td>
+                        <td>移动平均价</td>
+                        <td>12.50 元/kg</td>
+                        <td>ERP系统取数</td>
+                    </tr>
+                    <tr>
+                        <td>钢球</td>
+                        <td>最新采购价</td>
+                        <td>0.15 元/个</td>
+                        <td>采购合同</td>
+                    </tr>
+                    <tr>
+                        <td>润滑脂</td>
+                        <td>移动平均价</td>
+                        <td>80 元/kg</td>
+                        <td>0.08元/g</td>
+                    </tr>
+                    <tr>
+                        <td>防锈纸</td>
+                        <td>移动平均价</td>
+                        <td>20 元/kg</td>
+                        <td>0.02元/g</td>
+                    </tr>
+                    <tr>
+                        <td>塑料袋</td>
+                        <td>最新采购价</td>
+                        <td>0.05 元/个</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>第四步：计算材料成本（完整CBOM）</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>物料</th>
+                        <th>消耗量</th>
+                        <th>单价</th>
+                        <th>金额(元)</th>
+                        <th>占比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GCr15钢材</td>
+                        <td>0.42 kg</td>
+                        <td>12.50 元/kg</td>
+                        <td>5.25</td>
+                        <td>71.9%</td>
+                    </tr>
+                    <tr>
+                        <td>钢球</td>
+                        <td>9.18 个</td>
+                        <td>0.15 元/个</td>
+                        <td>1.38</td>
+                        <td>18.9%</td>
+                    </tr>
+                    <tr>
+                        <td>润滑脂</td>
+                        <td>5.15 g</td>
+                        <td>0.08 元/g</td>
+                        <td>0.41</td>
+                        <td>5.6%</td>
+                    </tr>
+                    <tr>
+                        <td>防锈纸</td>
+                        <td>10.2 g</td>
+                        <td>0.02 元/g</td>
+                        <td>0.20</td>
+                        <td>2.7%</td>
+                    </tr>
+                    <tr>
+                        <td>塑料袋</td>
+                        <td>1.01 个</td>
+                        <td>0.05 元/个</td>
+                        <td>0.06</td>
+                        <td>0.8%</td>
+                    </tr>
+                    <tr style="background: #e3f2fd; font-weight: bold; font-size: 12pt;">
+                        <td>材料成本合计</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>7.30</td>
+                        <td>100%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;"><strong>结论：</strong>一套6206轴承的直接材料成本为<span class="important">7.30元</span>，其中主材料(钢材)占比71.9%。</p>
+        </div>
+
+        <h2 class="page-break">七、本模块要点总结</h2>
+
+        <div class="key-points">
+            <h3>📚 核心知识点回顾</h3>
+            <ul>
+                <li><strong>BOM定义：</strong>物料清单，列明产品所需全部材料及用量</li>
+                <li><strong>三种BOM：</strong>EBOM(设计)、MBOM(制造)、CBOM(成本)</li>
+                <li><strong>BOM层级：</strong>单层BOM简单，多层BOM需要展开和滚加</li>
+                <li><strong>材料成本公式：</strong>Σ(消耗量 × 单价)，消耗量 = 净用量 × (1+损耗率)</li>
+                <li><strong>数据来源：</strong>净用量来自BOM，损耗率来自历史统计，单价来自ERP或采购</li>
+                <li><strong>质量管理：</strong>BOM必须完整、准确、及时，定期审核和更新</li>
+                <li><strong>课题应用：</strong>从MBOM+价格构建CBOM，作为成本核算的基础</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <strong>下一步行动：</strong>
+            <ol style="margin-top: 10px;">
+                <li>收集试点产品(如6206)的MBOM数据</li>
+                <li>与技术部核对BOM准确性</li>
+                <li>从ERP获取物料移动平均价</li>
+                <li>统计分析历史损耗率</li>
+                <li>建立Excel版CBOM表格</li>
+                <li>计算并验证材料成本</li>
+            </ol>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="财务理论讲义-模块3-作业成本法ABC.html" class="nav-btn secondary">← 上一模块</a>
+            <a href="财务理论讲义-模块5-工序与人工成本.html" class="nav-btn">下一模块：工序与人工成本 →</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e0e0e0; color: #999; font-size: 10pt;">
+            <p>瓦轴集团 · 产品成本模型构建课题组 | 模块4：BOM与材料成本</p>
+            <p>东北财经大学提供学术支持 | 内部培训资料</p>
+        </div>
+    </div>
+</body>
+</html>

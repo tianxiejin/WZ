@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块5：工序与人工成本 - 财务理论讲义</title>
+    <style>
+        @media print {
+            @page { size: A4; margin: 2cm 1.5cm; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.8;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%);
+            color: white;
+            padding: 40px;
+            margin: -50px -50px 40px -50px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32pt;
+            margin-bottom: 15px;
+        }
+
+        .header .module-number {
+            font-size: 18pt;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 20pt;
+            color: #9c27b0;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #9c27b0;
+        }
+
+        h3 {
+            font-size: 16pt;
+            color: #7b1fa2;
+            margin: 30px 0 15px 0;
+            padding-left: 15px;
+            border-left: 5px solid #7b1fa2;
+        }
+
+        h4 {
+            font-size: 14pt;
+            color: #6a1b9a;
+            margin: 25px 0 12px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 5px solid #9c27b0;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .concept-box h4 {
+            color: #6a1b9a;
+            margin-top: 0;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 5px solid #ff9800;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #f57c00;
+            margin-top: 0;
+        }
+
+        .formula-box {
+            background: #f8f9fa;
+            border: 2px solid #9c27b0;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-family: "Courier New", monospace;
+            font-size: 12pt;
+            line-height: 2;
+        }
+
+        .formula-box .formula-title {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-weight: bold;
+            color: #9c27b0;
+            margin-bottom: 15px;
+            font-size: 14pt;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 11pt;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: #9c27b0;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background: #f3e5f5;
+        }
+
+        .highlight {
+            background: #fff59d;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .important {
+            color: #9c27b0;
+            font-weight: bold;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 35px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .tip-box:before {
+            content: "💡 实用技巧";
+            display: block;
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 13pt;
+            margin-bottom: 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #9c27b0;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #6a1b9a;
+            transform: scale(1.05);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .key-points {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border: 3px solid #9c27b0;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .key-points h3 {
+            color: #9c27b0;
+            margin-top: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding: 10px 0;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "★";
+            color: #9c27b0;
+            position: absolute;
+            left: 0;
+            font-size: 16pt;
+        }
+
+        .process-flow {
+            background: #f8f9fa;
+            border: 2px dashed #9c27b0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            font-family: 'Microsoft YaHei';
+            font-size: 11pt;
+            line-height: 2.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="module-number">模块 5</div>
+            <h1>工序与人工成本</h1>
+            <p>基于工序的成本核算——打通工艺与财务</p>
+        </div>
+
+        <h2>一、什么是工序成本?</h2>
+
+        <div class="concept-box">
+            <h4>📖 工序成本的定义</h4>
+            <p><strong>工序成本</strong>是指产品在某道工序加工过程中发生的成本，包括该工序的人工成本和制造费用。</p>
+            <p><strong>核心思想：</strong><span class="important">产品每经过一道工序，就增加一次成本。</span></p>
+        </div>
+
+        <div class="example-box">
+            <h4>🏭 轴承加工的工序成本</h4>
+            <p><strong>6206轴承内圈的加工路线：</strong></p>
+            <div class="process-flow">
+                <pre style="margin: 0; white-space: pre-line;">
+<strong>原材料</strong> (GCr15钢棒)
+   成本：1.58元
+   ↓
+<strong>工序1：锻造</strong>
+   人工：0.25元  +  制造费用：0.30元  =  工序成本：0.55元
+   累计成本：1.58 + 0.55 = 2.13元
+   ↓
+<strong>工序2：车削</strong>
+   人工：2.04元  +  制造费用：2.80元  =  工序成本：4.84元
+   累计成本：2.13 + 4.84 = 6.97元
+   ↓
+<strong>工序3：热处理</strong>
+   人工：4.27元  +  制造费用：5.50元  =  工序成本：9.77元
+   累计成本：6.97 + 9.77 = 16.74元
+   ↓
+<strong>工序4：磨削</strong>
+   人工：6.67元  +  制造费用：8.80元  =  工序成本：15.47元
+   累计成本：16.74 + 15.47 = 32.21元
+   ↓
+<strong>完工内圈</strong>
+   总成本：32.21元
+                </pre>
+            </div>
+            <p><strong>关键理解：</strong>每道工序都在"添砖加瓦"，累积形成最终成本！</p>
+        </div>
+
+        <h2 class="page-break">二、直接人工成本核算</h2>
+
+        <h3>2.1 直接人工成本的计算公式</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">直接人工成本核心公式</div>
+            <strong>直接人工成本 = Σ(工序标准工时 × 小时工资率)</strong>
+            <br><br>
+            分解为：<br>
+            <strong>工序人工成本 = 工序工时 × 工序工资率</strong>
+            <br><br>
+            产品总人工成本 = 所有工序人工成本之和
+        </div>
+
+        <h3>2.2 工时的确定</h3>
+
+        <h4>2.2.1 什么是工时?</h4>
+
+        <div class="concept-box">
+            <h4>📖 工时的定义</h4>
+            <p><strong>工时</strong>是指生产一个产品或完成一道工序所需要的时间。</p>
+            <p><strong>单位：</strong>小时(h)或分钟(min)</p>
+        </div>
+
+        <h4>2.2.2 工时的三种类型</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">工时类型</th>
+                    <th style="width: 40%;">说明</th>
+                    <th style="width: 35%;">应用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>标准工时</strong></td>
+                    <td>工艺文件规定的理论工时</td>
+                    <td>标准成本核算、定额管理</td>
+                </tr>
+                <tr>
+                    <td><strong>实际工时</strong></td>
+                    <td>实际生产中消耗的工时</td>
+                    <td>实际成本核算、绩效考核</td>
+                </tr>
+                <tr>
+                    <td><strong>定额工时</strong></td>
+                    <td>标准工时+宽放时间</td>
+                    <td>计件工资、生产计划</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>2.2.3 标准工时的构成</h4>
+
+        <div class="formula-box">
+            <div class="formula-title">标准工时构成</div>
+            <strong>标准工时 = 作业时间 + 宽放时间</strong>
+            <br><br>
+            <strong>作业时间 = 主时间 + 辅助时间</strong><br>
+            - 主时间：机器实际加工时间<br>
+            - 辅助时间：装卸、测量、移动时间
+            <br><br>
+            <strong>宽放时间</strong>包括：<br>
+            - 生理需要时间（上厕所、喝水）<br>
+            - 准备结束时间（领料、交接班）<br>
+            - 休息时间（疲劳恢复）
+            <br><br>
+            一般：<strong>宽放率 = 10-15%</strong>
+        </div>
+
+        <div class="example-box">
+            <h4>⏱️ 案例：计算车削工序的标准工时</h4>
+
+            <p><strong>测定数据：</strong></p>
+            <ul>
+                <li>机器实际加工时间（主时间）：2.8分钟</li>
+                <li>装卸工件时间：0.4分钟</li>
+                <li>测量尺寸时间：0.2分钟</li>
+                <li>宽放率：10%</li>
+            </ul>
+
+            <div class="formula-box">
+                <strong>计算过程：</strong><br><br>
+                辅助时间 = 0.4 + 0.2 = 0.6分钟<br>
+                作业时间 = 2.8 + 0.6 = 3.4分钟<br>
+                宽放时间 = 3.4 × 10% = 0.34分钟<br>
+                <strong>标准工时 = 3.4 + 0.34 = 3.74分钟 ≈ 3.5分钟</strong>
+            </div>
+        </div>
+
+        <h4>2.2.4 工时的确定方法</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">确定方法</th>
+                    <th style="width: 40%;">说明</th>
+                    <th style="width: 35%;">优缺点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>技术测定法</strong></td>
+                    <td>用秒表实测，进行动作分析</td>
+                    <td>✓准确  ✗耗时</td>
+                </tr>
+                <tr>
+                    <td><strong>统计分析法</strong></td>
+                    <td>统计历史实际工时的平均值</td>
+                    <td>✓简单  ✗受异常影响</td>
+                </tr>
+                <tr>
+                    <td><strong>经验估算法</strong></td>
+                    <td>参考类似产品的工时</td>
+                    <td>✓快速  ✗不够精确</td>
+                </tr>
+                <tr>
+                    <td><strong>定额手册法</strong></td>
+                    <td>查阅行业或企业标准定额手册</td>
+                    <td>✓标准化  ✗通用性强但针对性弱</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="tip-box">
+            <strong>课题建议：</strong>
+            <ul style="margin-top: 10px;">
+                <li>优先使用工艺文件中的<span class="important">标准工时</span></li>
+                <li>如果没有标准工时，可以从MES系统提取历史实际工时，取平均值</li>
+                <li>新产品可以参考类似产品的工时，试生产后再调整</li>
+                <li>工时定额应定期回顾修订（建议每年一次）</li>
+            </ul>
+        </div>
+
+        <h3 class="page-break">2.3 工资率的计算</h3>
+
+        <h4>2.3.1 小时工资率公式</h4>
+
+        <div class="formula-box">
+            <div class="formula-title">小时工资率计算</div>
+            <strong>小时工资率 = (工资总额 + 社保公积金) ÷ 有效工作小时数</strong>
+            <br><br>
+            <strong>月有效工作小时 = 月工作天数 × 每天工作小时</strong><br>
+            一般：22天 × 8小时 = 176小时/月
+        </div>
+
+        <div class="example-box">
+            <h4>💰 案例：计算某车间的小时工资率</h4>
+
+            <p><strong>数据：</strong></p>
+            <ul>
+                <li>车间直接生产工人：50人</li>
+                <li>月工资总额：25万元</li>
+                <li>社保公积金：6.25万元（工资的25%）</li>
+                <li>月工作天数：22天</li>
+                <li>每天工作时间：8小时</li>
+            </ul>
+
+            <div class="formula-box">
+                <strong>第一步：计算总人工成本</strong><br>
+                总人工成本 = 25万 + 6.25万 = <strong>31.25万元</strong>
+                <br><br>
+                <strong>第二步：计算总工时</strong><br>
+                月有效工时 = 22天 × 8小时 = 176小时/人<br>
+                总工时 = 50人 × 176小时 = <strong>8,800小时</strong>
+                <br><br>
+                <strong>第三步：计算小时工资率</strong><br>
+                小时工资率 = 312,500元 ÷ 8,800小时<br>
+                = <strong>35.5元/小时</strong>
+            </div>
+
+            <p><strong>应用：</strong>某产品在该车间加工0.5小时，人工成本 = 0.5 × 35.5 = <strong>17.75元</strong></p>
+        </div>
+
+        <h4>2.3.2 按工序确定工资率</h4>
+
+        <p>不同工序的技术难度、工资水平不同，可以分工序计算工资率：</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>工序</th>
+                    <th>技能要求</th>
+                    <th>平均工资(元/月)</th>
+                    <th>月工时(h)</th>
+                    <th>工资率(元/h)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>锻造</td>
+                    <td>中等</td>
+                    <td>6,000</td>
+                    <td>176</td>
+                    <td>34</td>
+                </tr>
+                <tr>
+                    <td>车削</td>
+                    <td>较高</td>
+                    <td>7,000</td>
+                    <td>176</td>
+                    <td>40</td>
+                </tr>
+                <tr>
+                    <td>热处理</td>
+                    <td>中等</td>
+                    <td>6,500</td>
+                    <td>176</td>
+                    <td>37</td>
+                </tr>
+                <tr>
+                    <td>磨削</td>
+                    <td>高</td>
+                    <td>8,000</td>
+                    <td>176</td>
+                    <td>45</td>
+                </tr>
+                <tr>
+                    <td>装配</td>
+                    <td>中等</td>
+                    <td>6,500</td>
+                    <td>176</td>
+                    <td>37</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>注：</strong>工资率已包含社保公积金(按工资的25%计算)</p>
+
+        <h3>2.4 计算产品的直接人工成本</h3>
+
+        <div class="example-box">
+            <h4>📊 完整案例：计算6206轴承的人工成本</h4>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>部件/工序</th>
+                        <th>标准工时(分)</th>
+                        <th>工时(小时)</th>
+                        <th>工资率(元/h)</th>
+                        <th>人工成本(元)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5" style="background: #f3e5f5; font-weight: bold;">内圈加工</td>
+                    </tr>
+                    <tr>
+                        <td>  锻造</td>
+                        <td>0.5</td>
+                        <td>0.0083</td>
+                        <td>34</td>
+                        <td>0.28</td>
+                    </tr>
+                    <tr>
+                        <td>  车削</td>
+                        <td>2.0</td>
+                        <td>0.0333</td>
+                        <td>40</td>
+                        <td>1.33</td>
+                    </tr>
+                    <tr>
+                        <td>  热处理</td>
+                        <td>4.0</td>
+                        <td>0.0667</td>
+                        <td>37</td>
+                        <td>2.47</td>
+                    </tr>
+                    <tr>
+                        <td>  磨削</td>
+                        <td>5.0</td>
+                        <td>0.0833</td>
+                        <td>45</td>
+                        <td>3.75</td>
+                    </tr>
+                    <tr style="background: #e1bee7;">
+                        <td><strong>内圈小计</strong></td>
+                        <td>11.5</td>
+                        <td>0.1916</td>
+                        <td>-</td>
+                        <td><strong>7.83</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="background: #f3e5f5; font-weight: bold;">外圈加工</td>
+                    </tr>
+                    <tr>
+                        <td>  锻造</td>
+                        <td>0.5</td>
+                        <td>0.0083</td>
+                        <td>34</td>
+                        <td>0.28</td>
+                    </tr>
+                    <tr>
+                        <td>  车削</td>
+                        <td>2.5</td>
+                        <td>0.0417</td>
+                        <td>40</td>
+                        <td>1.67</td>
+                    </tr>
+                    <tr>
+                        <td>  热处理</td>
+                        <td>4.0</td>
+                        <td>0.0667</td>
+                        <td>37</td>
+                        <td>2.47</td>
+                    </tr>
+                    <tr>
+                        <td>  磨削</td>
+                        <td>6.0</td>
+                        <td>0.1000</td>
+                        <td>45</td>
+                        <td>4.50</td>
+                    </tr>
+                    <tr style="background: #e1bee7;">
+                        <td><strong>外圈小计</strong></td>
+                        <td>13.0</td>
+                        <td>0.2167</td>
+                        <td>-</td>
+                        <td><strong>8.92</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" style="background: #f3e5f5; font-weight: bold;">装配</td>
+                    </tr>
+                    <tr>
+                        <td>  装配工序</td>
+                        <td>2.0</td>
+                        <td>0.0333</td>
+                        <td>37</td>
+                        <td>1.23</td>
+                    </tr>
+                    <tr>
+                        <td>  检验工序</td>
+                        <td>1.0</td>
+                        <td>0.0167</td>
+                        <td>37</td>
+                        <td>0.62</td>
+                    </tr>
+                    <tr style="background: #e1bee7;">
+                        <td><strong>装配小计</strong></td>
+                        <td>3.0</td>
+                        <td>0.0500</td>
+                        <td>-</td>
+                        <td><strong>1.85</strong></td>
+                    </tr>
+                    <tr style="background: #9c27b0; color: white; font-weight: bold; font-size: 12pt;">
+                        <td>总计</td>
+                        <td>27.5</td>
+                        <td>0.4583</td>
+                        <td>-</td>
+                        <td>18.60</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;"><strong>结论：</strong>生产1套6206轴承，直接人工成本为<span class="important">18.60元</span>。</p>
+        </div>
+
+        <h2 class="page-break">三、工序制造费用核算</h2>
+
+        <h3>3.1 工序制造费用的分配</h3>
+
+        <div class="concept-box">
+            <h4>📖 工序制造费用</h4>
+            <p><strong>工序制造费用</strong>是指该工序发生的间接费用，如设备折旧、能源、维修等。</p>
+            <p><strong>分配原理：</strong>按照产品在该工序消耗的<span class="important">作业动因</span>分配费用。</p>
+        </div>
+
+        <h3>3.2 工序费用分配率的计算</h3>
+
+        <div class="formula-box">
+            <div class="formula-title">工序费用分配率</div>
+            <strong>工序费用分配率 = 工序制造费用总额 ÷ 工序作业动因总量</strong>
+            <br><br>
+            <strong>产品分配的工序费用 = 产品消耗的动因量 × 分配率</strong>
+        </div>
+
+        <div class="example-box">
+            <h4>💡 案例：计算磨削工序的费用分配率</h4>
+
+            <p><strong>磨削工序月度数据：</strong></p>
+            <ul>
+                <li>设备折旧：8万元</li>
+                <li>电费：3万元</li>
+                <li>维修费：2万元</li>
+                <li>间接人工：1.5万元</li>
+                <li>其他费用：0.5万元</li>
+                <li><strong>制造费用合计：15万元</strong></li>
+            </ul>
+
+            <p><strong>作业动因：</strong>机器工时，月度总工时1,500小时</p>
+
+            <div class="formula-box">
+                <strong>计算费用分配率：</strong><br><br>
+                磨削工序费用分配率 = 150,000元 ÷ 1,500小时<br>
+                = <strong>100元/小时</strong>
+                <br><br>
+                <strong>应用：</strong><br>
+                6206内圈磨削工时 = 0.0833小时<br>
+                分配的制造费用 = 0.0833 × 100 = <strong>8.33元</strong>
+            </div>
+        </div>
+
+        <h3>3.3 按工序分配全部制造费用</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>工序</th>
+                    <th>月费用总额(万元)</th>
+                    <th>作业动因</th>
+                    <th>月动因总量</th>
+                    <th>费用分配率</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>锻造</td>
+                    <td>18</td>
+                    <td>机器工时</td>
+                    <td>2,000 h</td>
+                    <td>90元/h</td>
+                </tr>
+                <tr>
+                    <td>车削</td>
+                    <td>25</td>
+                    <td>机器工时</td>
+                    <td>3,000 h</td>
+                    <td>83元/h</td>
+                </tr>
+                <tr>
+                    <td>热处理</td>
+                    <td>12</td>
+                    <td>炉时</td>
+                    <td>800 h</td>
+                    <td>150元/h</td>
+                </tr>
+                <tr>
+                    <td>磨削</td>
+                    <td>15</td>
+                    <td>机器工时</td>
+                    <td>1,500 h</td>
+                    <td>100元/h</td>
+                </tr>
+                <tr>
+                    <td>装配</td>
+                    <td>5</td>
+                    <td>人工工时</td>
+                    <td>2,500 h</td>
+                    <td>20元/h</td>
+                </tr>
+                <tr style="background: #f3e5f5; font-weight: bold;">
+                    <td>合计</td>
+                    <td>75</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="page-break">四、工序成本完整核算案例</h2>
+
+        <div class="example-box">
+            <h4>📊 综合案例：6206轴承工序成本完整核算</h4>
+
+            <p><strong>内圈工序成本明细：</strong></p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>工序</th>
+                        <th>工时(h)</th>
+                        <th>工资率</th>
+                        <th>人工成本</th>
+                        <th>费用率</th>
+                        <th>制造费用</th>
+                        <th>工序成本</th>
+                        <th>累计成本</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>原材料</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>1.58</td>
+                    </tr>
+                    <tr>
+                        <td>锻造</td>
+                        <td>0.0083</td>
+                        <td>34</td>
+                        <td>0.28</td>
+                        <td>90</td>
+                        <td>0.75</td>
+                        <td>1.03</td>
+                        <td>2.61</td>
+                    </tr>
+                    <tr>
+                        <td>车削</td>
+                        <td>0.0333</td>
+                        <td>40</td>
+                        <td>1.33</td>
+                        <td>83</td>
+                        <td>2.76</td>
+                        <td>4.09</td>
+                        <td>6.70</td>
+                    </tr>
+                    <tr>
+                        <td>热处理</td>
+                        <td>0.0667</td>
+                        <td>37</td>
+                        <td>2.47</td>
+                        <td>150</td>
+                        <td>10.00</td>
+                        <td>12.47</td>
+                        <td>19.17</td>
+                    </tr>
+                    <tr>
+                        <td>磨削</td>
+                        <td>0.0833</td>
+                        <td>45</td>
+                        <td>3.75</td>
+                        <td>100</td>
+                        <td>8.33</td>
+                        <td>12.08</td>
+                        <td>31.25</td>
+                    </tr>
+                    <tr style="background: #f3e5f5; font-weight: bold;">
+                        <td>内圈成本</td>
+                        <td>0.1916</td>
+                        <td>-</td>
+                        <td>7.83</td>
+                        <td>-</td>
+                        <td>21.84</td>
+                        <td>29.67</td>
+                        <td>31.25</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 25px;"><strong>完整产品成本构成：</strong></p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>材料成本</th>
+                        <th>人工成本</th>
+                        <th>制造费用</th>
+                        <th>合计</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>内圈</td>
+                        <td>1.58</td>
+                        <td>7.83</td>
+                        <td>21.84</td>
+                        <td>31.25</td>
+                    </tr>
+                    <tr>
+                        <td>外圈</td>
+                        <td>2.36</td>
+                        <td>8.92</td>
+                        <td>25.60</td>
+                        <td>36.88</td>
+                    </tr>
+                    <tr>
+                        <td>钢球</td>
+                        <td>1.35</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>1.35</td>
+                    </tr>
+                    <tr>
+                        <td>保持架</td>
+                        <td>0.16</td>
+                        <td>1.50</td>
+                        <td>3.80</td>
+                        <td>5.46</td>
+                    </tr>
+                    <tr>
+                        <td>辅助材料</td>
+                        <td>0.70</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>0.70</td>
+                    </tr>
+                    <tr>
+                        <td>装配</td>
+                        <td>-</td>
+                        <td>1.85</td>
+                        <td>1.00</td>
+                        <td>2.85</td>
+                    </tr>
+                    <tr style="background: #9c27b0; color: white; font-weight: bold; font-size: 12pt;">
+                        <td>总计</td>
+                        <td>6.15</td>
+                        <td>20.10</td>
+                        <td>52.24</td>
+                        <td>78.49</td>
+                    </tr>
+                    <tr>
+                        <td><strong>占比</strong></td>
+                        <td>7.8%</td>
+                        <td>25.6%</td>
+                        <td>66.6%</td>
+                        <td>100%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px; background: #fff3cd; padding: 15px; border-radius: 5px;">
+                <strong>💡 成本洞察：</strong><br>
+                - 材料成本仅占7.8%（钢材是主材）<br>
+                - 人工成本占25.6%（手工操作较多）<br>
+                - 制造费用占66.6%（设备密集型，热处理和磨削费用高）
+            </p>
+        </div>
+
+        <h2 class="page-break">五、本模块要点总结</h2>
+
+        <div class="key-points">
+            <h3>📚 核心知识点回顾</h3>
+            <ul>
+                <li><strong>工序成本：</strong>产品每经过一道工序，就增加人工成本和制造费用</li>
+                <li><strong>人工成本公式：</strong>工序工时 × 工序工资率</li>
+                <li><strong>工时类型：</strong>标准工时、实际工时、定额工时（课题建议用标准工时）</li>
+                <li><strong>工资率计算：</strong>(工资+社保) ÷ 有效工时，可按车间或工序分别计算</li>
+                <li><strong>工序费用分配：</strong>按作业动因（机器工时、人工工时等）分配</li>
+                <li><strong>成本累积：</strong>材料成本→工序1→工序2→...→最终产品成本</li>
+                <li><strong>数据来源：</strong>工时来自工艺文件或MES，工资来自人力和财务</li>
+            </ul>
+        </div>
+
+        <div class="tip-box">
+            <strong>课题实施要点：</strong>
+            <ol style="margin-top: 10px;">
+                <li>从工艺部获取完整的工艺路线和工时定额</li>
+                <li>从人力资源部和财务部获取工资数据，计算工资率</li>
+                <li>将制造费用按工序归集，计算各工序的费用分配率</li>
+                <li>按工序逐步计算，建立工序成本累积表</li>
+                <li>定期对比标准工时与实际工时，发现效率改进机会</li>
+            </ol>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="财务理论讲义-模块4-BOM与材料成本.html" class="nav-btn secondary">← 上一模块</a>
+            <a href="财务理论讲义-模块6-成本分析方法.html" class="nav-btn">下一模块：成本分析方法 →</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e0e0e0; color: #999; font-size: 10pt;">
+            <p>瓦轴集团 · 产品成本模型构建课题组 | 模块5：工序与人工成本</p>
+            <p>东北财经大学提供学术支持 | 内部培训资料</p>
+        </div>
+    </div>
+</body>
+</html>

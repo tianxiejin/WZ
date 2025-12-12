@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块2：产品成本构成 - 财务理论讲义</title>
+    <style>
+        @media print {
+            @page { size: A4; margin: 2cm 1.5cm; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.8;
+            color: #333;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #c8102e 0%, #8b0a1f 100%);
+            color: white;
+            padding: 40px;
+            margin: -50px -50px 40px -50px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32pt;
+            margin-bottom: 15px;
+        }
+
+        .header .module-number {
+            font-size: 18pt;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 20pt;
+            color: #c8102e;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #c8102e;
+        }
+
+        h3 {
+            font-size: 16pt;
+            color: #d32f2f;
+            margin: 30px 0 15px 0;
+            padding-left: 15px;
+            border-left: 5px solid #d32f2f;
+        }
+
+        h4 {
+            font-size: 14pt;
+            color: #e64a19;
+            margin: 25px 0 12px 0;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #2196f3;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .concept-box h4 {
+            color: #1976d2;
+            margin-top: 0;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 5px solid #ff9800;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #f57c00;
+            margin-top: 0;
+        }
+
+        .formula-box {
+            background: #f8f9fa;
+            border: 2px solid #c8102e;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-family: "Courier New", monospace;
+            font-size: 12pt;
+            line-height: 2;
+        }
+
+        .formula-box .formula-title {
+            font-family: "Microsoft YaHei", sans-serif;
+            font-weight: bold;
+            color: #c8102e;
+            margin-bottom: 15px;
+            font-size: 14pt;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 11pt;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background: #c8102e;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background: #ffebee;
+        }
+
+        .highlight {
+            background: #fff59d;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .important {
+            color: #c8102e;
+            font-weight: bold;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 35px;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .tip-box:before {
+            content: "💡 实用技巧";
+            display: block;
+            font-weight: bold;
+            color: #2e7d32;
+            font-size: 13pt;
+            margin-bottom: 10px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .nav-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #c8102e;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #8b0a1f;
+            transform: scale(1.05);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .key-points {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border: 3px solid #c8102e;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .key-points h3 {
+            color: #c8102e;
+            margin-top: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-points li {
+            padding: 10px 0;
+            padding-left: 35px;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "★";
+            color: #c8102e;
+            position: absolute;
+            left: 0;
+            font-size: 16pt;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box:before {
+            content: "⚠️ 常见误区";
+            display: block;
+            font-weight: bold;
+            color: #856404;
+            font-size: 13pt;
+            margin-bottom: 10px;
+        }
+
+        .chart-box {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="module-number">模块 2</div>
+            <h1>产品成本构成</h1>
+            <p>深入理解"料工费"——成本核算的三大支柱</p>
+        </div>
+
+        <h2>一、产品成本构成全景图</h2>
+
+        <div class="chart-box">
+            <pre style="font-family: 'Microsoft YaHei'; font-size: 11pt; line-height: 2; text-align: left; white-space: pre-line; margin: 0;">
+<strong style="color: #c8102e; font-size: 16pt;">产品成本 = 料 + 工 + 费</strong>
+
+┌─────────────────────────────────────────────────────┐
+│                  <strong>产品总成本</strong>                         │
+├────────────┬────────────┬───────────────────────┤
+│            │            │                       │
+│ <strong style="color: #2196f3;">直接材料</strong>   │ <strong style="color: #4caf50;">直接人工</strong>   │   <strong style="color: #ff9800;">制造费用</strong>          │
+│  (料)      │  (工)      │   (费)                │
+│            │            │                       │
+│  60-70%    │  15-20%    │    15-20%             │
+└────────────┴────────────┴───────────────────────┘
+     ↓            ↓                 ↓
+   原材料      工人工资         间接费用
+   辅材料      社保公积金       设备折旧
+   外购件                       能源费用
+   包装物                       维修费
+                                间接人工
+            </pre>
+        </div>
+
+        <div class="concept-box">
+            <h4>📖 为什么叫"料工费"?</h4>
+            <p><strong>料</strong>：材料(Material) — 做产品需要的原材料</p>
+            <p><strong>工</strong>：人工(Labor) — 工人加工产品的工资</p>
+            <p><strong>费</strong>：费用(Overhead) — 其他间接发生的费用</p>
+            <p style="margin-top: 15px;">这三项构成了产品成本的全部内容!</p>
+        </div>
+
+        <h2 class="page-break">二、直接材料成本（完整讲解见后续独立文件）</h2>
+
+        <p>由于内容较多，完整的"料工费"详细讲解已制作为独立文件，请查看：</p>
+        <ul>
+            <li><strong>财务理论讲义-模块2补充-直接材料详解.html</strong></li>
+            <li><strong>财务理论讲义-模块2补充-直接人工详解.html</strong></li>
+            <li><strong>财务理论讲义-模块2补充-制造费用详解.html</strong></li>
+        </ul>
+
+        <h2>核心要点速览</h2>
+
+        <div class="key-points">
+            <h3>📚 模块2核心知识点</h3>
+            <ul>
+                <li><strong>料工费构成：</strong>产品成本 = 直接材料 + 直接人工 + 制造费用</li>
+                <li><strong>直接材料：</strong>消耗量(含损耗)× 单价，数据来源是BOM</li>
+                <li><strong>直接人工：</strong>工时 × 工资率，工时来自工艺文件</li>
+                <li><strong>制造费用：</strong>间接费用，需要分配（这是难点！）</li>
+                <li><strong>占比参考：</strong>材料60-70%，人工15-20%，费用15-20%</li>
+                <li><strong>分配方法：</strong>传统方法简单但不够精准，更科学的是作业成本法（下一模块）</li>
+            </ul>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="财务理论讲义-模块1-成本核算基础.html" class="nav-btn secondary">← 上一模块</a>
+            <a href="财务理论讲义-模块3-作业成本法ABC.html" class="nav-btn">下一模块：作业成本法ABC →</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e0e0e0; color: #999; font-size: 10pt;">
+            <p>瓦轴集团 · 产品成本模型构建课题组 | 模块2：产品成本构成</p>
+            <p>东北财经大学提供学术支持 | 内部培训资料</p>
+        </div>
+    </div>
+</body>
+</html>
