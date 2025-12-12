@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块4：TCO全生命周期成本分析</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei'; background: #f5f7fa; }
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #667eea; padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { color: #667eea; margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; }
+        h3 { color: #2c3e50; margin-top: 25px; margin-bottom: 15px; }
+        p, li { line-height: 1.8; margin: 10px 0; }
+        ul, ol { margin-left: 30px; }
+        .highlight-box {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+        }
+        .warning-box {
+            background: #f8d7da;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #dc3545;
+        }
+        .example-box {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196F3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .formula {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .comparison {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+        .option {
+            flex: 1;
+            margin: 0 10px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .option-a { background: #ffe6e6; border: 3px solid #dc3545; }
+        .option-b { background: #d4edda; border: 3px solid #28a745; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-content">
+            <div><strong>模块4：TCO全生命周期成本分析</strong></div>
+            <div class="nav-links">
+                <a href="index.html">🏠 首页</a>
+                <a href="module3.html">← 上一模块</a>
+                <a href="module5.html">下一模块 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>💰 模块4：TCO全生命周期成本分析（Total Cost of Ownership）</h1>
+        
+        <h2>一、什么是TCO？</h2>
+        <div class="highlight-box">
+            <p><strong>定义：</strong>TCO（Total Cost of Ownership）是指产品或资产在整个生命周期内的所有成本总和，包括采购、使用、维护、处置等各个阶段。</p>
+            <p><strong>核心理念：</strong>不要只看购买价格，要看"总账"！</p>
+        </div>
+
+        <div class="warning-box">
+            <h3>⚠️ 常见误区："便宜"的陷阱</h3>
+            <p>很多时候，我们被低价吸引，却忽略了后续的隐性成本：</p>
+            <ul>
+                <li>低价设备 → 高故障率 → 高维修成本</li>
+                <li>低价原料 → 高不良率 → 高返工成本</li>
+                <li>低价软件 → 低效率 → 高人工成本</li>
+            </ul>
+        </div>
+
+        <h2>二、TCO构成</h2>
+        <div class="formula">
+            TCO = 采购成本 + 运营成本 + 维护成本 + 处置成本
+        </div>
+
+        <table>
+            <tr>
+                <th>阶段</th>
+                <th>成本类型</th>
+                <th>典型占比</th>
+            </tr>
+            <tr>
+                <td><strong>采购阶段</strong></td>
+                <td>购买价格、运输、安装、培训</td>
+                <td>20-30%</td>
+            </tr>
+            <tr>
+                <td><strong>运营阶段</strong></td>
+                <td>能耗、人工、耗材、低效损失</td>
+                <td>50-60%</td>
+            </tr>
+            <tr>
+                <td><strong>维护阶段</strong></td>
+                <td>维修、备件、停机损失</td>
+                <td>15-25%</td>
+            </tr>
+            <tr>
+                <td><strong>处置阶段</strong></td>
+                <td>拆除、运输、环保处理、残值</td>
+                <td>5-10%</td>
+            </tr>
+        </table>
+
+        <h2>三、瓦轴案例：设备采购决策</h2>
+        <div class="example-box">
+            <h3>📌 场景：采购磨床设备</h3>
+            <p>瓦轴需要采购一台数控磨床，有两个方案：</p>
+
+            <div class="comparison">
+                <div class="option option-a">
+                    <h3>方案A：低价进口设备</h3>
+                    <p><strong>采购价：180万</strong></p>
+                </div>
+                <div class="option option-b">
+                    <h3>方案B：高端国产设备</h3>
+                    <p><strong>采购价：220万</strong></p>
+                </div>
+            </div>
+
+            <h3>TCO详细对比（10年使用期）</h3>
+            <table>
+                <tr>
+                    <th>成本项目</th>
+                    <th>方案A（进口低价）</th>
+                    <th>方案B（国产高端）</th>
+                </tr>
+                <tr>
+                    <td><strong>1. 采购成本</strong></td>
+                    <td>180万</td>
+                    <td>220万</td>
+                </tr>
+                <tr>
+                    <td>培训费</td>
+                    <td>5万</td>
+                    <td>2万</td>
+                </tr>
+                <tr>
+                    <td>安装调试</td>
+                    <td>10万</td>
+                    <td>5万</td>
+                </tr>
+                <tr>
+                    <td><strong>2. 运营成本（10年）</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>年耗电（12万度×0.8元）</td>
+                    <td>96万</td>
+                    <td>72万（节能20%）</td>
+                </tr>
+                <tr>
+                    <td>人工成本（效率差异）</td>
+                    <td>50万</td>
+                    <td>30万</td>
+                </tr>
+                <tr>
+                    <td><strong>3. 维护成本（10年）</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>年维修费</td>
+                    <td>80万</td>
+                    <td>40万</td>
+                </tr>
+                <tr>
+                    <td>备件成本</td>
+                    <td>60万</td>
+                    <td>30万</td>
+                </tr>
+                <tr>
+                    <td>停机损失（故障率差异）</td>
+                    <td>100万</td>
+                    <td>30万</td>
+                </tr>
+                <tr>
+                    <td><strong>4. 处置成本</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>拆除-残值</td>
+                    <td>5万</td>
+                    <td>-10万（残值更高）</td>
+                </tr>
+                <tr style="background: #fff3cd; font-weight: bold;">
+                    <td><strong>TCO总成本</strong></td>
+                    <td><strong>586万</strong></td>
+                    <td><strong>419万</strong></td>
+                </tr>
+            </table>
+
+            <div class="highlight-box">
+                <h3>✅ 结论</h3>
+                <p>方案B虽然采购价高40万，但10年TCO节省167万！</p>
+                <p><strong>关键因素：</strong>低故障率、高能效、低维护成本</p>
+            </div>
+        </div>
+
+        <h2>四、TCO分析步骤</h2>
+        <ol>
+            <li><strong>明确对比对象：</strong>确保比较对象功能可比</li>
+            <li><strong>确定评估周期：</strong>设备通常5-10年，耗材1-3年</li>
+            <li><strong>识别所有成本：</strong>显性+隐性，不要遗漏</li>
+            <li><strong>量化成本：</strong>历史数据、供应商报价、行业基准</li>
+            <li><strong>折现计算：</strong>考虑货币时间价值</li>
+            <li><strong>敏感性分析：</strong>测试关键参数变化的影响</li>
+        </ol>
+
+        <h2>五、TCO应用场景</h2>
+        <table>
+            <tr>
+                <th>场景</th>
+                <th>决策要点</th>
+            </tr>
+            <tr>
+                <td>设备采购</td>
+                <td>对比初次投资、能耗、维护、使用寿命</td>
+            </tr>
+            <tr>
+                <td>供应商选择</td>
+                <td>对比价格、质量、交付、服务</td>
+            </tr>
+            <tr>
+                <td>技术方案</td>
+                <td>对比开发、实施、运维、升级成本</td>
+            </tr>
+            <tr>
+                <td>租赁vs购买</td>
+                <td>对比总成本、灵活性、风险</td>
+            </tr>
+        </table>
+
+        <h2>六、实战工具：TCO计算模板</h2>
+        <div class="example-box">
+            <h3>简易TCO计算表</h3>
+            <table>
+                <tr>
+                    <th>成本项</th>
+                    <th>公式/说明</th>
+                </tr>
+                <tr>
+                    <td>初次投资</td>
+                    <td>购买价 + 运输 + 安装 + 培训</td>
+                </tr>
+                <tr>
+                    <td>年运营成本</td>
+                    <td>能耗 + 人工 + 耗材</td>
+                </tr>
+                <tr>
+                    <td>年维护成本</td>
+                    <td>维修 + 备件 + 停机损失</td>
+                </tr>
+                <tr>
+                    <td>年折旧</td>
+                    <td>(初次投资 - 残值) / 使用年限</td>
+                </tr>
+                <tr>
+                    <td><strong>年均TCO</strong></td>
+                    <td><strong>(初次投资 + Σ运营成本 + Σ维护成本 - 残值) / 使用年限</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>七、TCO优化策略</h2>
+        <ol>
+            <li><strong>延长使用寿命：</strong>预防性维护，降低单位时间成本</li>
+            <li><strong>提高能效：</strong>节能改造，降低运营成本</li>
+            <li><strong>标准化：</strong>统一型号，降低备件和培训成本</li>
+            <li><strong>全生命周期服务合同：</strong>转移风险，锁定成本</li>
+            <li><strong>共享经济：</strong>闲置资产出租，提高利用率</li>
+        </ol>
+
+        <h2>八、课后练习</h2>
+        <ol>
+            <li>选择您负责的一个设备或物料，计算其TCO</li>
+            <li>识别3个最大的TCO成本驱动因素</li>
+            <li>提出至少2个TCO优化建议</li>
+        </ol>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="module5.html" style="display: inline-block; padding: 15px 40px; background: #667eea; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2em;">
+                继续学习：模块5 业财融合实践 →
+            </a>
+        </div>
+    </div>
+</body>
+</html>

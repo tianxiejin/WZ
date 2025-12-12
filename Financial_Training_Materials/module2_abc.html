@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块二：作业成本法(ABC) - 课题组培训讲义</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>课程导航</h3>
+            <ul class="nav-links">
+                <li><a href="index.html">首页：课题概览</a></li>
+                <li><a href="module1_basics.html">模块一：业财融合基础</a></li>
+                <li><a href="module2_abc.html" class="active">模块二：作业成本法(重点)</a></li>
+                <li><a href="module3_tco.html">模块三：总成本与价值采购</a></li>
+                <li><a href="module4_practice.html">模块四：实战模型构建</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <h1>模块二：作业成本法 (Activity-Based Costing)</h1>
+            <p class="subtitle">解决“物料杂、工艺固化难”导致的成本归集难题</p>
+
+            <div class="highlight-box">
+                <strong>核心理念：</strong> 产品消耗作业，作业消耗资源。<br>
+                成本不再是简单地按产量平摊，而是根据“谁使用了作业，谁就承担成本”的原则进行分配。
+            </div>
+
+            <h2>1. 为什么要用作业成本法？</h2>
+            <p>在瓦轴的场景中，辅材种类繁多（切削液、砂轮、包装物等）。</p>
+            <ul>
+                <li><strong>传统做法：</strong> 将所有辅材费用加总，除以总产量或总工时。结果：工艺简单、批量大的产品“补贴”了工艺复杂、小批量的产品。成本信息失真，导致定价和采购策略错误。</li>
+                <li><strong>ABC做法：</strong> 识别出消耗辅材的<strong>具体环节（作业）</strong>，比如“更换砂轮”、“切削液维护”、“废料处理”，然后根据实际发生次数分配成本。</li>
+            </ul>
+
+            <h2>2. ABC法的核心逻辑模型</h2>
+            
+            <div class="diagram">
+                <!-- 这里用文字模拟图表结构 -->
+                <div style="border: 2px dashed #ccc; padding: 20px; display: inline-block; background: #fff;">
+                    <div style="background: #e3f2fd; padding: 10px; margin-bottom: 10px;"><strong>资源 (Resources)</strong><br>辅材采购费、仓储人工、资金利息</div>
+                    <div style="font-size: 20px;">⬇️ 资源动因 (Resource Driver)</div>
+                    <div style="background: #fff9c4; padding: 10px; margin: 10px 0;"><strong>作业 (Activities)</strong><br>订单处理、物料搬运、设备调试、质量检验</div>
+                    <div style="font-size: 20px;">⬇️ 作业动因 (Activity Driver)</div>
+                    <div style="background: #e8f5e9; padding: 10px; margin-top: 10px;"><strong>成本对象 (Cost Objects)</strong><br>特定规格的轴承产品、特定订单</div>
+                </div>
+            </div>
+
+            <h2>3. 关键概念详解</h2>
+            
+            <h3>(1) 资源 (Resources)</h3>
+            <p>这是成本的源头。对于我们的课题，资源包括：</p>
+            <ul>
+                <li><strong>显性资源：</strong> 辅材的采购发票金额。</li>
+                <li><strong>隐性资源：</strong> 采购人员的工资（管理成本）、仓库占用的资金（资金占用成本）。</li>
+            </ul>
+
+            <h3>(2) 作业 (Activities) - 成本归集的“蓄水池”</h3>
+            <p>我们需要将供应链过程分解为具体的动作。例如：</p>
+            <ul>
+                <li><strong>采购作业：</strong> 寻找供应商、谈判、下订单。</li>
+                <li><strong>物流作业：</strong> 收货验收、入库搬运。</li>
+                <li><strong>使用作业：</strong> 领料、更换刀具、废液处理。</li>
+            </ul>
+
+            <h3>(3) 动因 (Drivers) - 分配成本的“勺子”</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>解释</th>
+                        <th>瓦轴场景举例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>资源动因</strong></td>
+                        <td>资源是如何被作业消耗的？</td>
+                        <td>仓库人员工资（资源）按<strong>工时</strong>分配给“收货”和“发料”作业。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>作业动因</strong></td>
+                        <td>作业是如何被产品消耗的？</td>
+                        <td>“采购订单处理”作业的成本，按<strong>订单数量</strong>分配给不同产品；“辅材搬运”作业按<strong>搬运次数</strong>分配。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. 实战演练：辅材成本归集模型</h2>
+            <p>假设我们要计算两种轴承（A型-大批量标准品，B型-小批量定制品）的真实辅材成本。</p>
+
+            <div class="concept-card">
+                <div class="concept-title">📊 案例对比</div>
+                <p><strong>场景：</strong> 采购部花费10万元买了砂轮。仓库发生了2万元的管理费（含资金占用）。总共生产了1000个A型，100个B型。</p>
+                
+                <p><strong>传统算法（按产量）：</strong></p>
+                <ul>
+                    <li>总成本 = 12万元。总产量 = 1100个。</li>
+                    <li>每个轴承分摊 = 109元。</li>
+                    <li><strong>结果：</strong> B型这种难做的产品，成本被严重低估。</li>
+                </ul>
+
+                <p><strong>ABC算法（按作业）：</strong></p>
+                <ul>
+                    <li><strong>作业1：砂轮消耗（与加工时长相关）。</strong> A型加工快，B型加工慢。B型虽然量少，但极费砂轮。经统计，B型消耗了40%的砂轮价值。</li>
+                    <li><strong>作业2：采购与管理（与批次相关）。</strong> A型是一次性大单，B型分了10次下单，每次都要专人跟进。B型消耗了80%的管理精力。</li>
+                    <li><strong>计算结果：</strong> B型的单只成本可能高达 500元！</li>
+                </ul>
+                <p><strong>结论：</strong> 只有通过ABC法，才能发现B型产品可能在亏本卖，或者我们需要针对B型优化采购频次（价值采购）。</p>
+            </div>
+
+            <a href="module3_tco.html" class="btn">下一章：供应链总成本 (TCO) 与价值采购 &rarr;</a>
+
+            <div class="footer">
+                <p>瓦轴集团课题组内部培训资料 | 2025</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

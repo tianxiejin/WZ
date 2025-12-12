@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块6：综合案例分析</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei'; background: #f5f7fa; }
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #667eea; padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { color: #667eea; margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; }
+        h3 { color: #2c3e50; margin-top: 25px; margin-bottom: 15px; }
+        p, li { line-height: 1.8; margin: 10px 0; }
+        ul, ol { margin-left: 30px; }
+        .case-box {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #667eea;
+        }
+        .problem-box {
+            background: #f8d7da;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #dc3545;
+        }
+        .solution-box {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+        }
+        .result-box {
+            background: #cfe2ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #0d6efd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        .timeline-item::before {
+            content: "●";
+            position: absolute;
+            left: -47px;
+            top: 20px;
+            font-size: 24px;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-content">
+            <div><strong>模块6：综合案例分析</strong></div>
+            <div class="nav-links">
+                <a href="index.html">🏠 首页</a>
+                <a href="module5.html">← 上一模块</a>
+                <a href="summary.html">课程总结 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>🎓 模块6：综合案例分析</h1>
+        
+        <div class="case-box">
+            <h2>案例背景：瓦轴供应链成本优化项目</h2>
+            <p><strong>企业：</strong>瓦轴集团某生产基地</p>
+            <p><strong>产品：</strong>高端风电轴承</p>
+            <p><strong>问题：</strong>产品毛利率仅8%，低于行业平均15%，面临激烈的市场竞争</p>
+            <p><strong>任务：</strong>供应链管理团队需在6个月内将毛利率提升至12%以上</p>
+        </div>
+
+        <h2>一、问题诊断阶段</h2>
+        
+        <div class="problem-box">
+            <h3>发现的主要问题</h3>
+            <ol>
+                <li><strong>成本核算不精准</strong>
+                    <ul>
+                        <li>采用传统成本法，按工时简单分摊制造费用</li>
+                        <li>无法准确反映不同产品的真实成本</li>
+                        <li>定价决策缺乏依据</li>
+                    </ul>
+                </li>
+                <li><strong>库存管理粗放</strong>
+                    <ul>
+                        <li>库存周转天数高达120天，远超行业60天标准</li>
+                        <li>呆滞料占比15%，价值3000万元</li>
+                        <li>仓储成本每年600万元</li>
+                    </ul>
+                </li>
+                <li><strong>采购策略单一</strong>
+                    <ul>
+                        <li>只关注采购价格，忽视TCO</li>
+                        <li>低价供应商导致质量问题频发，不良品率达5%</li>
+                        <li>频繁的质量问题导致停工，每年损失800万元</li>
+                    </ul>
+                </li>
+                <li><strong>业财脱节</strong>
+                    <ul>
+                        <li>采购、生产、物流各自为战</li>
+                        <li>缺乏统一的成本管控目标</li>
+                        <li>财务数据滞后，无法及时支持决策</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <h2>二、解决方案设计</h2>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>第1个月：导入ABC成本法</h3>
+                <p><strong>行动：</strong></p>
+                <ul>
+                    <li>识别12个关键作业：接单、设计、采购、车削、磨削、热处理、装配、检验、包装、仓储、运输、售后</li>
+                    <li>为每个作业确定成本动因</li>
+                    <li>重新计算所有SKU的产品成本</li>
+                </ul>
+                <p><strong>成果：</strong>发现30%的SKU实际亏损，50%的SKU利润率超20%</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>第2个月：优化产品组合与定价</h3>
+                <p><strong>行动：</strong></p>
+                <ul>
+                    <li>淘汰10个亏损SKU</li>
+                    <li>对20个低利润SKU提价5-10%</li>
+                    <li>重点推广30个高利润SKU</li>
+                </ul>
+                <p><strong>成果：</strong>产品组合优化，平均毛利率提升2个百分点</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>第3-4个月：库存优化</h3>
+                <p><strong>行动：</strong></p>
+                <ul>
+                    <li>实施ABC分类管理：A类（20个SKU）→ JIT；B类（50个SKU）→ 定期订货；C类（100个SKU）→ 批量采购</li>
+                    <li>运用EOQ模型优化订货批量</li>
+                    <li>推动VMI：与5个核心供应商建立VMI合作</li>
+                    <li>处置呆滞料：打折销售、报废处理，回收资金1500万</li>
+                </ul>
+                <p><strong>成果：</strong>库存周转天数降至70天，释放资金4000万，年节省仓储成本200万</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>第5个月：供应商TCO管理</h3>
+                <p><strong>行动：</strong></p>
+                <ul>
+                    <li>建立TCO评估模型，重新评估所有供应商</li>
+                    <li>更换3家低价但高质量成本的供应商</li>
+                    <li>与优质供应商签订长期战略合作协议</li>
+                    <li>建立供应商质量激励机制</li>
+                </ul>
+                <p><strong>成果：</strong>不良品率从5%降至1.5%，减少质量损失600万/年</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>第6个月：业财融合机制建设</h3>
+                <p><strong>行动：</strong></p>
+                <ul>
+                    <li>设立供应链BP（Business Partner），财务人员驻点供应链团队</li>
+                    <li>建立月度经营分析会制度</li>
+                    <li>设计联合KPI：采购（降本率+TCO优化）、生产（成本+质量）、物流（交付+成本+周转）</li>
+                    <li>开发BI看板，实时监控关键财务指标</li>
+                </ul>
+                <p><strong>成果：</strong>决策速度提升50%，跨部门协同效率显著改善</p>
+            </div>
+        </div>
+
+        <h2>三、项目成果</h2>
+
+        <div class="result-box">
+            <h3>📊 量化成果</h3>
+            <table>
+                <tr>
+                    <th>指标</th>
+                    <th>改善前</th>
+                    <th>改善后</th>
+                    <th>改善幅度</th>
+                </tr>
+                <tr>
+                    <td><strong>毛利率</strong></td>
+                    <td>8%</td>
+                    <td>13.5%</td>
+                    <td>+5.5%</td>
+                </tr>
+                <tr>
+                    <td>库存周转天数</td>
+                    <td>120天</td>
+                    <td>70天</td>
+                    <td>-50天</td>
+                </tr>
+                <tr>
+                    <td>不良品率</td>
+                    <td>5%</td>
+                    <td>1.5%</td>
+                    <td>-3.5%</td>
+                </tr>
+                <tr>
+                    <td>呆滞料占比</td>
+                    <td>15%</td>
+                    <td>5%</td>
+                    <td>-10%</td>
+                </tr>
+                <tr>
+                    <td>年度成本节约</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><strong>1800万元</strong></td>
+                </tr>
+            </table>
+
+            <h3>💡 质化成果</h3>
+            <ul>
+                <li>建立了科学的成本管理体系</li>
+                <li>形成了业财融合的工作机制</li>
+                <li>培养了一批懂财务的供应链人才</li>
+                <li>提升了企业的市场竞争力</li>
+            </ul>
+        </div>
+
+        <h2>四、关键成功因素</h2>
+        <ol>
+            <li><strong>领导重视：</strong>总经理亲自担任项目组长，确保资源投入</li>
+            <li><strong>跨部门协同：</strong>打破部门墙，业财深度融合</li>
+            <li><strong>方法科学：</strong>ABC、EOQ、TCO等先进工具的应用</li>
+            <li><strong>数据支撑：</strong>ERP、MES、BI系统提供准确数据</li>
+            <li><strong>持续改进：</strong>建立PDCA循环，持续优化</li>
+        </ol>
+
+        <h2>五、经验教训</h2>
+        
+        <h3>✅ 做对的事</h3>
+        <ul>
+            <li>先诊断再行动，问题导向</li>
+            <li>小步快跑，快速迭代</li>
+            <li>注重培训，让团队理解方法</li>
+            <li>建立机制，确保可持续</li>
+        </ul>
+
+        <h3>⚠️ 遇到的挑战</h3>
+        <ul>
+            <li><strong>数据质量问题：</strong>初期数据不准确，花了大量时间清洗数据</li>
+            <li><strong>观念转变困难：</strong>部分员工习惯传统做法，抵触变革</li>
+            <li><strong>系统改造复杂：</strong>ERP二次开发耗时较长</li>
+        </ul>
+
+        <h3>💡 应对策略</h3>
+        <ul>
+            <li>成立数据治理小组，系统梳理数据标准</li>
+            <li>高频次培训+案例宣贯，逐步改变观念</li>
+            <li>先手工建模验证，再推动系统改造</li>
+        </ul>
+
+        <h2>六、案例启示</h2>
+        <div class="solution-box">
+            <ol>
+                <li><strong>系统思维：</strong>供应链优化不是单点突破，而是系统工程</li>
+                <li><strong>数据驱动：</strong>精准的成本数据是科学决策的基础</li>
+                <li><strong>业财融合：</strong>财务不是成本中心，而是价值创造中心</li>
+                <li><strong>持续改进：</strong>没有最好，只有更好</li>
+            </ol>
+        </div>
+
+        <h2>七、案例讨论题</h2>
+        <ol>
+            <li>如果您是项目负责人,您会先从哪个环节入手？为什么？</li>
+            <li>案例中的ABC成本法发现了哪些隐性问题？</li>
+            <li>业财融合在这个案例中起到了什么作用？</li>
+            <li>这个案例中的经验，哪些可以应用到您的工作中？</li>
+        </ol>
+
+        <h2>八、实战演练</h2>
+        <div class="case-box">
+            <h3>📝 小组作业</h3>
+            <p>请结合您的实际工作，设计一个小型供应链优化项目：</p>
+            <ol>
+                <li>识别一个成本优化机会（如库存、采购、质量）</li>
+                <li>应用课程中的工具（ABC、EOQ、TCO、业财融合）</li>
+                <li>制定3个月行动计划</li>
+                <li>预估改善效果</li>
+            </ol>
+            <p><strong>提交格式：</strong>PPT 10页以内，下周课程分享讨论</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="summary.html" style="display: inline-block; padding: 15px 40px; background: #28a745; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2em;">
+                完成学习，查看课程总结 →
+            </a>
+        </div>
+    </div>
+</body>
+</html>

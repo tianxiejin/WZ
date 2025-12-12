@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4-6章 预算投资与运营管理 - 瓦轴降成本课题学习资料</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        .nav {
+            background: #2c3e50;
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .part-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .part-number {
+            font-size: 20px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .part-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .part-subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .chapter-divider {
+            margin: 60px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .chapter-title {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 26px;
+            color: #2c3e50;
+            margin: 40px 0 25px 0;
+            padding-left: 20px;
+            border-left: 6px solid #3498db;
+            font-weight: bold;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #34495e;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .subsection-title {
+            font-size: 18px;
+            color: #2c3e50;
+            margin: 20px 0 15px 0;
+            font-weight: bold;
+        }
+
+        .content {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            text-align: justify;
+            line-height: 2;
+        }
+
+        .formula {
+            background: #f8f9fa;
+            padding: 20px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+            border-left: 5px solid #3498db;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-left: 5px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #e8f8f0 0%, #d4edda 100%);
+            border-left: 5px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .process-flow {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border: 2px dashed #3498db;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 15px 25px;
+            margin: 10px 0;
+            border-left: 4px solid #3498db;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .flow-arrow {
+            text-align: center;
+            color: #3498db;
+            font-size: 24px;
+            margin: 5px 0;
+        }
+
+        .example-box {
+            background: #fff9f0;
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .example-box-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d68910;
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            overflow-x: auto;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table th {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 14px;
+        }
+
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        table tr:hover {
+            background: #e8f4f8;
+        }
+
+        ul, ol {
+            margin-left: 40px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        strong {
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        em {
+            color: #e74c3c;
+            font-style: normal;
+            font-weight: bold;
+        }
+
+        .toc-box {
+            background: #f8f9fa;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .toc-box h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .toc-list li:hover {
+            background: #e8f4f8;
+        }
+
+        .toc-list a {
+            color: #2c3e50;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-nav {
+            margin-top: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .footer-nav a {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 0 10px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .footer-nav a:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+            transform: scale(1.05);
+        }
+
+        @media print {
+            .nav, .footer-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="第1-3章.html">← 上一部分</a>
+            <span style="color: white; font-weight: bold;">第4-6章：预算投资与运营管理</span>
+            <a href="第7-9章.html">下一部分 →</a>
+        </div>
+
+        <div class="part-header">
+            <div class="part-number">第二部分</div>
+            <div class="part-title">预算投资与运营管理</div>
+            <div class="part-subtitle">科学决策，提升运营效率，实现精益生产</div>
+        </div>
+
+        <div class="toc-box">
+            <h3>📖 本部分内容导航</h3>
+            <ul class="toc-list">
+                <li><a href="#chapter4">第四章：预算管理理论</a>
+                    <div style="font-size: 13px; color: #7f8c8d; margin-top: 5px; margin-left: 20px;">
+                        全面预算管理 | 预算编制方法 | 零基预算 | 滚动预算 | 预算控制
+                    </div>
+                </li>
+                <li><a href="#chapter5">第五章：投资决策理论</a>
+                    <div style="font-size: 13px; color: #7f8c8d; margin-top: 5px; margin-left: 20px;">
+                        货币时间价值 | 净现值NPV | 内部收益率IRR | 投资回收期 | 敏感性分析
+                    </div>
+                </li>
+                <li><a href="#chapter6">第六章：生产运营管理理论</a>
+                    <div style="font-size: 13px; color: #7f8c8d; margin-top: 5px; margin-left: 20px;">
+                        精益生产 | 七大浪费 | 设备综合效率OEE | 标准工时 | TPM | 快速换模SMED
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 第四章 -->
+        <div class="chapter-divider" id="chapter4">
+            <span class="chapter-number">第四章</span>
+            <h2 class="chapter-title">预算管理理论</h2>
+            <p style="color: #7f8c8d; margin-top: 15px;">建立全面预算管理体系，实现成本事前控制</p>
+        </div>
+
+        <h3 class="section-title">4.1 全面预算管理概述</h3>
+
+        <div class="subsection-title">核心概念</div>
+        <div class="content">
+            全面预算管理是对企业未来一定期间（通常为一年）的经营活动进行全面规划和控制的管理活动。它将企业战略目标分解为可操作的财务和业务指标，通过预算的编制、执行、控制、分析和考核，实现企业资源的优化配置和战略目标的达成。
+        </div>
+
+        <div class="highlight-box">
+            <strong>全面预算管理的"全面"体现在：</strong>
+            <ul>
+                <li><strong>全员参与：</strong>从高层到基层，各部门各岗位都参与预算编制和执行</li>
+                <li><strong>全过程管理：</strong>涵盖预算编制、执行、控制、分析、调整、考核全过程</li>
+                <li><strong>全方位覆盖：</strong>包括业务预算、资本预算、财务预算，覆盖企业所有经营活动</li>
+            </ul>
+        </div>
+
+        <div class="subsection-title">预算体系架构</div>
+        <div class="process-flow">
+            <div class="flow-step" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <strong>经营预算（业务预算）</strong><br>
+                销售预算、生产预算、采购预算、人工预算、制造费用预算、期间费用预算等
+            </div>
+            <div class="flow-arrow">↓ 支撑</div>
+            <div class="flow-step" style="background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); color: white;">
+                <strong>资本预算（投资预算）</strong><br>
+                固定资产投资预算、研发投资预算、技术改造预算等
+            </div>
+            <div class="flow-arrow">↓ 汇总</div>
+            <div class="flow-step" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); color: white;">
+                <strong>财务预算（综合预算）</strong><br>
+                现金流量预算、利润表预算、资产负债表预算
+            </div>
+        </div>
+
+        <h3 class="section-title">4.2 预算编制方法</h3>
+
+        <div class="subsection-title">四种主要编制方法</div>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-title">1. 增量预算法</div>
+                <p><strong>原理：</strong>以上期实际数为基础，按一定比例增减</p>
+                <p><strong>优点：</strong></p>
+                <ul style="font-size: 13px; margin-left: 20px;">
+                    <li>编制简单快速</li>
+                    <li>便于理解和执行</li>
+                    <li>符合稳定增长企业</li>
+                </ul>
+                <p><strong>缺点：</strong></p>
+                <ul style="font-size: 13px; margin-left: 20px;">
+                    <li>延续历史低效</li>
+                    <li>缺乏创新突破</li>
+                    <li>易导致预算松弛</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">2. 零基预算法</div>
+                <p><strong>原理：</strong>不考虑过去，一切从零开始</p>
+                <p><strong>优点：</strong></p>
+                <ul style="font-size: 13px; margin-left: 20px;">
+                    <li>打破惯性思维</li>
+                    <li>识别不必要支出</li>
+                    <li>资源配置更优</li>
+                </ul>
+                <p><strong>缺点：</strong></p>
+                <ul style="font-size: 13px; margin-left: 20px;">
+                    <li>工作量大</li>
+                    <li>需要详细论证</li>
+                    <li>执行阻力大</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">3. 固定预算法</div>
+                <p><strong>原理：</strong>按照固定的业务量编制，执行中不调整</p>
+                <p><strong>优点：</strong></p>
+                <ul style="font-size: 13px; margin-left: 20px;">
+                    <li>简单明确</li>
+                    <li>便于考核</li>
+                    <li>控制严格</li>
+                </ul>
+                <p><strong>缺点：</strong></p>
+                <ul style="font-size: 13px; margin-left: 20px;">
+                    <li>缺乏弹性</li>
+                    <li>业务量波动时失效</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">4. 弹性预算法</div>
+                <p><strong>原理：</strong>按不同业务量水平编制多套预算</p>
+                <p><strong>优点：</strong></p>
+                <ul style="font-size: 13px; margin-left: 20px;">
+                    <li>适应性强</li>
+                    <li>可比性好</li>
+                    <li>考核更公平</li>
+                </ul>
+                <p><strong>缺点：</strong></p>
+                <ul style="font-size: 13px; margin-left: 20px;">
+                    <li>编制复杂</li>
+                    <li>需要成本性态分析</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="subsection-title">零基预算法详解（降本重点方法）</div>
+        <div class="highlight-box">
+            <strong>零基预算三步法：</strong>
+            <div class="process-flow" style="margin-top: 15px;">
+                <div class="flow-step">
+                    <strong>第一步：划分预算单元</strong><br>
+                    将企业活动划分为若干预算单元（成本中心、项目）<br>
+                    例如：采购部门、生产车间、研发项目等
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                    <strong>第二步：逐项论证</strong><br>
+                    每个预算单元从零开始，逐项论证费用的必要性<br>
+                    • 这项费用是否必要？<br>
+                    • 有无更经济的替代方案？<br>
+                    • 投入产出比如何？
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-step">
+                    <strong>第三步：排序分配</strong><br>
+                    按重要性和效益排序，在资源约束下优先安排<br>
+                    砍掉效益低、不必要的支出
+                </div>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 零基预算应用案例：制造费用预算</div>
+            <p><strong>某车间上年实际制造费用：200万元</strong></p>
+            <p><strong>采用增量预算法：</strong></p>
+            <div class="code-block" style="font-size: 13px;">
+今年预算 = 200万 × (1 + 5%增长) = 210万元
+<span style="color: #e74c3c;">问题：未经论证，自动延续历史支出模式</span>
+            </div>
+
+            <p><strong>采用零基预算法：</strong></p>
+            <table style="font-size: 13px;">
+                <tr>
+                    <th>费用项目</th>
+                    <th>上年实际</th>
+                    <th>零基论证</th>
+                    <th>必要性评分</th>
+                    <th>新预算</th>
+                </tr>
+                <tr>
+                    <td>设备折旧</td>
+                    <td>60万</td>
+                    <td>固定成本，必须</td>
+                    <td>A（必需）</td>
+                    <td>60万</td>
+                </tr>
+                <tr>
+                    <td>水电费</td>
+                    <td>40万</td>
+                    <td>可通过节能降低10%</td>
+                    <td>A（必需）</td>
+                    <td>36万</td>
+                </tr>
+                <tr>
+                    <td>维修费</td>
+                    <td>35万</td>
+                    <td>实施TPM可降低20%</td>
+                    <td>A（必需）</td>
+                    <td>28万</td>
+                </tr>
+                <tr>
+                    <td>间接人工</td>
+                    <td>30万</td>
+                    <td>优化后减少1人</td>
+                    <td>B（重要）</td>
+                    <td>24万</td>
+                </tr>
+                <tr>
+                    <td>低值易耗品</td>
+                    <td>15万</td>
+                    <td>严格控制，降低15%</td>
+                    <td>B（重要）</td>
+                    <td>12.8万</td>
+                </tr>
+                <tr>
+                    <td>办公费</td>
+                    <td>10万</td>
+                    <td>无纸化办公，减半</td>
+                    <td>C（一般）</td>
+                    <td>5万</td>
+                </tr>
+                <tr>
+                    <td>招待费</td>
+                    <td>5万</td>
+                    <td>非必需，大幅压缩</td>
+                    <td>D（可取消）</td>
+                    <td>2万</td>
+                </tr>
+                <tr>
+                    <td>其他杂费</td>
+                    <td>5万</td>
+                    <td>严格审批</td>
+                    <td>C（一般）</td>
+                    <td>2.2万</td>
+                </tr>
+                <tr>
+                    <td><strong>合计</strong></td>
+                    <td><strong>200万</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td><strong>170万</strong></td>
+                </tr>
+            </table>
+            <div class="code-block" style="font-size: 13px;">
+<strong style="color: #27ae60;">零基预算结果：</strong>
+新预算：170万元
+节约：30万元（15%）
+效益：在不影响生产的前提下，大幅降低成本
+
+<strong>关键发现：</strong>
+• 水电费、维修费有降低空间
+• 间接人工可优化
+• 办公费、招待费、杂费大幅压缩
+            </div>
+        </div>
+
+        <div class="subsection-title">滚动预算法</div>
+        <div class="content">
+            滚动预算是指在预算执行过程中，根据实际情况不断延伸预算期间，使预算期间保持为一个固定长度（如12个月）的预算方法。
+        </div>
+
+        <div class="highlight-box">
+            <strong>滚动预算的优势：</strong>
+            <ul>
+                <li><strong>连续性：</strong>始终保持12个月的预算期，避免"年底突击"</li>
+                <li><strong>灵活性：</strong>及时调整预算，适应市场变化</li>
+                <li><strong>前瞻性：</strong>管理者始终关注未来12个月</li>
+                <li><strong>精准性：</strong>近期详细，远期粗略，提高准确性</li>
+            </ul>
+
+            <p style="margin-top: 15px;"><strong>操作方法：</strong></p>
+            <div class="code-block" style="font-size: 13px;">
+2024年1月：编制2024年1月-12月预算（12个月）
+2024年2月：删除1月实际，增加2025年1月预算（仍为12个月）
+2024年3月：删除2月实际，增加2025年2月预算（仍为12个月）
+...
+持续滚动，始终保持12个月预算期
+            </div>
+        </div>
+
+        <h3 class="section-title">4.3 成本费用预算编制</h3>
+
+        <div class="subsection-title">直接材料预算</div>
+        <div class="formula">
+            直接材料采购量 = 生产需用量 + 期末存量 - 期初存量<br>
+            直接材料采购金额 = 采购量 × 预计单价
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 直接材料预算案例</div>
+            <p><strong>基础数据：</strong></p>
+            <ul>
+                <li>计划生产A轴承：10,000件</li>
+                <li>单位材料消耗：10kg钢材/件</li>
+                <li>期初钢材库存：5,000kg</li>
+                <li>期末保持库存：8,000kg</li>
+                <li>预计钢材单价：50元/kg</li>
+            </ul>
+            <div class="code-block" style="font-size: 13px;">
+生产需用量 = 10,000件 × 10kg/件 = 100,000kg
+采购量 = 100,000 + 8,000 - 5,000 = 103,000kg
+采购金额 = 103,000kg × 50元/kg = 5,150,000元
+            </div>
+        </div>
+
+        <div class="subsection-title">直接人工预算</div>
+        <div class="formula">
+            直接人工工时 = 单位产品工时 × 生产量<br>
+            直接人工成本 = 直接人工工时 × 小时工资率
+        </div>
+
+        <div class="subsection-title">制造费用预算</div>
+        <table>
+            <tr>
+                <th>费用项目</th>
+                <th>性态</th>
+                <th>预算基础</th>
+                <th>计算方法</th>
+            </tr>
+            <tr>
+                <td>间接材料</td>
+                <td>变动</td>
+                <td>生产量</td>
+                <td>单位消耗 × 产量</td>
+            </tr>
+            <tr>
+                <td>间接人工</td>
+                <td>半变动</td>
+                <td>工时/产量</td>
+                <td>固定部分 + 变动部分</td>
+            </tr>
+            <tr>
+                <td>设备折旧</td>
+                <td>固定</td>
+                <td>固定资产</td>
+                <td>原值 × 折旧率</td>
+            </tr>
+            <tr>
+                <td>水电费</td>
+                <td>变动</td>
+                <td>工时/产量</td>
+                <td>单位消耗 × 产量</td>
+            </tr>
+            <tr>
+                <td>维修费</td>
+                <td>半变动</td>
+                <td>设备状况</td>
+                <td>历史数据 + 计划维修</td>
+            </tr>
+        </table>
+
+        <h3 class="section-title">4.4 预算执行与控制</h3>
+
+        <div class="subsection-title">预算差异分析</div>
+        <div class="highlight-box">
+            <strong>预算差异分析公式：</strong>
+            <div class="formula">
+                预算差异 = 实际数 - 预算数<br>
+                差异率 = 预算差异 / 预算数 × 100%
+            </div>
+            <p style="margin-top: 15px;"><strong>差异性质：</strong></p>
+            <ul>
+                <li><strong>有利差异：</strong>收入实际>预算，或成本实际<预算</li>
+                <li><strong>不利差异：</strong>收入实际<预算，或成本实际>预算</li>
+            </ul>
+        </div>
+
+        <div class="subsection-title">预算控制的三道防线</div>
+        <table>
+            <tr>
+                <th style="width: 15%;">防线</th>
+                <th style="width: 30%;">控制措施</th>
+                <th style="width: 30%;">控制工具</th>
+                <th style="width: 25%;">责任主体</th>
+            </tr>
+            <tr>
+                <td><strong>事前控制</strong></td>
+                <td>• 预算审批制度<br>• 费用申请流程<br>• 合同审批<br>• 投资论证</td>
+                <td>• 预算系统<br>• OA审批流<br>• 授权制度</td>
+                <td>财务部<br>预算管理委员会</td>
+            </tr>
+            <tr>
+                <td><strong>事中控制</strong></td>
+                <td>• 预算执行监控<br>• 预警机制<br>• 定期分析<br>• 超预算审批</td>
+                <td>• 预算执行报表<br>• 预警系统<br>• 滚动预测</td>
+                <td>各责任中心<br>财务部</td>
+            </tr>
+            <tr>
+                <td><strong>事后控制</strong></td>
+                <td>• 差异分析<br>• 绩效考核<br>• 奖惩机制<br>• 经验总结</td>
+                <td>• 差异分析报告<br>• 考核指标体系<br>• 激励制度</td>
+                <td>财务部<br>人力资源部</td>
+            </tr>
+        </table>
+
+        <!-- 第五章 -->
+        <div class="chapter-divider" id="chapter5" style="margin-top: 80px;">
+            <span class="chapter-number">第五章</span>
+            <h2 class="chapter-title">投资决策理论</h2>
+            <p style="color: #7f8c8d; margin-top: 15px;">科学评价降本项目和技术改造的经济效益</p>
+        </div>
+
+        <h3 class="section-title">5.1 货币时间价值</h3>
+
+        <div class="subsection-title">核心概念</div>
+        <div class="content">
+            货币时间价值是指货币经历一定时间的投资和再投资所增加的价值。简单说，<strong>今天的1元钱比未来的1元钱更有价值</strong>，因为今天的钱可以用于投资获得收益。
+        </div>
+
+        <div class="highlight-box">
+            <strong>基本原理：</strong>
+            <p>假设年利率为10%，今天的100元：</p>
+            <ul>
+                <li>1年后价值：100×(1+10%) = 110元</li>
+                <li>2年后价值：100×(1+10%)² = 121元</li>
+                <li>3年后价值：100×(1+10%)³ = 133.1元</li>
+            </ul>
+            <p>反过来，3年后的133.1元，折算成今天的价值是100元。</p>
+        </div>
+
+        <div class="subsection-title">核心公式体系</div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-title">1. 终值（Future Value）</div>
+                <p>现在的钱，未来值多少</p>
+                <div class="formula" style="font-size: 14px;">
+                    FV = PV × (1+i)ⁿ
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    FV=终值，PV=现值<br>
+                    i=利率，n=期数
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">2. 现值（Present Value）</div>
+                <p>未来的钱，现在值多少</p>
+                <div class="formula" style="font-size: 14px;">
+                    PV = FV / (1+i)ⁿ<br>
+                    = FV × (1+i)⁻ⁿ
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    折现：将未来金额换算成现在价值
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">3. 年金终值</div>
+                <p>每年投资相同金额，n年后总共值多少</p>
+                <div class="formula" style="font-size: 14px;">
+                    FVA = A × [(1+i)ⁿ - 1] / i
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    A=年金（每年金额）
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">4. 年金现值</div>
+                <p>未来n年每年收到相同金额，现在值多少</p>
+                <div class="formula" style="font-size: 14px;">
+                    PVA = A × [1 - (1+i)⁻ⁿ] / i
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    投资决策最常用公式
+                </p>
+            </div>
+        </div>
+
+        <h3 class="section-title">5.2 净现值法（NPV）</h3>
+
+        <div class="subsection-title">核心概念</div>
+        <div class="content">
+            净现值（Net Present Value）是指投资项目未来现金流入的现值与现金流出的现值之差。NPV是评价投资项目最重要的指标。
+        </div>
+
+        <div class="formula">
+            NPV = Σ(CFₜ / (1+i)ᵗ) - C₀<br><br>
+            CFₜ = 第t年净现金流量<br>
+            i = 折现率（资本成本）<br>
+            C₀ = 初始投资
+        </div>
+
+        <div class="highlight-box">
+            <strong>决策规则：</strong>
+            <ul>
+                <li><strong>NPV > 0：</strong>项目可行，投资回报超过资本成本</li>
+                <li><strong>NPV = 0：</strong>项目盈亏平衡，刚好达到要求回报率</li>
+                <li><strong>NPV < 0：</strong>项目不可行，投资回报低于资本成本</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>优点：</strong>考虑了货币时间价值，反映投资的实际收益，是最科学的方法</p>
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 NPV法评价工艺改造项目</div>
+            <p><strong>项目背景：</strong></p>
+            <ul>
+                <li>某车削工序自动化改造</li>
+                <li>初始投资：80万元（C₀）</li>
+                <li>使用寿命：5年</li>
+                <li>每年节约人工和费用：25万元</li>
+                <li>残值：5万元</li>
+                <li>折现率：10%（企业资本成本）</li>
+            </ul>
+
+            <p><strong>现金流量表：</strong></p>
+            <table style="font-size: 13px;">
+                <tr>
+                    <th>年份</th>
+                    <th>现金流出</th>
+                    <th>现金流入</th>
+                    <th>净现金流</th>
+                    <th>折现系数(10%)</th>
+                    <th>现值</th>
+                </tr>
+                <tr>
+                    <td>0（现在）</td>
+                    <td>80万</td>
+                    <td>0</td>
+                    <td>-80万</td>
+                    <td>1.0000</td>
+                    <td>-80.00万</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>25万</td>
+                    <td>25万</td>
+                    <td>0.9091</td>
+                    <td>22.73万</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>25万</td>
+                    <td>25万</td>
+                    <td>0.8264</td>
+                    <td>20.66万</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>25万</td>
+                    <td>25万</td>
+                    <td>0.7513</td>
+                    <td>18.78万</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>25万</td>
+                    <td>25万</td>
+                    <td>0.6830</td>
+                    <td>17.08万</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>0</td>
+                    <td>25+5=30万</td>
+                    <td>30万</td>
+                    <td>0.6209</td>
+                    <td>18.63万</td>
+                </tr>
+                <tr>
+                    <td colspan="5"><strong>净现值（NPV）</strong></td>
+                    <td><strong style="color: #27ae60;">17.88万</strong></td>
+                </tr>
+            </table>
+
+            <div class="code-block" style="font-size: 13px;">
+<strong style="color: #27ae60;">决策结论：</strong>
+NPV = 17.88万 > 0，项目可行！
+
+<strong>经济意义：</strong>
+该项目在考虑货币时间价值后，
+仍能为企业创造17.88万元的净收益，
+超过了企业10%的资本成本要求。
+
+<strong>简化计算方法（年金现值系数）：</strong>
+年金现值系数（5年，10%）= 3.7908
+NPV = 25万×3.7908 + 5万×0.6209 - 80万
+    = 94.77 + 3.10 - 80
+    = 17.87万（与上面结果一致）
+            </div>
+        </div>
+
+        <h3 class="section-title">5.3 内部收益率法（IRR）</h3>
+
+        <div class="subsection-title">核心概念</div>
+        <div class="content">
+            内部收益率（Internal Rate of Return）是指使项目净现值等于零的折现率。IRR代表项目的实际投资回报率。
+        </div>
+
+        <div class="formula">
+            当 NPV = 0 时，折现率 i 就是 IRR<br><br>
+            即：Σ(CFₜ / (1+IRR)ᵗ) - C₀ = 0
+        </div>
+
+        <div class="highlight-box">
+            <strong>决策规则：</strong>
+            <ul>
+                <li><strong>IRR > 资本成本：</strong>项目可行，回报率超过要求</li>
+                <li><strong>IRR = 资本成本：</strong>项目盈亏平衡</li>
+                <li><strong>IRR < 资本成本：</strong>项目不可行，回报率不足</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>优点：</strong>直观反映投资回报率，便于与资本成本比较</p>
+            <p><strong>计算方法：</strong>通常使用Excel的IRR函数或试错法（逐渐尝试不同折现率直到NPV=0）</p>
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 IRR法评价同一项目</div>
+            <p>使用上例数据，计算IRR：</p>
+            <div class="code-block" style="font-size: 13px;">
+使用Excel IRR函数：
+年份0: -80
+年份1-4: 25, 25, 25, 25
+年份5: 30
+
+IRR = 21.65%
+
+<strong style="color: #27ae60;">决策结论：</strong>
+IRR = 21.65% > 资本成本10%，项目可行！
+
+<strong>经济意义：</strong>
+该项目的实际投资回报率为21.65%，
+远高于企业10%的资本成本要求，
+项目具有很好的投资价值。
+
+<strong>IRR与NPV的关系：</strong>
+• 当折现率 < IRR时，NPV > 0（项目可行）
+• 当折现率 = IRR时，NPV = 0（盈亏平衡）
+• 当折现率 > IRR时，NPV < 0（项目不可行）
+            </div>
+        </div>
+
+        <h3 class="section-title">5.4 投资回收期法</h3>
+
+        <div class="subsection-title">核心概念</div>
+        <div class="content">
+            投资回收期是指通过项目产生的净现金流量收回初始投资所需的时间。分为静态回收期（不考虑时间价值）和动态回收期（考虑时间价值）。
+        </div>
+
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-title">静态回收期</div>
+                <p><strong>公式：</strong></p>
+                <div class="formula" style="font-size: 14px;">
+                    回收期 = 累计净现金流为0的年份
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    <strong>优点：</strong>简单直观<br>
+                    <strong>缺点：</strong>忽视时间价值
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">动态回收期</div>
+                <p><strong>公式：</strong></p>
+                <div class="formula" style="font-size: 14px;">
+                    回收期 = 累计折现现金流为0的年份
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    <strong>优点：</strong>考虑时间价值<br>
+                    <strong>缺点：</strong>计算稍复杂
+                </p>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 回收期计算</div>
+            <p><strong>静态回收期：</strong></p>
+            <table style="font-size: 13px;">
+                <tr>
+                    <th>年份</th>
+                    <th>净现金流</th>
+                    <th>累计净现金流</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>-80万</td>
+                    <td>-80万</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>25万</td>
+                    <td>-55万</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>25万</td>
+                    <td>-30万</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>25万</td>
+                    <td>-5万</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>25万</td>
+                    <td style="color: #27ae60;"><strong>20万（收回）</strong></td>
+                </tr>
+            </table>
+            <div class="code-block" style="font-size: 13px;">
+<strong>静态回收期 = 3 + 5/25 = 3.2年</strong>
+
+<strong>动态回收期（10%折现）：</strong>
+年份0: -80.00
+年份1: -80.00 + 22.73 = -57.27
+年份2: -57.27 + 20.66 = -36.61
+年份3: -36.61 + 18.78 = -17.83
+年份4: -17.83 + 17.08 = -0.75
+年份5: -0.75 + 18.63 = 17.88（收回）
+
+<strong>动态回收期 ≈ 4 + 0.75/18.63 = 4.04年</strong>
+
+<strong>决策建议：</strong>
+• 静态回收期3.2年，快于行业平均4年（可行）
+• 动态回收期4.04年，在5年寿命内能收回（可行）
+• 如果企业要求回收期<3年，则不可行
+            </div>
+        </div>
+
+        <h3 class="section-title">5.5 敏感性分析</h3>
+
+        <div class="subsection-title">核心概念</div>
+        <div class="content">
+            敏感性分析是研究当投资项目的关键变量（如投资额、收益、成本等）发生变化时，对项目经济效益指标（如NPV、IRR）的影响程度。目的是识别关键风险因素，为决策提供依据。
+        </div>
+
+        <div class="subsection-title">分析步骤</div>
+        <div class="process-flow">
+            <div class="flow-step">
+                <strong>第一步：确定分析指标</strong><br>
+                通常选择NPV或IRR作为分析指标
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>第二步：选择不确定因素</strong><br>
+                如：初始投资、年收益、使用寿命、折现率等
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>第三步：计算敏感系数</strong><br>
+                敏感系数 = 指标变化率 / 因素变化率
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>第四步：找出敏感因素</strong><br>
+                敏感系数绝对值越大，越敏感
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 敏感性分析案例</div>
+            <p><strong>基准情况：</strong>NPV=17.88万，IRR=21.65%</p>
+            <p><strong>分析各因素变化±10%的影响：</strong></p>
+
+            <table style="font-size: 13px;">
+                <tr>
+                    <th>变化因素</th>
+                    <th>变化幅度</th>
+                    <th>新NPV</th>
+                    <th>NPV变化率</th>
+                    <th>敏感系数</th>
+                    <th>敏感性排序</th>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>初始投资</strong></td>
+                    <td>+10%（88万）</td>
+                    <td>9.88万</td>
+                    <td>-44.7%</td>
+                    <td>-4.47</td>
+                    <td rowspan="2">1（最敏感）</td>
+                </tr>
+                <tr>
+                    <td>-10%（72万）</td>
+                    <td>25.88万</td>
+                    <td>+44.7%</td>
+                    <td>-4.47</td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>年收益</strong></td>
+                    <td>+10%（27.5万）</td>
+                    <td>27.37万</td>
+                    <td>+53.1%</td>
+                    <td>5.31</td>
+                    <td rowspan="2">2（很敏感）</td>
+                </tr>
+                <tr>
+                    <td>-10%（22.5万）</td>
+                    <td>8.39万</td>
+                    <td>-53.1%</td>
+                    <td>5.31</td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>使用寿命</strong></td>
+                    <td>-10%（4.5年）</td>
+                    <td>9.25万</td>
+                    <td>-48.3%</td>
+                    <td>-4.83</td>
+                    <td rowspan="2">3（敏感）</td>
+                </tr>
+                <tr>
+                    <td>+10%（5.5年）</td>
+                    <td>26.51万</td>
+                    <td>+48.3%</td>
+                    <td>-4.83</td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>折现率</strong></td>
+                    <td>+10%（11%）</td>
+                    <td>15.02万</td>
+                    <td>-16.0%</td>
+                    <td>-1.60</td>
+                    <td rowspan="2">4（较不敏感）</td>
+                </tr>
+                <tr>
+                    <td>-10%（9%）</td>
+                    <td>20.98万</td>
+                    <td>+17.3%</td>
+                    <td>-1.73</td>
+                </tr>
+            </table>
+
+            <div class="code-block" style="font-size: 13px;">
+<strong style="color: #e74c3c;">敏感性分析结论：</strong>
+
+<strong>1. 最敏感因素：年收益（敏感系数5.31）</strong>
+   • 年收益降低10%，NPV下降53.1%
+   • 这是项目最大的风险点
+   • 建议：保守估计年收益，留有余地
+
+<strong>2. 次敏感因素：使用寿命（敏感系数4.83）</strong>
+   • 设备寿命缩短，NPV大幅下降
+   • 建议：选择可靠设备，做好维护
+
+<strong>3. 较敏感因素：初始投资（敏感系数4.47）</strong>
+   • 投资超支会显著影响收益
+   • 建议：严格控制投资预算
+
+<strong>4. 不太敏感：折现率（敏感系数1.60）</strong>
+   • 资本成本变化影响相对较小
+   • 项目具有一定抗风险能力
+
+<strong style="color: #27ae60;">总体评价：</strong>
+项目对年收益最敏感，需要重点关注和控制。
+建议在年收益减少15%的情况下重新测算，
+确保项目在不利情况下仍有正NPV。
+            </div>
+        </div>
+
+        <!-- 第六章 -->
+        <div class="chapter-divider" id="chapter6" style="margin-top: 80px;">
+            <span class="chapter-number">第六章</span>
+            <h2 class="chapter-title">生产运营管理理论</h2>
+            <p style="color: #7f8c8d; margin-top: 15px;">精益生产与现场管理，提升效率降低成本</p>
+        </div>
+
+        <h3 class="section-title">6.1 精益生产（Lean Production）</h3>
+
+        <div class="subsection-title">核心思想</div>
+        <div class="highlight-box" style="text-align: center;">
+            <div style="font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #2c3e50;">
+                "一切不增加价值的活动都是浪费"
+            </div>
+            <p style="text-align: left; margin-top: 15px;">
+                精益生产源自丰田生产方式（TPS），核心理念是<strong>消除浪费、持续改进</strong>。
+                通过识别和消除生产过程中的各种浪费，提高效率，降低成本，提升质量。
+            </p>
+        </div>
+
+        <div class="subsection-title">七大浪费（TIMWOOD）</div>
+        <div class="card-grid">
+            <div class="card" style="border-left: 4px solid #e74c3c;">
+                <div class="card-title">1. 过量生产（Overproduction）</div>
+                <p><strong>表现：</strong>提前生产、超量生产</p>
+                <p><strong>危害：</strong>最严重的浪费，掩盖其他浪费</p>
+                <p><strong>改善：</strong>拉动式生产、小批量流动</p>
+                <p style="font-size: 13px; margin-top: 10px;"><strong>案例：</strong>车间为完成产量，提前生产下月订单，导致库存积压</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #f39c12;">
+                <div class="card-title">2. 等待（Waiting）</div>
+                <p><strong>表现：</strong>等料、等设备、等检验、等指令</p>
+                <p><strong>危害：</strong>设备和人员闲置，产能浪费</p>
+                <p><strong>改善：</strong>生产平衡、快速换模、授权</p>
+                <p style="font-size: 13px; margin-top: 10px;"><strong>案例：</strong>磨削工序等待热处理完成，设备闲置2小时/天</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #3498db;">
+                <div class="card-title">3. 运输（Transportation）</div>
+                <p><strong>表现：</strong>物料搬运距离长、频次多</p>
+                <p><strong>危害：</strong>浪费时间、增加成本、易损坏</p>
+                <p><strong>改善：</strong>优化布局、单元化生产</p>
+                <p style="font-size: 13px; margin-top: 10px;"><strong>案例：</strong>工件在车间往返搬运5次，总距离300米</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #9b59b6;">
+                <div class="card-title">4. 过度加工（Over-processing）</div>
+                <p><strong>表现：</strong>精度超过要求、不必要的工序</p>
+                <p><strong>危害：</strong>增加成本、延长时间</p>
+                <p><strong>改善：</strong>价值工程、工艺优化</p>
+                <p style="font-size: 13px; margin-top: 10px;"><strong>案例：</strong>非关键面也精磨到Ra0.8，实际Ra3.2即可</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #2ecc71;">
+                <div class="card-title">5. 库存（Inventory）</div>
+                <p><strong>表现：</strong>原材料、在制品、成品库存过高</p>
+                <p><strong>危害：</strong>资金占用、掩盖问题、易过期</p>
+                <p><strong>改善：</strong>JIT准时化、减少批量</p>
+                <p style="font-size: 13px; margin-top: 10px;"><strong>案例：</strong>原材料库存周转30天，占用资金500万</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #34495e;">
+                <div class="card-title">6. 动作（Motion）</div>
+                <p><strong>表现：</strong>不必要的弯腰、转身、寻找</p>
+                <p><strong>危害：</strong>浪费体力、降低效率、易疲劳</p>
+                <p><strong>改善：</strong>5S管理、工具定置、人机工程</p>
+                <p style="font-size: 13px; margin-top: 10px;"><strong>案例：</strong>工人每次取工具要走5米，弯腰3次</p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #c0392b;">
+                <div class="card-title">7. 缺陷（Defects）</div>
+                <p><strong>表现：</strong>报废、返工、不良品</p>
+                <p><strong>危害：</strong>损失最直接，成本最高</p>
+                <p><strong>改善：</strong>自働化、防错法、源头控制</p>
+                <p style="font-size: 13px; margin-top: 10px;"><strong>案例：</strong>报废率1.5%，年损失材料费75万元</p>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 消除浪费实战案例：某轴承车间改善</div>
+            <p><strong>现状分析（改善前）：</strong></p>
+            <div class="code-block" style="font-size: 13px;">
+某车间加工某型号轴承，发现以下浪费：
+
+<strong>1. 过量生产：</strong>
+   批量过大（500件/批），导致在制品库存高
+   → 改善：批量减至100件/批
+
+<strong>2. 等待浪费：</strong>
+   换模时间2小时，每天等待4小时
+   → 改善：实施SMED，换模时间降至30分钟
+
+<strong>3. 运输浪费：</strong>
+   工序间距离远，搬运5次，300米
+   → 改善：U型布局，减少至2次，80米
+
+<strong>4. 过度加工：</strong>
+   非关键面精度过高，浪费40%磨削时间
+   → 改善：降低非关键面精度要求
+
+<strong>5. 库存浪费：</strong>
+   原材料库存30天，在制品7天
+   → 改善：JIT供货，库存降至10天和2天
+
+<strong>6. 动作浪费：</strong>
+   工具摆放混乱，寻找时间长
+   → 改善：5S整理，工具定置
+
+<strong>7. 缺陷浪费：</strong>
+   报废率1.5%，年损失75万
+   → 改善：首件检验+SPC，报废率降至0.3%
+            </div>
+
+            <p><strong>改善效果：</strong></p>
+            <table style="font-size: 13px;">
+                <tr>
+                    <th>指标</th>
+                    <th>改善前</th>
+                    <th>改善后</th>
+                    <th>改善幅度</th>
+                </tr>
+                <tr>
+                    <td>生产周期</td>
+                    <td>10天</td>
+                    <td>5天</td>
+                    <td style="color: #27ae60;"><strong>-50%</strong></td>
+                </tr>
+                <tr>
+                    <td>在制品库存</td>
+                    <td>7天</td>
+                    <td>2天</td>
+                    <td style="color: #27ae60;"><strong>-71%</strong></td>
+                </tr>
+                <tr>
+                    <td>生产效率</td>
+                    <td>100%</td>
+                    <td>135%</td>
+                    <td style="color: #27ae60;"><strong>+35%</strong></td>
+                </tr>
+                <tr>
+                    <td>报废率</td>
+                    <td>1.5%</td>
+                    <td>0.3%</td>
+                    <td style="color: #27ae60;"><strong>-80%</strong></td>
+                </tr>
+                <tr>
+                    <td>单位成本</td>
+                    <td>100元</td>
+                    <td>88元</td>
+                    <td style="color: #27ae60;"><strong>-12%</strong></td>
+                </tr>
+            </table>
+
+            <div class="code-block" style="font-size: 13px;">
+<strong style="color: #27ae60;">年度效益（产量10万件）：</strong>
+• 成本降低：(100-88) × 10万 = 120万元
+• 库存资金释放：约200万元
+• 产能提升35%，可多接订单
+• 质量提升，客户满意度提高
+
+<strong>投入：</strong>
+• SMED改造：5万
+• 布局调整：3万
+• 5S推行：2万
+• 合计：10万元
+
+<strong style="color: #27ae60;">投资回报率：120/10 = 1200%，投资回收期：1个月</strong>
+            </div>
+        </div>
+
+        <h3 class="section-title">6.2 设备综合效率（OEE）</h3>
+
+        <div class="subsection-title">核心概念</div>
+        <div class="content">
+            OEE（Overall Equipment Effectiveness）是衡量设备综合效率的核心指标，由时间稼动率、性能稼动率和质量合格率三个维度组成。OEE是精益生产中最重要的设备管理指标。
+        </div>
+
+        <div class="formula" style="font-size: 20px;">
+            OEE = 时间稼动率 × 性能稼动率 × 质量合格率
+        </div>
+
+        <div class="subsection-title">OEE三要素详解</div>
+        <div class="card-grid">
+            <div class="card" style="border-left: 4px solid #3498db;">
+                <div class="card-title">1. 时间稼动率</div>
+                <div class="formula" style="font-size: 14px;">
+                    = 实际开机时间 / 计划生产时间
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    <strong>损失来源：</strong><br>
+                    • 设备故障停机<br>
+                    • 换模换线时间<br>
+                    • 待料停机<br>
+                    • 无订单停机
+                </p>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    <strong>改善方向：</strong><br>
+                    TPM、SMED、生产计划优化
+                </p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #2ecc71;">
+                <div class="card-title">2. 性能稼动率</div>
+                <div class="formula" style="font-size: 14px;">
+                    = 理论产量 / 实际产量<br>
+                    = (实际开机时间/标准节拍) / 实际产量
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    <strong>损失来源：</strong><br>
+                    • 空转短暂停机<br>
+                    • 速度降低运行<br>
+                    • 辅助时间长
+                </p>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    <strong>改善方向：</strong><br>
+                    工艺优化、自働化、标准作业
+                </p>
+            </div>
+
+            <div class="card" style="border-left: 4px solid #f39c12;">
+                <div class="card-title">3. 质量合格率</div>
+                <div class="formula" style="font-size: 14px;">
+                    = 合格品数量 / 实际产量<br>
+                    = (实际产量 - 不良品) / 实际产量
+                </div>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    <strong>损失来源：</strong><br>
+                    • 报废品<br>
+                    • 返工品<br>
+                    • 启动调试损失
+                </p>
+                <p style="font-size: 13px; margin-top: 10px;">
+                    <strong>改善方向：</strong><br>
+                    SPC、首件检验、防错法
+                </p>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 OEE计算实战案例</div>
+            <p><strong>某车削设备单班（8小时）生产数据：</strong></p>
+            <div class="code-block" style="font-size: 13px;">
+<strong>基础数据：</strong>
+• 计划生产时间：8小时 = 480分钟
+• 标准节拍时间：2分钟/件（理论产能240件/班）
+• 实际开机时间：420分钟
+  - 故障停机：30分钟
+  - 换模时间：20分钟
+  - 待料停机：10分钟
+• 实际产量：190件（含不良品）
+• 合格品：180件
+• 不良品：10件
+
+<strong>计算过程：</strong>
+
+<strong>1. 时间稼动率</strong>
+时间稼动率 = 420 / 480 = 87.5%
+<span style="color: #e74c3c;">损失：故障30分+换模20分+待料10分 = 60分钟</span>
+
+<strong>2. 性能稼动率</strong>
+理论产量 = 420 / 2 = 210件
+性能稼动率 = 210 / 190 = 110.5%？
+<span style="color: #e74c3c;">等等！性能稼动率不应>100%！</span>
+<span style="color: #f39c12;">正确理解：应该是 实际产量/理论产量</span>
+性能稼动率 = 190 / 210 = 90.5%
+<span style="color: #e74c3c;">损失：本应产210件，实际只产190件，少了20件</span>
+
+<strong>3. 质量合格率</strong>
+质量合格率 = 180 / 190 = 94.7%
+<span style="color: #e74c3c;">损失：10件不良品</span>
+
+<strong style="color: #3498db;">综合OEE</strong>
+OEE = 87.5% × 90.5% × 94.7% = <strong style="color: #f39c12;">75.0%</strong>
+            </div>
+
+            <p><strong>OEE水平评价：</strong></p>
+            <table style="font-size: 13px;">
+                <tr>
+                    <th>OEE水平</th>
+                    <th>评价</th>
+                    <th>说明</th>
+                </tr>
+                <tr>
+                    <td>< 60%</td>
+                    <td style="color: #e74c3c;"><strong>不合格</strong></td>
+                    <td>设备管理存在严重问题</td>
+                </tr>
+                <tr>
+                    <td>60-75%</td>
+                    <td style="color: #f39c12;"><strong>一般</strong></td>
+                    <td>有较大改善空间</td>
+                </tr>
+                <tr>
+                    <td>75-85%</td>
+                    <td style="color: #3498db;"><strong>良好</strong></td>
+                    <td>达到行业平均水平 ← <strong>当前水平</strong></td>
+                </tr>
+                <tr>
+                    <td>85-95%</td>
+                    <td style="color: #27ae60;"><strong>优秀</strong></td>
+                    <td>世界级水平</td>
+                </tr>
+                <tr>
+                    <td>> 95%</td>
+                    <td style="color: #9b59b6;"><strong>卓越</strong></td>
+                    <td>极少企业能达到</td>
+                </tr>
+            </table>
+
+            <p><strong>改善方向分析：</strong></p>
+            <div class="code-block" style="font-size: 13px;">
+<strong>目标：OEE从75%提升至85%</strong>
+
+<strong>改善策略：</strong>
+
+<strong>1. 提升时间稼动率（87.5% → 95%）</strong>
+   措施：
+   • 实施TPM全员生产维护，减少故障（30分→10分）
+   • 实施SMED快速换模，缩短换模时间（20分→10分）
+   • 优化生产计划，减少待料（10分→5分）
+   效果：停机从60分降至25分，稼动率提升至94.8%
+
+<strong>2. 提升性能稼动率（90.5% → 95%）</strong>
+   措施：
+   • 优化工艺参数，提高切削速度
+   • 减少空转和短暂停机
+   • 标准化作业，减少辅助时间
+   效果：实际产量从190件提升至200件
+
+<strong>3. 提升质量合格率（94.7% → 99%）</strong>
+   措施：
+   • 实施首件检验制度
+   • 关键工序SPC控制
+   • 防错装置
+   效果：不良品从10件降至2件
+
+<strong style="color: #27ae60;">改善后OEE：</strong>
+OEE = 94.8% × 95.0% × 99.0% = 89.1%
+
+<strong style="color: #27ae60;">效益分析（年产量）：</strong>
+改善前年产量（250个工作日，单班）：
+  180件/班 × 250天 = 45,000件
+
+改善后年产量：
+  200件 × 99% × 250天 = 49,500件
+
+产能提升：49,500 - 45,000 = 4,500件（+10%）
+如单位利润40元：4,500 × 40 = 18万元/年
+
+<strong>无需新增设备，仅通过管理改善提升产能10%！</strong>
+            </div>
+        </div>
+
+        <h3 class="section-title">6.3 快速换模（SMED）</h3>
+
+        <div class="subsection-title">核心概念</div>
+        <div class="content">
+            SMED（Single Minute Exchange of Die，单分钟换模）是指在10分钟（单位数字分钟）内完成换模换线的方法。SMED是减少设备停机时间、提高时间稼动率的关键技术。
+        </div>
+
+        <div class="highlight-box">
+            <strong>SMED的核心思想：</strong>
+            <ul>
+                <li><strong>内外作业分离：</strong>将换模作业区分为内部作业（必须停机）和外部作业（可在运行时进行）</li>
+                <li><strong>内部作业外部化：</strong>尽量将内部作业转化为外部作业</li>
+                <li><strong>简化内部作业：</strong>简化必须停机的作业，提高效率</li>
+            </ul>
+        </div>
+
+        <div class="subsection-title">SMED实施四步法</div>
+        <div class="process-flow">
+            <div class="flow-step">
+                <strong>第一步：区分内外作业</strong><br>
+                • 内部作业：必须停机才能进行（如拆装模具）<br>
+                • 外部作业：设备运行时可进行（如准备工具、预热模具）
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>第二步：内部作业外部化</strong><br>
+                • 工具、夹具提前准备好<br>
+                • 预热、预调整在外部完成<br>
+                • 标准化设定，减少调试
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>第三步：简化内部作业</strong><br>
+                • 快速紧固装置（如快换夹具）<br>
+                • 消除调整（如标准高度块）<br>
+                • 并行作业（两人同时操作）
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <strong>第四步：简化外部作业</strong><br>
+                • 工具定置管理<br>
+                • 作业标准化<br>
+                • 持续改进
+            </div>
+        </div>
+
+        <div class="example-box">
+            <div class="example-box-title">💡 SMED改善案例：磨床换砂轮</div>
+            <p><strong>改善前换砂轮时间：60分钟</strong></p>
+            <div class="code-block" style="font-size: 13px;">
+<strong>作业分解（改善前）：</strong>
+1. 寻找工具：5分钟
+2. 清理工作台：5分钟
+3. 松开法兰盘螺栓（8颗）：10分钟
+4. 取下旧砂轮：3分钟
+5. 清洁法兰盘：5分钟
+6. 装上新砂轮：3分钟
+7. 紧固法兰盘螺栓（8颗）：10分钟
+8. 调整砂轮高度：8分钟
+9. 试车、修整砂轮：8分钟
+10. 调整加工参数：3分钟
+──────────────────
+合计：60分钟
+            </div>
+
+            <p><strong>第一步：区分内外作业</strong></p>
+            <table style="font-size: 13px;">
+                <tr>
+                    <th>作业内容</th>
+                    <th>时间</th>
+                    <th>作业类型</th>
+                </tr>
+                <tr>
+                    <td>1. 寻找工具</td>
+                    <td>5分</td>
+                    <td style="background: #d4edda;">外部作业</td>
+                </tr>
+                <tr>
+                    <td>2. 清理工作台</td>
+                    <td>5分</td>
+                    <td style="background: #d4edda;">外部作业</td>
+                </tr>
+                <tr>
+                    <td>3. 松开螺栓</td>
+                    <td>10分</td>
+                    <td style="background: #f8d7da;">内部作业</td>
+                </tr>
+                <tr>
+                    <td>4-7. 更换砂轮</td>
+                    <td>31分</td>
+                    <td style="background: #f8d7da;">内部作业</td>
+                </tr>
+                <tr>
+                    <td>8. 调整高度</td>
+                    <td>8分</td>
+                    <td style="background: #f8d7da;">内部作业</td>
+                </tr>
+                <tr>
+                    <td>9. 试车修整</td>
+                    <td>8分</td>
+                    <td style="background: #fff3cd;">可转外部</td>
+                </tr>
+                <tr>
+                    <td>10. 调整参数</td>
+                    <td>3分</td>
+                    <td style="background: #fff3cd;">可转外部</td>
+                </tr>
+            </table>
+
+            <p><strong>第二步：内部作业外部化</strong></p>
+            <div class="code-block" style="font-size: 13px;">
+措施：
+• 工具提前准备好，定置摆放（节约5分钟）
+• 利用生产空隙清理工作台（节约5分钟）
+• 砂轮提前预检、修整（节约6分钟）
+• 参数提前设定到控制面板（节约3分钟）
+
+<strong>效果：19分钟外部化，内部作业从60分降至41分钟</strong>
+            </div>
+
+            <p><strong>第三步：简化内部作业</strong></p>
+            <div class="code-block" style="font-size: 13px;">
+措施：
+• 螺栓改为快速卡扣（10分→2分，节约8分钟）
+• 设计标准高度块，消除调整（8分→1分，节约7分钟）
+• 并行作业：一人松螺栓，一人准备（再节约2分钟）
+• 优化清洁工具（5分→2分，节约3分钟）
+
+<strong>效果：内部作业从41分降至21分钟</strong>
+            </div>
+
+            <p><strong>改善后换砂轮时间：21分钟</strong></p>
+            <table style="font-size: 13px; margin-top: 15px;">
+                <tr>
+                    <th>项目</th>
+                    <th>改善前</th>
+                    <th>改善后</th>
+                    <th>改善幅度</th>
+                </tr>
+                <tr>
+                    <td>换砂轮时间</td>
+                    <td>60分钟</td>
+                    <td>21分钟</td>
+                    <td style="color: #27ae60;"><strong>-65%</strong></td>
+                </tr>
+                <tr>
+                    <td>时间稼动率提升</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td style="color: #27ae60;"><strong>+8%</strong></td>
+                </tr>
+                <tr>
+                    <td>每年节约时间</td>
+                    <td>-</td>
+                    <td>约780小时</td>
+                    <td>相当于多1台设备</td>
+                </tr>
+            </table>
+
+            <div class="code-block" style="font-size: 13px; margin-top: 15px;">
+<strong style="color: #27ae60;">效益分析（假设每月换砂轮20次）：</strong>
+年节约时间：(60-21) × 20次 × 12月 = 9,360分钟 = 156小时
+按设备利用率80%计算，相当于增加：
+  156 × 0.8 = 125小时有效生产时间
+如设备小时产能10件，单位利润40元：
+  年增效益 = 125 × 10 × 40 = 50,000元
+
+<strong>投入：</strong>
+• 快速卡扣：5,000元
+• 标准高度块：2,000元
+• 工具定置：1,000元
+• 培训：2,000元
+• 合计：10,000元
+
+<strong style="color: #27ae60;">投资回报率：50,000/10,000 = 500%，投资回收期：2.4个月</strong>
+
+<strong>附加效益：</strong>
+• 减少停机次数，提高生产连续性
+• 标准化作业，降低对技能要求
+• 减少设备闲置，提高OEE
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <a href="第1-3章.html">← 上一部分：第1-3章</a>
+            <a href="index.html">返回目录</a>
+            <a href="第7-9章.html">下一部分：第7-9章 →</a>
+        </div>
+
+    </div>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

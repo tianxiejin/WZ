@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块2: 成本核算基础知识</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px 70px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #2c5aa0;
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            margin: -50px -70px 50px -70px;
+            padding: 50px 70px 30px 70px;
+        }
+
+        .module-tag {
+            display: inline-block;
+            background: #1976d2;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+
+        .header .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin: 8px 0;
+        }
+
+        h2 {
+            font-size: 26px;
+            color: #1565c0;
+            margin: 45px 0 25px 0;
+            padding-left: 20px;
+            border-left: 6px solid #2196f3;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #1976d2;
+            margin: 35px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #bbdefb;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #1e88e5;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+        }
+
+        p {
+            margin: 15px 0;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 6px solid #4caf50;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(76,175,80,0.2);
+        }
+
+        .concept-box h4 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .important-box {
+            background: #fff3e0;
+            border-left: 6px solid #ff9800;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .example-box {
+            background: #e3f2fd;
+            border-left: 6px solid #2196f3;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 5px;
+        }
+
+        .example-box h4 {
+            color: #1565c0;
+            margin-top: 0;
+        }
+
+        .formula-box {
+            background: #fafafa;
+            border: 2px dashed #2196f3;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            line-height: 2;
+        }
+
+        .formula-box .formula {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 17px;
+            color: #1565c0;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f5f9ff;
+        }
+
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+
+        ul, ol {
+            margin: 20px 0 20px 40px;
+        }
+
+        li {
+            margin: 12px 0;
+            line-height: 1.8;
+        }
+
+        li strong {
+            color: #1565c0;
+        }
+
+        .highlight {
+            background: linear-gradient(to right, #fff9c4, #fff59d);
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #f57f17;
+        }
+
+        .key-point {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .key-point::before {
+            content: '💡 ';
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            margin: 25px 0;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+        }
+
+        .flow-diagram {
+            background: linear-gradient(to bottom, #f3e5f5, #e1bee7);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .flow-box {
+            background: white;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            min-width: 150px;
+        }
+
+        .arrow {
+            font-size: 32px;
+            color: #7b1fa2;
+            margin: 0 10px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px solid #2196f3;
+            text-align: center;
+            color: #888;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="module-tag">模块 2</div>
+            <h1>成本核算基础知识</h1>
+            <p class="subtitle">理解成本构成,为定额管理打好财务基础</p>
+            <p class="subtitle">瓦轴集团课题组专用教材</p>
+        </div>
+
+        <div class="important-box">
+            <h4>📌 本模块学习目标</h4>
+            <ul>
+                <li>理解成本的基本概念和分类体系</li>
+                <li>掌握制造成本的构成要素</li>
+                <li>理解直接成本与间接成本的区别</li>
+                <li>理解标准成本与实际成本的关系</li>
+                <li>了解轴承制造业的成本结构特点</li>
+                <li>为定额管理建立成本核算基础</li>
+            </ul>
+        </div>
+
+        <h2>一、成本的基本概念</h2>
+
+        <h3>1.1 什么是成本?</h3>
+
+        <div class="concept-box">
+            <h4>💡 成本的定义</h4>
+            <p><strong>财务定义:</strong> 成本是企业为生产产品、提供劳务而发生的各项耗费,以货币形式计量。</p>
+            <p><strong>业务理解:</strong> 成本就是"为了做成某件事情,我们付出了什么"。对于轴承制造来说,生产一个轴承的成本包括:</p>
+            <ul>
+                <li>用掉的钢材(直接材料)</li>
+                <li>工人的工资(直接人工)</li>
+                <li>设备的磨损(折旧)</li>
+                <li>消耗的电力(能源)</li>
+                <li>管理人员的工资(管理费用)</li>
+                <li>......</li>
+            </ul>
+        </div>
+
+        <h3>1.2 成本与费用的区别</h3>
+
+        <table>
+            <tr>
+                <th>概念</th>
+                <th>定义</th>
+                <th>特点</th>
+                <th>示例</th>
+            </tr>
+            <tr>
+                <td><strong>成本</strong></td>
+                <td>与产品生产直接相关的耗费</td>
+                <td>对象化,计入产品成本</td>
+                <td>生产轴承消耗的钢材、工人工资、设备折旧</td>
+            </tr>
+            <tr>
+                <td><strong>费用</strong></td>
+                <td>期间内发生的支出</td>
+                <td>期间化,不计入产品成本</td>
+                <td>销售费用、管理费用、财务费用</td>
+            </tr>
+        </table>
+
+        <div class="key-point">
+            <strong>关键区别:</strong> 成本"跟着产品走",费用"跟着时间走"。生产车间的支出是成本,销售部门和总部管理的支出是费用。本课题聚焦的是<span class="highlight">生产成本</span>。
+        </div>
+
+        <h2>二、成本的分类体系</h2>
+
+        <p>成本可以从不同角度进行分类,不同分类方法服务于不同的管理目的:</p>
+
+        <h3>2.1 按经济内容分类</h3>
+
+        <div class="concept-box">
+            <h4>制造成本三要素</h4>
+            <p>这是最基础的分类方法,将制造成本分为三大类:</p>
+
+            <table>
+                <tr>
+                    <th>成本要素</th>
+                    <th>定义</th>
+                    <th>轴承制造业示例</th>
+                    <th>典型占比</th>
+                </tr>
+                <tr>
+                    <td><strong>直接材料</strong></td>
+                    <td>构成产品实体的原材料、主要材料、外购半成品等</td>
+                    <td>• 轴承钢(套圈、滚动体)<br>• 保持架材料<br>• 密封件、润滑脂</td>
+                    <td>50-60%</td>
+                </tr>
+                <tr>
+                    <td><strong>直接人工</strong></td>
+                    <td>直接从事产品生产的工人工资及福利费</td>
+                    <td>• 车工、磨工、热处理工的工资<br>• 装配工、检验工的工资<br>• 生产一线人员的社保、福利</td>
+                    <td>10-15%</td>
+                </tr>
+                <tr>
+                    <td><strong>制造费用</strong></td>
+                    <td>为组织和管理生产而发生的各项间接费用</td>
+                    <td>• 设备折旧、维修费<br>• 车间管理人员工资<br>• 水电费、辅助材料<br>• 车间办公费、劳保费等</td>
+                    <td>30-40%</td>
+                </tr>
+            </table>
+
+            <div class="formula-box" style="margin-top: 20px;">
+                <div class="formula">产品生产成本 = 直接材料 + 直接人工 + 制造费用</div>
+            </div>
+        </div>
+
+        <h3>2.2 按成本与产品的关系分类</h3>
+
+        <table class="comparison-table">
+            <tr>
+                <th>分类</th>
+                <th>定义</th>
+                <th>特点</th>
+                <th>轴承制造业示例</th>
+            </tr>
+            <tr>
+                <td><strong>直接成本</strong></td>
+                <td>可以直接计入某种产品成本的费用</td>
+                <td>• 专属于某产品<br>• 可直接追溯<br>• 易于计量</td>
+                <td>• 生产A型轴承用的轴承钢<br>• A型轴承车工的计件工资<br>• A型轴承专用的工装模具</td>
+            </tr>
+            <tr>
+                <td><strong>间接成本</strong></td>
+                <td>无法直接计入某种产品,需要分配的费用</td>
+                <td>• 多种产品共享<br>• 需要分配<br>• 分配方法影响成本准确性</td>
+                <td>• 车间设备折旧(多种产品共用)<br>• 车间主任工资<br>• 车间水电费<br>• 质检部门费用</td>
+            </tr>
+        </table>
+
+        <div class="key-point">
+            <strong>与ABC的联系:</strong> 传统成本法对间接成本采用简单分配,ABC对间接成本通过"作业"进行精细分配。定额管理可以帮助更准确地分配间接成本,比如通过时间定额可以更准确地分配设备折旧。
+        </div>
+
+        <h3>2.3 按成本性态分类</h3>
+
+        <table class="comparison-table">
+            <tr>
+                <th>成本类型</th>
+                <th>定义</th>
+                <th>特点</th>
+                <th>轴承制造业示例</th>
+            </tr>
+            <tr>
+                <td><strong>变动成本</strong></td>
+                <td>成本总额随产量变化而成正比例变化</td>
+                <td>单位变动成本固定</td>
+                <td>• 直接材料(钢材、保持架)<br>• 按件计酬的直接人工<br>• 随产量变化的电费</td>
+            </tr>
+            <tr>
+                <td><strong>固定成本</strong></td>
+                <td>成本总额在一定产量范围内不随产量变化</td>
+                <td>单位固定成本随产量增加而下降</td>
+                <td>• 设备折旧<br>• 厂房租金<br>• 管理人员固定工资<br>• 固定资产保险费</td>
+            </tr>
+            <tr>
+                <td><strong>混合成本</strong></td>
+                <td>兼有固定成本和变动成本特征</td>
+                <td>部分固定,部分变动</td>
+                <td>• 电费(基本电费+计量电费)<br>• 设备维修费(计划维修+故障维修)<br>• 质检费(固定编制+随量增加)</td>
+            </tr>
+        </table>
+
+        <div class="example-box">
+            <h4>📊 案例:成本性态分析</h4>
+            <p><strong>场景:</strong> 某轴承车间月度成本构成</p>
+            <table>
+                <tr>
+                    <th>成本项目</th>
+                    <th>月度金额</th>
+                    <th>成本性态</th>
+                    <th>产量10,000件时单位成本</th>
+                    <th>产量15,000件时单位成本</th>
+                </tr>
+                <tr>
+                    <td>直接材料</td>
+                    <td>500,000元</td>
+                    <td>变动成本</td>
+                    <td>50元/件</td>
+                    <td>50元/件(不变)</td>
+                </tr>
+                <tr>
+                    <td>设备折旧</td>
+                    <td>200,000元</td>
+                    <td>固定成本</td>
+                    <td>20元/件</td>
+                    <td>13.33元/件(下降)</td>
+                </tr>
+                <tr>
+                    <td>合计</td>
+                    <td>700,000元</td>
+                    <td>-</td>
+                    <td>70元/件</td>
+                    <td>63.33元/件</td>
+                </tr>
+            </table>
+            <p><strong>启示:</strong> 在固定成本不变的情况下,提高产量可以<span class="highlight">摊薄单位固定成本</span>,降低单位总成本。这就是"规模效应"。</p>
+        </div>
+
+        <h3>2.4 按成本形成的时间分类</h3>
+
+        <table>
+            <tr>
+                <th>成本类型</th>
+                <th>定义</th>
+                <th>用途</th>
+                <th>关键特点</th>
+            </tr>
+            <tr>
+                <td><strong>标准成本</strong></td>
+                <td>预先制定的、应当发生的成本</td>
+                <td>成本控制、绩效考核、成本预测</td>
+                <td>基于正常生产条件和效率水平,具有目标性</td>
+            </tr>
+            <tr>
+                <td><strong>实际成本</strong></td>
+                <td>生产过程中实际发生的成本</td>
+                <td>财务核算、利润计算</td>
+                <td>真实反映历史成本</td>
+            </tr>
+        </table>
+
+        <div class="important-box">
+            <h4>⭐ 标准成本与定额的关系</h4>
+            <p><strong>这是定额管理与成本管理的关键结合点!</strong></p>
+            <ul>
+                <li><strong>定额是标准成本的技术基础:</strong> 时间定额、材料定额、能源定额等技术标准,乘以相应的价格,就形成了标准成本</li>
+                <li><strong>标准成本 = 定额标准 × 价格标准</strong></li>
+                <li>标准材料成本 = 材料定额 × 材料单价</li>
+                <li>标准人工成本 = 工时定额 × 小时工资率</li>
+                <li>标准制造费用 = 工时定额 × 制造费用分配率</li>
+            </ul>
+            <p><strong>本课题的核心任务</strong>"建立标准定额计算模型",实质上就是为建立<span class="highlight">标准成本体系</span>打基础!</p>
+        </div>
+
+        <h2>三、制造成本核算流程</h2>
+
+        <h3>3.1 成本核算的基本流程</h3>
+
+        <div class="flow-diagram">
+            <h4 style="color: #7b1fa2; margin-bottom: 20px;">成本流转路径</h4>
+            <div class="flow-box">
+                <strong>原材料采购</strong><br>
+                原材料入库
+            </div>
+            <span class="arrow">→</span>
+            <div class="flow-box">
+                <strong>生产领用</strong><br>
+                直接材料成本
+            </div>
+            <span class="arrow">→</span>
+            <div class="flow-box">
+                <strong>在产品</strong><br>
+                正在加工的产品
+            </div>
+            <span class="arrow">→</span>
+            <div class="flow-box">
+                <strong>完工产品</strong><br>
+                产成品入库
+            </div>
+            <span class="arrow">→</span>
+            <div class="flow-box">
+                <strong>销售出库</strong><br>
+                销售成本
+            </div>
+        </div>
+
+        <h3>3.2 成本核算的要素归集</h3>
+
+        <h4>步骤1: 归集直接材料成本</h4>
+        <div class="example-box">
+            <p><strong>核算方法:</strong></p>
+            <ul>
+                <li>根据<strong>领料单</strong>归集各产品领用的材料</li>
+                <li>直接材料成本 = 领用数量 × 材料单价</li>
+            </ul>
+            <p><strong>示例:</strong> 生产A型轴承1000件,领用轴承钢500kg,单价100元/kg</p>
+            <ul>
+                <li>直接材料成本 = 500kg × 100元/kg = 50,000元</li>
+                <li>单位材料成本 = 50,000元 ÷ 1,000件 = 50元/件</li>
+            </ul>
+        </div>
+
+        <h4>步骤2: 归集直接人工成本</h4>
+        <div class="example-box">
+            <p><strong>核算方法:</strong></p>
+            <ul>
+                <li>根据<strong>工时记录或计件单</strong>归集各产品的人工成本</li>
+                <li>计时工资:直接人工成本 = 工时 × 小时工资率</li>
+                <li>计件工资:直接人工成本 = 产量 × 件工资率</li>
+            </ul>
+            <p><strong>示例:</strong> 生产A型轴承,车工耗时200小时,小时工资50元/小时</p>
+            <ul>
+                <li>直接人工成本 = 200小时 × 50元/小时 = 10,000元</li>
+                <li>单位人工成本 = 10,000元 ÷ 1,000件 = 10元/件</li>
+            </ul>
+        </div>
+
+        <h4>步骤3: 归集和分配制造费用</h4>
+        <div class="example-box">
+            <p><strong>核算方法:</strong></p>
+            <ol>
+                <li><strong>归集:</strong> 将车间发生的所有间接费用汇总到"制造费用"科目</li>
+                <li><strong>分配:</strong> 选择分配标准(传统方法:人工工时或机器工时;ABC方法:多种成本动因)</li>
+                <li><strong>计入产品:</strong> 按分配率计算各产品应承担的制造费用</li>
+            </ol>
+
+            <p><strong>示例(传统方法):</strong></p>
+            <ul>
+                <li>本月制造费用总额:300,000元</li>
+                <li>本月总人工工时:1,500小时</li>
+                <li>制造费用分配率 = 300,000 ÷ 1,500 = 200元/小时</li>
+                <li>A型轴承消耗200小时,分配制造费用 = 200 × 200 = 40,000元</li>
+                <li>单位制造费用 = 40,000 ÷ 1,000 = 40元/件</li>
+            </ul>
+        </div>
+
+        <h4>步骤4: 计算产品总成本</h4>
+        <div class="formula-box">
+            <div class="formula">产品总成本 = 直接材料 + 直接人工 + 制造费用</div>
+            <div class="formula">单位成本 = 产品总成本 ÷ 产量</div>
+        </div>
+
+        <div class="example-box">
+            <p><strong>A型轴承完整成本计算:</strong></p>
+            <table>
+                <tr>
+                    <th>成本项目</th>
+                    <th>总成本</th>
+                    <th>单位成本(1,000件)</th>
+                </tr>
+                <tr>
+                    <td>直接材料</td>
+                    <td>50,000元</td>
+                    <td>50元/件</td>
+                </tr>
+                <tr>
+                    <td>直接人工</td>
+                    <td>10,000元</td>
+                    <td>10元/件</td>
+                </tr>
+                <tr>
+                    <td>制造费用</td>
+                    <td>40,000元</td>
+                    <td>40元/件</td>
+                </tr>
+                <tr>
+                    <td><strong>合计</strong></td>
+                    <td><strong>100,000元</strong></td>
+                    <td><strong>100元/件</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>四、轴承制造业成本结构特点</h2>
+
+        <h3>4.1 成本构成分析</h3>
+
+        <table>
+            <tr>
+                <th>成本项目</th>
+                <th>典型占比</th>
+                <th>主要影响因素</th>
+                <th>定额管理的作用</th>
+            </tr>
+            <tr>
+                <td><strong>直接材料</strong></td>
+                <td>50-60%</td>
+                <td>• 钢材价格波动<br>• 材料利用率<br>• 产品结构(材料用量)</td>
+                <td>材料定额控制领用量,提高利用率</td>
+            </tr>
+            <tr>
+                <td><strong>直接人工</strong></td>
+                <td>10-15%</td>
+                <td>• 自动化程度<br>• 工人技能水平<br>• 工艺复杂度</td>
+                <td><strong>工时定额是人工成本控制的核心工具</strong></td>
+            </tr>
+            <tr>
+                <td><strong>制造费用</strong></td>
+                <td>30-40%</td>
+                <td>• 设备投资规模<br>• 能源消耗<br>• 质量管理成本<br>• 车间管理水平</td>
+                <td>时间定额、能源定额影响制造费用分配和消耗控制</td>
+            </tr>
+        </table>
+
+        <h3>4.2 不同类型轴承的成本差异</h3>
+
+        <table>
+            <tr>
+                <th>轴承类型</th>
+                <th>材料占比</th>
+                <th>人工占比</th>
+                <th>制造费用占比</th>
+                <th>成本控制重点</th>
+            </tr>
+            <tr>
+                <td><strong>微型轴承</strong></td>
+                <td>40-45%</td>
+                <td>15-20%</td>
+                <td>35-45%</td>
+                <td>提高自动化,降低人工;批量化生产降低单位制造费用</td>
+            </tr>
+            <tr>
+                <td><strong>中型标准轴承</strong></td>
+                <td>55-65%</td>
+                <td>10-12%</td>
+                <td>25-35%</td>
+                <td>材料成本控制,工艺优化减少废品</td>
+            </tr>
+            <tr>
+                <td><strong>大型定制轴承</strong></td>
+                <td>50-55%</td>
+                <td>12-18%</td>
+                <td>30-38%</td>
+                <td>工艺设计优化,减少调机和返工;精准定额管理</td>
+            </tr>
+            <tr>
+                <td><strong>精密轴承</strong></td>
+                <td>45-50%</td>
+                <td>8-12%</td>
+                <td>38-47%</td>
+                <td>精密设备投资大,需提高设备利用率;质量一次合格率</td>
+            </tr>
+        </table>
+
+        <div class="key-point">
+            <strong>课题启示:</strong> 不同类型轴承的成本结构差异大,定额标准也应<span class="highlight">分类管理</span>。不能用统一定额,必须"按工种及设备加工机理分类"建立定额模型。
+        </div>
+
+        <h2>五、标准成本系统</h2>
+
+        <h3>5.1 标准成本的制定</h3>
+
+        <div class="concept-box">
+            <h4>💡 标准成本的类型</h4>
+            <table>
+                <tr>
+                    <th>类型</th>
+                    <th>定义</th>
+                    <th>特点</th>
+                    <th>应用场景</th>
+                </tr>
+                <tr>
+                    <td><strong>理想标准成本</strong></td>
+                    <td>在最优条件下能够达到的最低成本</td>
+                    <td>完美状态,难以实现</td>
+                    <td>技术研发目标,长期改进方向</td>
+                </tr>
+                <tr>
+                    <td><strong>正常标准成本</strong></td>
+                    <td>在正常生产条件下应该达到的成本</td>
+                    <td>略有挑战但可实现</td>
+                    <td><strong>日常成本控制和绩效考核(推荐)</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>现实标准成本</strong></td>
+                    <td>基于当前实际水平的成本</td>
+                    <td>容易实现,激励作用弱</td>
+                    <td>短期过渡,新产品试生产</td>
+                </tr>
+            </table>
+
+            <p><strong>本课题建议:</strong> 采用<span class="highlight">正常标准成本</span>,即课题目标中的"将定额与实际比值从2-3降至1-1.25",意味着标准定额应略高于实际平均水平,具有一定激励性。</p>
+        </div>
+
+        <h3>5.2 标准成本的构成</h3>
+
+        <div class="formula-box">
+            <div class="formula">标准成本 = 标准数量 × 标准价格</div>
+        </div>
+
+        <table>
+            <tr>
+                <th>成本要素</th>
+                <th>标准数量(定额)</th>
+                <th>标准价格</th>
+                <th>标准成本计算</th>
+            </tr>
+            <tr>
+                <td><strong>标准材料成本</strong></td>
+                <td>材料定额(kg/件)</td>
+                <td>标准材料单价(元/kg)</td>
+                <td>材料定额 × 标准单价</td>
+            </tr>
+            <tr>
+                <td><strong>标准人工成本</strong></td>
+                <td>工时定额(小时/件)</td>
+                <td>标准小时工资率(元/小时)</td>
+                <td>工时定额 × 标准工资率</td>
+            </tr>
+            <tr>
+                <td><strong>标准制造费用</strong></td>
+                <td>工时定额(小时/件)</td>
+                <td>标准制造费用率(元/小时)</td>
+                <td>工时定额 × 标准费用率</td>
+            </tr>
+        </table>
+
+        <div class="example-box">
+            <h4>📊 案例:标准成本计算</h4>
+            <p><strong>基于定额的标准成本制定</strong></p>
+            <p>某型号轴承的定额标准:</p>
+            <ul>
+                <li>材料定额:0.5 kg轴承钢/件</li>
+                <li>工时定额:0.8小时/件(包括车削0.3h、磨削0.4h、其他0.1h)</li>
+            </ul>
+            <p>价格标准:</p>
+            <ul>
+                <li>标准材料单价:100元/kg</li>
+                <li>标准小时工资率:50元/小时</li>
+                <li>标准制造费用率:200元/小时</li>
+            </ul>
+
+            <p><strong>标准成本计算:</strong></p>
+            <table>
+                <tr>
+                    <th>成本项目</th>
+                    <th>计算过程</th>
+                    <th>标准成本</th>
+                </tr>
+                <tr>
+                    <td>标准材料成本</td>
+                    <td>0.5kg × 100元/kg</td>
+                    <td>50元/件</td>
+                </tr>
+                <tr>
+                    <td>标准人工成本</td>
+                    <td>0.8小时 × 50元/小时</td>
+                    <td>40元/件</td>
+                </tr>
+                <tr>
+                    <td>标准制造费用</td>
+                    <td>0.8小时 × 200元/小时</td>
+                    <td>160元/件</td>
+                </tr>
+                <tr>
+                    <td><strong>标准总成本</strong></td>
+                    <td>-</td>
+                    <td><strong>250元/件</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>5.3 标准成本差异分析</h3>
+
+        <p><strong>标准成本体系的核心价值在于"差异分析"</strong>,通过比较标准成本与实际成本,找出差异原因并改进。</p>
+
+        <div class="concept-box">
+            <h4>成本差异的分解</h4>
+            <div class="formula-box">
+                <div class="formula">成本差异 = 实际成本 - 标准成本</div>
+                <div class="formula">= (实际数量 × 实际价格) - (标准数量 × 标准价格)</div>
+                <div class="formula">= 数量差异 + 价格差异</div>
+            </div>
+
+            <p><strong>差异分解公式:</strong></p>
+            <ul>
+                <li><strong>数量差异</strong> = (实际数量 - 标准数量) × 标准价格</li>
+                <li><strong>价格差异</strong> = (实际价格 - 标准价格) × 实际数量</li>
+            </ul>
+        </div>
+
+        <div class="example-box">
+            <h4>📊 案例:成本差异分析</h4>
+            <p><strong>场景:</strong> 某批次生产1000件轴承,实际发生成本与标准成本对比</p>
+
+            <p><strong>直接材料差异分析:</strong></p>
+            <ul>
+                <li>标准:0.5kg × 100元/kg × 1000件 = 50,000元</li>
+                <li>实际:0.55kg × 105元/kg × 1000件 = 57,750元</li>
+                <li><strong>总差异:7,750元(不利差异)</strong></li>
+            </ul>
+
+            <p><strong>差异分解:</strong></p>
+            <table>
+                <tr>
+                    <th>差异类型</th>
+                    <th>计算</th>
+                    <th>金额</th>
+                    <th>原因分析</th>
+                </tr>
+                <tr>
+                    <td><strong>数量差异</strong></td>
+                    <td>(550kg - 500kg) × 100元/kg</td>
+                    <td>5,000元(不利)</td>
+                    <td>材料利用率低,废品率高,或定额不合理</td>
+                </tr>
+                <tr>
+                    <td><strong>价格差异</strong></td>
+                    <td>(105元/kg - 100元/kg) × 550kg</td>
+                    <td>2,750元(不利)</td>
+                    <td>材料价格上涨,或采购质量变化</td>
+                </tr>
+                <tr>
+                    <td><strong>合计</strong></td>
+                    <td>-</td>
+                    <td><strong>7,750元(不利)</strong></td>
+                    <td>-</td>
+                </tr>
+            </table>
+
+            <p><strong>管理启示:</strong></p>
+            <ul>
+                <li><strong>数量差异:</strong> 是生产部门的责任,需要分析是工艺问题、操作问题还是定额不合理</li>
+                <li><strong>价格差异:</strong> 是采购部门的责任,需要分析市场价格变化或采购策略问题</li>
+                <li><strong>定额管理的价值:</strong> 通过精准的定额,可以准确识别<span class="highlight">数量差异</span>,这是生产改进的方向</li>
+            </ul>
+        </div>
+
+        <h2>六、成本核算与定额管理的融合</h2>
+
+        <h3>6.1 定额是成本核算的基础</h3>
+
+        <table>
+            <tr>
+                <th>定额类型</th>
+                <th>成本核算应用</th>
+                <th>管理价值</th>
+            </tr>
+            <tr>
+                <td><strong>时间定额</strong></td>
+                <td>• 计算标准人工成本<br>• 分配制造费用的依据<br>• 评估生产效率</td>
+                <td>识别效率差异,优化工艺流程</td>
+            </tr>
+            <tr>
+                <td><strong>材料定额</strong></td>
+                <td>• 计算标准材料成本<br>• 控制材料领用<br>• 评估材料利用率</td>
+                <td>减少材料浪费,降低材料成本</td>
+            </tr>
+            <tr>
+                <td><strong>能源定额</strong></td>
+                <td>• 计算标准能源成本<br>• 控制能源消耗<br>• 分析能耗差异</td>
+                <td>节能降耗,降低制造费用</td>
+            </tr>
+            <tr>
+                <td><strong>产量定额</strong></td>
+                <td>• 评估产能利用率<br>• 计算标准产出<br>• 绩效考核依据</td>
+                <td>提高设备利用率,优化生产计划</td>
+            </tr>
+        </table>
+
+        <h3>6.2 基于定额的成本管理体系</h3>
+
+        <div class="important-box">
+            <h4>🎯 定额→标准成本→成本控制 闭环</h4>
+
+            <ol>
+                <li>
+                    <strong>建立定额标准</strong>(课题核心任务)
+                    <ul>
+                        <li>基于工业工程方法制定科学定额</li>
+                        <li>按工种、设备、产品分类建立定额库</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>制定标准成本</strong>
+                    <ul>
+                        <li>定额标准 × 价格标准 = 标准成本</li>
+                        <li>建立产品标准成本卡片</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>实施成本核算</strong>
+                    <ul>
+                        <li>记录实际消耗(材料、工时、能源等)</li>
+                        <li>计算实际成本</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>差异分析</strong>
+                    <ul>
+                        <li>对比实际 vs 标准</li>
+                        <li>分解数量差异和价格差异</li>
+                        <li>识别异常和改进机会</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>持续改进</strong>
+                    <ul>
+                        <li>针对差异制定改进措施</li>
+                        <li>优化工艺、提升技能、改进设备</li>
+                        <li>定期修订定额和标准成本</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <h2>七、本模块小结</h2>
+
+        <div class="concept-box">
+            <h4>📚 核心知识回顾</h4>
+
+            <p><strong>1. 成本基本概念</strong></p>
+            <ul>
+                <li>成本 vs 费用:成本对象化,费用期间化</li>
+                <li>制造成本三要素:直接材料、直接人工、制造费用</li>
+            </ul>
+
+            <p><strong>2. 成本分类</strong></p>
+            <ul>
+                <li>按与产品关系:直接成本、间接成本</li>
+                <li>按成本性态:变动成本、固定成本、混合成本</li>
+                <li>按时间:标准成本、实际成本</li>
+            </ul>
+
+            <p><strong>3. 成本核算流程</strong></p>
+            <ul>
+                <li>归集直接材料(领料单)</li>
+                <li>归集直接人工(工时记录)</li>
+                <li>归集和分配制造费用(选择分配标准)</li>
+                <li>计算产品总成本和单位成本</li>
+            </ul>
+
+            <p><strong>4. 标准成本系统</strong></p>
+            <ul>
+                <li>标准成本 = 标准数量(定额) × 标准价格</li>
+                <li>成本差异 = 实际成本 - 标准成本 = 数量差异 + 价格差异</li>
+                <li>数量差异反映效率和定额合理性,是生产改进重点</li>
+            </ul>
+
+            <p><strong>5. 定额与成本核算的融合</strong></p>
+            <ul>
+                <li>定额是标准成本的技术基础</li>
+                <li>时间定额、材料定额、能源定额直接转化为标准成本</li>
+                <li>基于定额的成本管理形成"定额→标准成本→差异分析→持续改进"闭环</li>
+            </ul>
+        </div>
+
+        <div class="key-point">
+            <strong>对课题的启示:</strong> 本课题建立的"工艺定额标准化管理体系",不仅是技术管理工具,更是<span class="highlight">成本管理的基石</span>。科学的定额体系将显著提升成本核算的准确性、成本控制的有效性和管理决策的科学性。
+        </div>
+
+        <div class="important-box">
+            <h4>📖 下一步学习建议</h4>
+            <ul>
+                <li>复习标准成本与定额的关系,思考如何在课题中建立标准成本卡</li>
+                <li>准备学习<strong>模块3"定额管理与成本控制"</strong>,深入了解定额在成本管理中的具体应用</li>
+                <li>思考:瓦轴集团当前的成本核算方法是什么?如何改进?</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>模块2: 成本核算基础知识 - 学习完成</strong></p>
+            <p>瓦轴集团 × 东北财经大学 | 轴承加工工艺定额标准化管理课题组</p>
+            <p>2025年 | 课题组内部培训资料</p>
+        </div>
+    </div>
+</body>
+</html>

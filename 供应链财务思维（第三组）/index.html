@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瓦轴供应链财务思维培训课程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 60px 40px;
+        }
+        .intro {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 5px solid #667eea;
+        }
+        .intro h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .module-card {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+        .module-card h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .module-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .module-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .module-card li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+        }
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .stat-card h3 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .stat-card p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 瓦轴供应链财务思维培训</h1>
+            <p>让业务人员懂财务，让财务融入业务</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>课程简介</h2>
+                <p>本课程专为瓦轴集团供应链、采购、生产等业务部门设计，旨在帮助业务人员建立财务思维，掌握ABC成本法、TCO分析、库存优化等实用工具，推动业财融合，提升企业整体盈利能力。</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>6</h3>
+                    <p>核心模块</p>
+                </div>
+                <div class="stat-card">
+                    <h3>20+</h3>
+                    <p>实战案例</p>
+                </div>
+                <div class="stat-card">
+                    <h3>15+</h3>
+                    <p>分析工具</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100%</h3>
+                    <p>实用导向</p>
+                </div>
+            </div>
+
+            <h2 style="text-align: center; margin: 40px 0; color: #2c3e50;">📚 课程模块</h2>
+            
+            <div class="modules">
+                <div class="module-card" onclick="location.href='module1.html'">
+                    <h3>模块1: 财务基础</h3>
+                    <ul>
+                        <li>三大财务报表</li>
+                        <li>成本构成与分类</li>
+                        <li>财务思维建立</li>
+                        <li>瓦轴财务现状</li>
+                    </ul>
+                    <a href="module1.html" class="cta-button">开始学习 →</a>
+                </div>
+
+                <div class="module-card" onclick="location.href='module2.html'">
+                    <h3>模块2: ABC成本法</h3>
+                    <ul>
+                        <li>作业成本法原理</li>
+                        <li>成本动因分析</li>
+                        <li>产品盈利能力评估</li>
+                        <li>定价策略优化</li>
+                    </ul>
+                    <a href="module2.html" class="cta-button">开始学习 →</a>
+                </div>
+
+                <div class="module-card" onclick="location.href='module3.html'">
+                    <h3>模块3: 库存成本</h3>
+                    <ul>
+                        <li>库存持有成本</li>
+                        <li>EOQ模型应用</li>
+                        <li>JIT与VMI实践</li>
+                        <li>库存优化策略</li>
+                    </ul>
+                    <a href="module3.html" class="cta-button">开始学习 →</a>
+                </div>
+
+                <div class="module-card" onclick="location.href='module4.html'">
+                    <h3>模块4: TCO分析</h3>
+                    <ul>
+                        <li>总拥有成本概念</li>
+                        <li>五层成本结构</li>
+                        <li>供应商评估</li>
+                        <li>价值采购实践</li>
+                    </ul>
+                    <a href="module4.html" class="cta-button">开始学习 →</a>
+                </div>
+
+                <div class="module-card" onclick="location.href='module5.html'">
+                    <h3>模块5: 业财融合</h3>
+                    <ul>
+                        <li>业财融合理念</li>
+                        <li>四个融合层次</li>
+                        <li>协同机制建立</li>
+                        <li>价值共创实践</li>
+                    </ul>
+                    <a href="module5.html" class="cta-button">开始学习 →</a>
+                </div>
+
+                <div class="module-card" onclick="location.href='module6.html'">
+                    <h3>模块6: 综合案例</h3>
+                    <ul>
+                        <li>真实业务场景</li>
+                        <li>系统分析方法</li>
+                        <li>综合解决方案</li>
+                        <li>成果验证评估</li>
+                    </ul>
+                    <a href="module6.html" class="cta-button">开始学习 →</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 60px 0;">
+                <a href="module1.html" class="cta-button" style="font-size: 1.5em; padding: 20px 60px;">
+                    🚀 开始学习之旅
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

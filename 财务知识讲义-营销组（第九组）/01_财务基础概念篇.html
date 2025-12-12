@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一章：财务基础概念篇 - 瓦轴集团财务知识讲义</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f7fa;
+        }
+
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-brand {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .chapter-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 120px 40px 60px;
+            color: white;
+            text-align: center;
+        }
+
+        .chapter-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .chapter-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .chapter-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .subsection-title {
+            font-size: 22px;
+            color: #333;
+            margin: 30px 0 15px;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .content-text {
+            margin-bottom: 20px;
+            text-align: justify;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f8ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .highlight-box.warning {
+            background: linear-gradient(135deg, #fff8e1 0%, #fffde7 100%);
+            border-left-color: #ffc107;
+        }
+
+        .highlight-box.success {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+            border-left-color: #4caf50;
+        }
+
+        .highlight-box.purple {
+            background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%);
+            border-left-color: #9c27b0;
+        }
+
+        .highlight-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .concept-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+        }
+
+        .concept-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .concept-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .concept-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        table tr:nth-child(even) {
+            background: #fafbfc;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 25px 35px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-title {
+            font-size: 14px;
+            color: #a0a0a0;
+            margin-bottom: 10px;
+        }
+
+        .formula-content {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .example-box {
+            background: #fff;
+            border: 2px dashed #667eea;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .example-title {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .diagram-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .flow-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .flow-arrow {
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .key-point {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            margin-right: 8px;
+        }
+
+        .list-styled {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-styled li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .list-styled li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .report-visual {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .report-card {
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            color: white;
+        }
+
+        .report-card.balance {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .report-card.income {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .report-card.cashflow {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .report-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .report-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .report-desc {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .quiz-box {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff8e1 100%);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .quiz-title {
+            color: #f57c00;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .nav-bottom {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 0;
+            border-top: 2px solid #e9ecef;
+            margin-top: 40px;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-btn.outline {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #1a1a2e;
+            color: #888;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .chapter-title {
+                font-size: 28px;
+            }
+
+            .report-visual {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-header">
+        <a href="00_讲义引导页.html" class="nav-brand">📚 财务知识讲义</a>
+        <div class="nav-links">
+            <a href="00_讲义引导页.html">首页</a>
+            <a href="01_财务基础概念篇.html" class="active">第一章</a>
+            <a href="02_成本费用管理篇.html">第二章</a>
+            <a href="03_预算管理篇.html">第三章</a>
+            <a href="04_财务分析与ROI篇.html">第四章</a>
+            <a href="05_业财融合实践篇.html">第五章</a>
+        </div>
+    </nav>
+
+    <div class="chapter-hero">
+        <div class="chapter-badge">第一章 · Chapter 01</div>
+        <h1 class="chapter-title">财务基础概念篇</h1>
+        <p class="chapter-subtitle">从零开始，建立财务基础认知，掌握三大报表、会计要素与财务术语</p>
+    </div>
+
+    <div class="container">
+        <!-- 学习目标 -->
+        <div class="content-card">
+            <div class="section-title">
+                <div class="section-icon">🎯</div>
+                本章学习目标
+            </div>
+            <div class="highlight-box success">
+                <div class="highlight-title">完成本章学习后，您将能够：</div>
+                <ul class="list-styled">
+                    <li>理解财务工作的核心职能和在企业中的作用</li>
+                    <li>掌握三大财务报表的结构和核心内容</li>
+                    <li>熟悉会计六大要素及其相互关系</li>
+                    <li>区分营业收入、利润、现金流等关键概念</li>
+                    <li>理解营销费用在财务体系中的定位</li>
+                    <li>用财务语言与财务同事进行有效沟通</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 第一节：财务工作概述 -->
+        <div class="content-card">
+            <div class="section-title">
+                <div class="section-icon">📋</div>
+                一、财务工作概述
+            </div>
+
+            <h3 class="subsection-title">1.1 什么是财务？财务 vs 会计</h3>
+
+            <div class="content-text">
+                很多人会把"财务"和"会计"混为一谈，实际上它们有着不同的职能定位：
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>对比维度</th>
+                        <th>会计（Accounting）</th>
+                        <th>财务（Finance）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>核心职能</strong></td>
+                        <td>记录和报告 — 记账、算账、报账</td>
+                        <td>分析和决策 — 资金筹集、投资、运营</td>
+                    </tr>
+                    <tr>
+                        <td><strong>时间导向</strong></td>
+                        <td>过去导向 — 记录已发生的经济业务</td>
+                        <td>未来导向 — 规划和预测未来</td>
+                    </tr>
+                    <tr>
+                        <td><strong>工作内容</strong></td>
+                        <td>凭证处理、账簿登记、报表编制</td>
+                        <td>预算管理、成本分析、投资决策</td>
+                    </tr>
+                    <tr>
+                        <td><strong>服务对象</strong></td>
+                        <td>主要服务于外部（税务、审计）</td>
+                        <td>主要服务于内部管理决策</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <div class="highlight-title">💡 业务人员需要了解的重点</div>
+                <p>作为业务人员，您主要打交道的是<strong>财务管理</strong>层面，即：预算编制、费用审批、成本控制、效益分析等。本课题的核心正是将业务管理与财务管理深度融合。</p>
+            </div>
+
+            <h3 class="subsection-title">1.2 财务部门的核心职能</h3>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">📊</div>
+                    <div class="concept-name">核算职能</div>
+                    <div class="concept-desc">记录企业经济活动，编制财务报表，提供准确的财务数据。这是所有其他职能的基础。</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🔍</div>
+                    <div class="concept-name">监督职能</div>
+                    <div class="concept-desc">审核费用支出合规性，监督预算执行，确保资金安全和合理使用。</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">📈</div>
+                    <div class="concept-name">分析职能</div>
+                    <div class="concept-desc">分析经营数据，发现问题和机会，为管理层决策提供数据支持。</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🎯</div>
+                    <div class="concept-name">规划职能</div>
+                    <div class="concept-desc">编制预算计划，进行资金规划，参与战略规划的财务论证。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二节：三大财务报表 -->
+        <div class="content-card">
+            <div class="section-title">
+                <div class="section-icon">📑</div>
+                二、三大财务报表详解
+            </div>
+
+            <div class="content-text">
+                财务报表是企业经营状况的"体检报告"。无论企业规模大小，都必须编制三大基本财务报表，它们从不同角度反映企业的财务状况：
+            </div>
+
+            <div class="report-visual">
+                <div class="report-card balance">
+                    <div class="report-icon">⚖️</div>
+                    <div class="report-name">资产负债表</div>
+                    <div class="report-desc">反映企业某一时点的财务状况<br>"企业有什么、欠什么"</div>
+                </div>
+                <div class="report-card income">
+                    <div class="report-icon">📈</div>
+                    <div class="report-name">利润表</div>
+                    <div class="report-desc">反映企业某一期间的经营成果<br>"企业赚了多少钱"</div>
+                </div>
+                <div class="report-card cashflow">
+                    <div class="report-icon">💵</div>
+                    <div class="report-name">现金流量表</div>
+                    <div class="report-desc">反映企业某一期间的现金变动<br>"钱从哪来、花到哪去"</div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">2.1 资产负债表（Balance Sheet）</h3>
+
+            <div class="content-text">
+                资产负债表是反映企业在某一特定日期（如12月31日）财务状况的报表，就像给企业拍了一张"财务快照"。
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-title">资产负债表恒等式（会计等式）</div>
+                <div class="formula-content">资产 = 负债 + 所有者权益</div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>含义</th>
+                        <th>通俗解释</th>
+                        <th>举例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>资产（Assets）</strong></td>
+                        <td>企业拥有或控制的、能带来经济利益的资源</td>
+                        <td>企业"有什么"</td>
+                        <td>现金、应收账款、存货、设备、厂房</td>
+                    </tr>
+                    <tr>
+                        <td><strong>负债（Liabilities）</strong></td>
+                        <td>企业承担的、会导致经济利益流出的义务</td>
+                        <td>企业"欠别人的"</td>
+                        <td>应付账款、银行贷款、应付工资</td>
+                    </tr>
+                    <tr>
+                        <td><strong>所有者权益（Equity）</strong></td>
+                        <td>资产扣除负债后归股东所有的部分</td>
+                        <td>企业"自己的"</td>
+                        <td>实收资本、留存收益、盈余公积</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="example-box">
+                <div class="example-title">🏠 生活化例子：个人版资产负债表</div>
+                <p>假设您个人的财务状况：</p>
+                <ul>
+                    <li><strong>资产：</strong>房产价值200万 + 存款50万 + 汽车20万 = 270万</li>
+                    <li><strong>负债：</strong>房贷100万 + 车贷10万 = 110万</li>
+                    <li><strong>净资产（权益）：</strong>270万 - 110万 = 160万（这才是您真正拥有的）</li>
+                </ul>
+            </div>
+
+            <h3 class="subsection-title">2.2 利润表（Income Statement）</h3>
+
+            <div class="content-text">
+                利润表反映企业在一段时期内（如一个月、一个季度、一年）的经营成果，核心是告诉我们企业赚了多少钱，以及钱是怎么赚的。
+            </div>
+
+            <div class="diagram-container">
+                <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                        <strong>营业收入</strong> — 销售商品、提供服务获得的收入
+                    </div>
+                    <div style="text-align: center; font-size: 20px; color: #e74c3c;">➖</div>
+                    <div style="background: #ffebee; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                        <strong>营业成本</strong> — 生产产品或提供服务的直接成本
+                    </div>
+                    <div style="text-align: center; font-size: 20px; color: #3498db;">⬇️</div>
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                        <strong>毛利润</strong> = 营业收入 - 营业成本
+                    </div>
+                    <div style="text-align: center; font-size: 20px; color: #e74c3c;">➖</div>
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                        <strong>期间费用</strong> = 销售费用 + 管理费用 + 财务费用<br>
+                        <span style="font-size: 13px; color: #666;">（营销费用属于销售费用的重要组成部分）</span>
+                    </div>
+                    <div style="text-align: center; font-size: 20px; color: #3498db;">⬇️</div>
+                    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                        <strong>营业利润</strong> = 毛利润 - 期间费用 ± 其他收益
+                    </div>
+                    <div style="text-align: center; font-size: 20px; color: #e74c3c;">➖</div>
+                    <div style="background: #fce4ec; padding: 15px; border-radius: 8px; margin-bottom: 10px;">
+                        <strong>所得税费用</strong> — 按利润计算应缴纳的企业所得税
+                    </div>
+                    <div style="text-align: center; font-size: 20px; color: #3498db;">⬇️</div>
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px;">
+                        <strong>净利润</strong> = 营业利润 - 所得税费用（最终赚的钱！）
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box warning">
+                <div class="highlight-title">⚠️ 业务人员必须理解的关键点</div>
+                <p><strong>营销费用</strong>（包括市场推广费、差旅费、招待费、展会费等）计入<strong>销售费用</strong>，直接影响营业利润和净利润。每多花一元营销费用，在其他条件不变的情况下，利润就减少一元！</p>
+                <p style="margin-top: 10px;">这就是为什么我们要精细化管理营销费用——不是不花钱，而是要让每一分钱都创造价值！</p>
+            </div>
+
+            <h3 class="subsection-title">2.3 现金流量表（Cash Flow Statement）</h3>
+
+            <div class="content-text">
+                现金流量表反映企业在一定期间内现金的流入和流出情况。很多企业"账面盈利"却"现金紧张"，现金流量表能揭示这个问题。
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-title">💡 为什么"盈利"不等于"有钱"？</div>
+                <p>利润表采用<strong>权责发生制</strong>（收入在确认时记录，不管是否收到现金）；现金流量表采用<strong>收付实现制</strong>（只记录实际的现金收付）。</p>
+                <p style="margin-top: 10px;">例如：您卖了100万的货，但客户赊账还没付款。利润表上记录了100万收入，但现金流量表显示现金没有增加。</p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>现金流类型</th>
+                        <th>包含内容</th>
+                        <th>营销相关示例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>经营活动现金流</strong></td>
+                        <td>日常经营产生的现金流入流出</td>
+                        <td>销售收款（+）、支付营销费用（-）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>投资活动现金流</strong></td>
+                        <td>购置或处置长期资产的现金变动</td>
+                        <td>购买展示设备（-）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>筹资活动现金流</strong></td>
+                        <td>借款、还款、分红等资金活动</td>
+                        <td>与营销活动关系较小</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 第三节：会计六大要素 -->
+        <div class="content-card">
+            <div class="section-title">
+                <div class="section-icon">🔢</div>
+                三、会计六大要素
+            </div>
+
+            <div class="content-text">
+                会计六大要素是对企业经济业务的基本分类，所有的财务数据最终都归入这六大类：
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card" style="border-color: #667eea;">
+                    <div class="concept-icon">💰</div>
+                    <div class="concept-name">资产</div>
+                    <div class="concept-desc">企业过去的交易或事项形成的，由企业拥有或控制的，预期能给企业带来经济利益的资源。</div>
+                </div>
+                <div class="concept-card" style="border-color: #e74c3c;">
+                    <div class="concept-icon">📋</div>
+                    <div class="concept-name">负债</div>
+                    <div class="concept-desc">企业过去的交易或事项形成的，预期会导致经济利益流出的现时义务。</div>
+                </div>
+                <div class="concept-card" style="border-color: #9c27b0;">
+                    <div class="concept-icon">🏛️</div>
+                    <div class="concept-name">所有者权益</div>
+                    <div class="concept-desc">企业资产扣除负债后，由所有者享有的剩余权益。也称净资产或股东权益。</div>
+                </div>
+                <div class="concept-card" style="border-color: #4caf50;">
+                    <div class="concept-icon">📈</div>
+                    <div class="concept-name">收入</div>
+                    <div class="concept-desc">企业在日常活动中形成的、会导致所有者权益增加的、与所有者投入资本无关的经济利益的总流入。</div>
+                </div>
+                <div class="concept-card" style="border-color: #f44336;">
+                    <div class="concept-icon">📉</div>
+                    <div class="concept-name">费用</div>
+                    <div class="concept-desc">企业在日常活动中发生的、会导致所有者权益减少的、与向所有者分配利润无关的经济利益的总流出。</div>
+                </div>
+                <div class="concept-card" style="border-color: #ff9800;">
+                    <div class="concept-icon">💵</div>
+                    <div class="concept-name">利润</div>
+                    <div class="concept-desc">企业在一定会计期间的经营成果。利润 = 收入 - 费用 + 利得 - 损失。</div>
+                </div>
+            </div>
+
+            <div class="diagram-container">
+                <h4 style="margin-bottom: 20px; color: #667eea;">六大要素的关系</h4>
+                <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #333;">资产负债表要素</div>
+                        <div style="background: #e3f2fd; padding: 20px; border-radius: 10px;">
+                            资产 = 负债 + 所有者权益
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-weight: bold; margin-bottom: 10px; color: #333;">利润表要素</div>
+                        <div style="background: #f3e5f5; padding: 20px; border-radius: 10px;">
+                            利润 = 收入 - 费用
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第四节：费用的分类 -->
+        <div class="content-card">
+            <div class="section-title">
+                <div class="section-icon">📂</div>
+                四、费用的分类与营销费用定位
+            </div>
+
+            <h3 class="subsection-title">4.1 费用的基本分类</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>费用类别</th>
+                        <th>定义</th>
+                        <th>主要内容</th>
+                        <th>特点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>销售费用</strong></td>
+                        <td>企业在销售商品和材料、提供劳务过程中发生的各项费用</td>
+                        <td>广告宣传费、推广费、销售人员工资、差旅费、招待费、运输费、展览费、佣金等</td>
+                        <td>与销售活动直接相关；<span class="key-point">营销费用主要在此</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>管理费用</strong></td>
+                        <td>企业为组织和管理生产经营活动而发生的各项费用</td>
+                        <td>管理人员工资、办公费、折旧费、修理费、咨询费、审计费等</td>
+                        <td>与日常管理运营相关</td>
+                    </tr>
+                    <tr>
+                        <td><strong>财务费用</strong></td>
+                        <td>企业为筹集生产经营所需资金而发生的费用</td>
+                        <td>利息支出、手续费、汇兑损失等</td>
+                        <td>与资金借贷相关</td>
+                    </tr>
+                    <tr>
+                        <td><strong>研发费用</strong></td>
+                        <td>企业研究与开发活动发生的支出</td>
+                        <td>研发人员工资、材料费、设备折旧、外包费等</td>
+                        <td>与技术创新相关</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-title">4.2 营销费用的具体构成</h3>
+
+            <div class="highlight-box purple">
+                <div class="highlight-title">🎯 本课题关注的核心：营销费用</div>
+                <p>营销费用是销售费用的主要组成部分，通常包括以下类别：</p>
+            </div>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">📢</div>
+                    <div class="concept-name">市场推广费</div>
+                    <div class="concept-desc">广告投放、线上推广、品牌宣传、媒体合作等费用</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">✈️</div>
+                    <div class="concept-name">差旅费</div>
+                    <div class="concept-desc">销售人员出差的交通、住宿、餐饮补贴等费用</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🍽️</div>
+                    <div class="concept-name">业务招待费</div>
+                    <div class="concept-desc">客户接待、商务宴请、礼品赠送等费用</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🎪</div>
+                    <div class="concept-name">展会活动费</div>
+                    <div class="concept-desc">参加展会、举办活动、展位租赁、物料制作等费用</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">🤝</div>
+                    <div class="concept-name">渠道费用</div>
+                    <div class="concept-desc">经销商返利、渠道激励、终端建设等费用</div>
+                </div>
+                <div class="concept-card">
+                    <div class="concept-icon">👥</div>
+                    <div class="concept-name">人员费用</div>
+                    <div class="concept-desc">销售团队工资、提成、奖金、培训费用等</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <div class="example-title">📊 瓦轴集团营销费用分类示例</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>一级分类</th>
+                            <th>二级分类</th>
+                            <th>具体内容</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="3"><strong>客户开发费</strong></td>
+                            <td>新客户开发</td>
+                            <td>寻找新客户的差旅、拜访、资料等费用</td>
+                        </tr>
+                        <tr>
+                            <td>客户维护</td>
+                            <td>老客户回访、关系维护、定期拜访等费用</td>
+                        </tr>
+                        <tr>
+                            <td>招投标费用</td>
+                            <td>投标文件制作、保证金、招标代理费等</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"><strong>品牌推广费</strong></td>
+                            <td>广告宣传</td>
+                            <td>行业媒体广告、产品手册、宣传视频等</td>
+                        </tr>
+                        <tr>
+                            <td>展会参展</td>
+                            <td>展位租赁、展品运输、展台搭建、人员费用</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2"><strong>渠道建设费</strong></td>
+                            <td>经销商支持</td>
+                            <td>渠道培训、返点返利、市场补贴等</td>
+                        </tr>
+                        <tr>
+                            <td>终端建设</td>
+                            <td>样品提供、陈列支持、技术支持等</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 第五节：关键财务术语 -->
+        <div class="content-card">
+            <div class="section-title">
+                <div class="section-icon">📖</div>
+                五、关键财务术语速查
+            </div>
+
+            <div class="content-text">
+                以下是课题中经常会遇到的财务术语，建议熟记：
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">术语</th>
+                        <th style="width: 40%;">含义</th>
+                        <th style="width: 35%;">应用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>营业收入<br>(Revenue)</strong></td>
+                        <td>企业销售商品、提供服务获得的收入总额</td>
+                        <td>计算营销费用率的分母；衡量业务规模</td>
+                    </tr>
+                    <tr>
+                        <td><strong>毛利润<br>(Gross Profit)</strong></td>
+                        <td>营业收入减去营业成本后的余额</td>
+                        <td>衡量产品本身的盈利能力</td>
+                    </tr>
+                    <tr>
+                        <td><strong>毛利率<br>(Gross Margin)</strong></td>
+                        <td>毛利润÷营业收入×100%</td>
+                        <td>评估产品竞争力和定价策略效果</td>
+                    </tr>
+                    <tr>
+                        <td><strong>净利润<br>(Net Profit)</strong></td>
+                        <td>扣除所有成本费用和税金后的最终利润</td>
+                        <td>企业最终的经营成果</td>
+                    </tr>
+                    <tr>
+                        <td><strong>营销费用率<br>(Marketing Expense Ratio)</strong></td>
+                        <td>营销费用÷营业收入×100%</td>
+                        <td>衡量营销投入强度；本课题核心指标</td>
+                    </tr>
+                    <tr>
+                        <td><strong>预算<br>(Budget)</strong></td>
+                        <td>对未来一定期间内收支的计划安排</td>
+                        <td>费用控制的标准和依据</td>
+                    </tr>
+                    <tr>
+                        <td><strong>预算执行率</strong></td>
+                        <td>实际发生金额÷预算金额×100%</td>
+                        <td>监控预算执行情况</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ROI<br>(投资回报率)</strong></td>
+                        <td>(收益-投资)÷投资×100%</td>
+                        <td>评估营销活动效益；第四章详解</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CAC<br>(客户获取成本)</strong></td>
+                        <td>获取一个新客户所花费的平均成本</td>
+                        <td>评估获客效率；第四章详解</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LTV<br>(客户生命周期价值)</strong></td>
+                        <td>一个客户在整个合作期间贡献的总价值</td>
+                        <td>评估客户价值；第四章详解</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 本章小结 -->
+        <div class="content-card">
+            <div class="section-title">
+                <div class="section-icon">✅</div>
+                本章小结
+            </div>
+
+            <div class="highlight-box success">
+                <div class="highlight-title">📝 核心要点回顾</div>
+                <ul class="list-styled">
+                    <li><strong>财务 vs 会计：</strong>会计侧重记录过去，财务侧重规划未来；业务人员主要与财务管理职能打交道</li>
+                    <li><strong>三大报表：</strong>资产负债表（有什么、欠什么）、利润表（赚了多少）、现金流量表（钱的流动）</li>
+                    <li><strong>会计等式：</strong>资产 = 负债 + 所有者权益；利润 = 收入 - 费用</li>
+                    <li><strong>营销费用：</strong>属于销售费用，直接影响利润，需要精细化管理</li>
+                    <li><strong>费用分类：</strong>按类别分为推广费、差旅费、招待费、展会费、渠道费等</li>
+                </ul>
+            </div>
+
+            <div class="quiz-box">
+                <div class="quiz-title">🎓 自测练习</div>
+                <ol style="padding-left: 20px; color: #666;">
+                    <li style="margin-bottom: 15px;">请说出三大财务报表的名称及各自反映的内容？</li>
+                    <li style="margin-bottom: 15px;">营销费用在财务报表中属于哪个项目？对哪个指标产生直接影响？</li>
+                    <li style="margin-bottom: 15px;">什么是营销费用率？为什么它是本课题的核心指标？</li>
+                    <li style="margin-bottom: 15px;">"账面盈利"但"现金紧张"可能是什么原因造成的？</li>
+                    <li>列举5种常见的营销费用类型。</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="nav-bottom">
+            <a href="00_讲义引导页.html" class="nav-btn outline">
+                ← 返回目录
+            </a>
+            <a href="02_成本费用管理篇.html" class="nav-btn">
+                下一章：成本费用管理篇 →
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        瓦轴集团 × 东北财经大学 | 营销费用精益化管理课题组财务知识培训讲义<br>
+        第一章：财务基础概念篇
+    </footer>
+</body>
+</html>

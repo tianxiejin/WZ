@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块四：实战模型构建 - 课题组培训讲义</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>课程导航</h3>
+            <ul class="nav-links">
+                <li><a href="index.html">首页：课题概览</a></li>
+                <li><a href="module1_basics.html">模块一：业财融合基础</a></li>
+                <li><a href="module2_abc.html">模块二：作业成本法(重点)</a></li>
+                <li><a href="module3_tco.html">模块三：总成本与价值采购</a></li>
+                <li><a href="module4_practice.html" class="active">模块四：实战模型构建</a></li>
+            </ul>
+        </div>
+        
+        <div class="content">
+            <h1>模块四：实战模型构建与信息化应用</h1>
+            <p class="subtitle">从理论到落地的最后一步</p>
+
+            <h2>1. 完善财务成本科目归集</h2>
+            <p>为了解决“科目归集与业务偏差”，我们需要在财务系统中做“加法”，在业务系统中做“减法”。</p>
+
+            <div class="concept-card">
+                <div class="concept-title">🛠️ 改造建议</div>
+                <p><strong>现状：</strong> 财务账上只有“制造费用-辅材”一个大科目。</p>
+                <p><strong>优化方案：建立多维辅助核算</strong></p>
+                <ul>
+                    <li><strong>维度1（按性质）：</strong> 切削液、砂轮、包装物、劳保用品。</li>
+                    <li><strong>维度2（按作业）：</strong> 采购环节费用、仓储环节费用、使用环节损耗。</li>
+                    <li><strong>维度3（按产线/项目）：</strong> 对应具体的轴承生产线。</li>
+                </ul>
+                <p>这样，财务报表一拉出来，就能看到“某条产线”在“仓储环节”消耗了多少“包装物”费用。</p>
+            </div>
+
+            <h2>2. 建立供应链总成本(动态)管控模型</h2>
+            <p>这是一个Excel或BI系统的原型设计思路。</p>
+
+            <h3>模型输入端 (Input)</h3>
+            <ul>
+                <li><strong>采购数据：</strong> 单价、数量、供应商。</li>
+                <li><strong>财务数据：</strong> 资金成本率、仓库租金分摊率、人工费率。</li>
+                <li><strong>业务数据：</strong> 领用记录、库存周转天数、废品率。</li>
+            </ul>
+
+            <h3>模型处理端 (Process - ABC算法)</h3>
+            <ul>
+                <li><strong>步骤1：</strong> 归集本月发生的总间接费用（资源池）。</li>
+                <li><strong>步骤2：</strong> 确定动因（如：订单数、库存立方米数、领料次数）。</li>
+                <li><strong>步骤3：</strong> 计算分配率（如：每处理一个订单 = 50元）。</li>
+                <li><strong>步骤4：</strong> 将成本分摊到具体物料或产品上。</li>
+            </ul>
+
+            <h3>模型输出端 (Output)</h3>
+            <ul>
+                <li><strong>物料真实成本表：</strong> 包含采购价 + 隐性持有成本。</li>
+                <li><strong>供应商绩效卡：</strong> 谁的总成本最低，而不是谁的报价最低。</li>
+            </ul>
+
+            <h2>3. 信息化软件系统的应用</h2>
+            <p>不要试图用手工Excel完成所有工作，要利用现有的ERP或SRM系统。</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>系统功能模块</th>
+                        <th>应用策略</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ERP (企业资源计划)</strong></td>
+                        <td>利用<strong>“标准成本”</strong>功能。将计算出的ABC成本设为标准成本，实际发生额与标准的差异（量差/价差）作为考核重点。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SRM (供应商关系管理)</strong></td>
+                        <td>在询比价模块中，增加<strong>“非价格要素”</strong>的权重（如交期、质量稳定性、售后响应），实现价值采购的系统化固化。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>WMS (仓库管理系统)</strong></td>
+                        <td>精准记录<strong>“库龄”</strong>。库龄越长，自动计算的资金占用成本越高，倒逼采购减少不必要的囤货。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <strong>结语：</strong> 
+                本课题的成功，不在于计算出多么精确的“分”，而在于建立一种<strong>“全员关注总成本”</strong>的意识。当采购员在下单前，能下意识地算一算库存利息和管理成本，业财融合就已经成功了一半。
+            </div>
+
+            <a href="index.html" class="btn">&larr; 返回首页</a>
+
+            <div class="footer">
+                <p>瓦轴集团课题组内部培训资料 | 2025</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

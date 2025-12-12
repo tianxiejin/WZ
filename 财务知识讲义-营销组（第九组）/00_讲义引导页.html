@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瓦轴集团营销费用精益化管理课题 - 财务知识讲义</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .main-title {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #a0a0a0;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-info {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .chapters-container {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 16px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            padding: 0 20px;
+        }
+
+        .chapter-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--card-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--card-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .chapter-card:hover::before {
+            opacity: 1;
+        }
+
+        .chapter-number {
+            font-size: 60px;
+            font-weight: bold;
+            color: var(--card-color);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            line-height: 1;
+        }
+
+        .chapter-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--card-color), var(--card-color-dark));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .chapter-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .chapter-desc {
+            font-size: 14px;
+            color: #a0a0a0;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .chapter-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .topic-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .chapter-arrow {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .chapter-card:hover .chapter-arrow {
+            background: var(--card-color);
+            transform: translateX(5px);
+        }
+
+        .chapter-arrow svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        /* 各章节颜色 */
+        .chapter-1 { --card-color: #667eea; --card-color-dark: #5a67d8; }
+        .chapter-2 { --card-color: #f093fb; --card-color-dark: #e879f9; }
+        .chapter-3 { --card-color: #4facfe; --card-color-dark: #38bdf8; }
+        .chapter-4 { --card-color: #43e97b; --card-color-dark: #22c55e; }
+        .chapter-5 { --card-color: #fa709a; --card-color-dark: #f43f5e; }
+
+        .footer-info {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .target-audience {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px 40px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .target-title {
+            font-size: 14px;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .target-desc {
+            font-size: 16px;
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .learning-path {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .path-title {
+            text-align: center;
+            font-size: 16px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+        }
+
+        .path-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .path-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #f093fb, #4facfe, #43e97b, #fa709a);
+        }
+
+        .path-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-dot {
+            width: 50px;
+            height: 50px;
+            background: #1a1a2e;
+            border: 3px solid;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step-1 .step-dot { border-color: #667eea; color: #667eea; }
+        .step-2 .step-dot { border-color: #f093fb; color: #f093fb; }
+        .step-3 .step-dot { border-color: #4facfe; color: #4facfe; }
+        .step-4 .step-dot { border-color: #43e97b; color: #43e97b; }
+        .step-5 .step-dot { border-color: #fa709a; color: #fa709a; }
+
+        .step-label {
+            font-size: 12px;
+            color: #888;
+            max-width: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .chapters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .path-steps {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .path-steps::before {
+                display: none;
+            }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin: 40px auto;
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlight-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-list li {
+            padding: 8px 0;
+            color: #ccc;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .highlight-list li::before {
+            content: '✓';
+            color: #43e97b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="header-badge">瓦轴集团 × 东北财经大学</div>
+
+        <h1 class="main-title">营销费用精益化管理</h1>
+        <h2 class="subtitle">课题组财务知识培训讲义</h2>
+
+        <div class="course-info">
+            <div class="info-item">
+                <div class="info-label">培训对象</div>
+                <div class="info-value">课题组6人</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">背景</div>
+                <div class="info-value">业务出身</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">讲义章节</div>
+                <div class="info-value">5个模块</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">核心目标</div>
+                <div class="info-value">业财融合</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-title">
+                <span>📚</span> 为什么业务人员需要学习财务知识？
+            </div>
+            <ul class="highlight-list">
+                <li>本课题核心是"业财融合"，要求业务与财务深度协同</li>
+                <li>建立营销费用数据模型需要理解财务分析方法</li>
+                <li>评估营销ROI、计算CAC/LTV等核心指标需要财务思维</li>
+                <li>预算编制与执行监控是业务人员的必备技能</li>
+                <li>掌握财务语言才能与财务部门有效沟通协作</li>
+            </ul>
+        </div>
+
+        <div class="chapters-container">
+            <div class="section-title">讲义章节导航</div>
+
+            <div class="chapters-grid">
+                <a href="01_财务基础概念篇.html" class="chapter-card chapter-1">
+                    <div class="chapter-number">01</div>
+                    <div class="chapter-icon">📖</div>
+                    <div class="chapter-title">财务基础概念篇</div>
+                    <div class="chapter-desc">
+                        从零开始，建立财务基础认知。掌握三大财务报表、会计科目、财务术语等核心概念，为后续学习奠定基础。
+                    </div>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">三大报表</span>
+                        <span class="topic-tag">会计要素</span>
+                        <span class="topic-tag">财务术语</span>
+                        <span class="topic-tag">费用分类</span>
+                    </div>
+                    <div class="chapter-arrow">
+                        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                    </div>
+                </a>
+
+                <a href="02_成本费用管理篇.html" class="chapter-card chapter-2">
+                    <div class="chapter-number">02</div>
+                    <div class="chapter-icon">💰</div>
+                    <div class="chapter-title">成本费用管理篇</div>
+                    <div class="chapter-desc">
+                        深入理解成本与费用的区别，掌握作业成本法(ABC)、成本动因分析、费用管控方法等核心工具。
+                    </div>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">成本结构</span>
+                        <span class="topic-tag">作业成本法</span>
+                        <span class="topic-tag">成本动因</span>
+                        <span class="topic-tag">费用管控</span>
+                    </div>
+                    <div class="chapter-arrow">
+                        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                    </div>
+                </a>
+
+                <a href="03_预算管理篇.html" class="chapter-card chapter-3">
+                    <div class="chapter-number">03</div>
+                    <div class="chapter-icon">📊</div>
+                    <div class="chapter-title">预算管理篇</div>
+                    <div class="chapter-desc">
+                        掌握预算管理全流程，包括零基预算、滚动预算等方法论，学会预算编制、执行监控与偏差分析。
+                    </div>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">零基预算</span>
+                        <span class="topic-tag">预算编制</span>
+                        <span class="topic-tag">偏差分析</span>
+                        <span class="topic-tag">动态调整</span>
+                    </div>
+                    <div class="chapter-arrow">
+                        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                    </div>
+                </a>
+
+                <a href="04_财务分析与ROI篇.html" class="chapter-card chapter-4">
+                    <div class="chapter-number">04</div>
+                    <div class="chapter-icon">📈</div>
+                    <div class="chapter-title">财务分析与ROI篇</div>
+                    <div class="chapter-desc">
+                        核心重点章节！掌握营销ROI计算、CAC/LTV分析、费用效能评价、投入产出分析等关键技能。
+                    </div>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">ROI计算</span>
+                        <span class="topic-tag">CAC/LTV</span>
+                        <span class="topic-tag">效能评价</span>
+                        <span class="topic-tag">数据分析</span>
+                    </div>
+                    <div class="chapter-arrow">
+                        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                    </div>
+                </a>
+
+                <a href="05_业财融合实践篇.html" class="chapter-card chapter-5">
+                    <div class="chapter-number">05</div>
+                    <div class="chapter-icon">🔗</div>
+                    <div class="chapter-title">业财融合实践篇</div>
+                    <div class="chapter-desc">
+                        将财务知识应用于业务实践，掌握业财融合的协作方法、数据驱动决策、精益管理工具的实际运用。
+                    </div>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">业财协同</span>
+                        <span class="topic-tag">数据驱动</span>
+                        <span class="topic-tag">精益工具</span>
+                        <span class="topic-tag">案例实践</span>
+                    </div>
+                    <div class="chapter-arrow">
+                        <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="learning-path">
+            <div class="path-title">建议学习路径</div>
+            <div class="path-steps">
+                <div class="path-step step-1">
+                    <div class="step-dot">1</div>
+                    <div class="step-label">建立基础认知</div>
+                </div>
+                <div class="path-step step-2">
+                    <div class="step-dot">2</div>
+                    <div class="step-label">理解成本费用</div>
+                </div>
+                <div class="path-step step-3">
+                    <div class="step-dot">3</div>
+                    <div class="step-label">掌握预算管理</div>
+                </div>
+                <div class="path-step step-4">
+                    <div class="step-dot">4</div>
+                    <div class="step-label">学会分析评价</div>
+                </div>
+                <div class="path-step step-5">
+                    <div class="step-dot">5</div>
+                    <div class="step-label">融合实践应用</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <div class="target-audience">
+                <div class="target-title">培训说明</div>
+                <div class="target-desc">
+                    本讲义专为瓦轴集团营销费用精益化管理课题组成员设计，针对业务出身、无财务背景的学员特点，采用通俗易懂的语言、丰富的案例和图表，帮助学员快速掌握课题所需的财务理论知识。建议按照章节顺序学习，每章学习后结合实际工作进行思考和应用。
+                </div>
+            </div>
+
+            <div class="copyright">
+                瓦轴集团 × 东北财经大学 | 业财融合导向的营销费用精益化管理与效能提升计划<br>
+                财务知识培训讲义 v1.0
+            </div>
+        </div>
+    </div>
+</body>
+</html>

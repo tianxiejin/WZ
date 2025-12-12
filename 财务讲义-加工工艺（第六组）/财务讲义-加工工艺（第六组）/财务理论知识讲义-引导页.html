@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财务理论知识讲义 - 引导页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimSun', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a6f 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .subtitle {
+            font-size: 20px;
+            opacity: 0.95;
+            margin: 10px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .course-info {
+            font-size: 16px;
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-section {
+            padding: 50px 60px;
+            background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .intro-box {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            border-left: 6px solid #2c5aa0;
+        }
+
+        .intro-box h2 {
+            color: #2c5aa0;
+            font-size: 26px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .intro-box h2::before {
+            content: '📚';
+            margin-right: 12px;
+            font-size: 30px;
+        }
+
+        .intro-box p {
+            line-height: 1.9;
+            color: #555;
+            font-size: 16px;
+            margin: 12px 0;
+            text-indent: 2em;
+        }
+
+        .intro-box ul {
+            margin: 20px 0 20px 40px;
+        }
+
+        .intro-box li {
+            margin: 12px 0;
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .intro-box li strong {
+            color: #2c5aa0;
+        }
+
+        .modules-section {
+            padding: 50px 60px;
+            background: white;
+        }
+
+        .modules-title {
+            text-align: center;
+            font-size: 32px;
+            color: #2c5aa0;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .modules-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .module-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .module-card.featured {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            grid-column: 1 / -1;
+        }
+
+        .module-card.featured::before {
+            background: linear-gradient(to right, #ff9800, #ff5722);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .module-number {
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-right: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .module-card.featured .module-number {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            color: white;
+        }
+
+        .module-title {
+            font-size: 22px;
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+
+        .module-card.featured .module-title {
+            color: #d84315;
+        }
+
+        .module-desc {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .module-topics {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed rgba(0,0,0,0.1);
+        }
+
+        .module-topics h4 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .module-topics ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .module-topics li {
+            padding: 8px 0;
+            color: #666;
+            font-size: 14px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .module-topics li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+
+        .module-card.featured .module-topics li::before {
+            color: #ff5722;
+        }
+
+        .module-file {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .module-file strong {
+            color: #2c5aa0;
+        }
+
+        .learning-path {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .learning-path h3 {
+            color: #00695c;
+            font-size: 24px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .path-steps {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .path-step {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            margin: 10px;
+        }
+
+        .step-circle {
+            background: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            font-size: 32px;
+        }
+
+        .step-text {
+            color: #00695c;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .path-arrow {
+            font-size: 32px;
+            color: #00897b;
+            margin: 0 10px;
+        }
+
+        .footer {
+            background: #1e3a6f;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 8px 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .path-arrow {
+                display: none;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .module-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>轴承加工工艺定额标准化管理</h1>
+            <p class="subtitle">财务理论知识讲义</p>
+            <p class="subtitle">——业务人员必备的财务管理基础</p>
+            <div class="course-info">
+                瓦轴集团课题组专用教材 | 2025年
+            </div>
+        </div>
+
+        <div class="intro-section">
+            <div class="intro-box">
+                <h2>课程背景</h2>
+                <p>本套讲义是为瓦轴集团"轴承加工工艺定额标准化管理"课题组6位成员专门编制的财务理论知识培训教材。课题组成员均为业务出身,具备丰富的生产技术和工艺管理经验,但缺乏系统的财务理论知识背景。</p>
+                <p>课题的核心目标是建立科学的工艺定额管理体系,而定额管理与成本核算、成本控制紧密相关。要真正理解定额如何影响成本、如何通过定额管理实现降本增效,必须掌握必要的财务管理理论,特别是<strong>作业成本法(Activity-Based Costing, ABC)</strong>这一现代成本管理工具。</p>
+            </div>
+
+            <div class="intro-box">
+                <h2>学习目标</h2>
+                <ul>
+                    <li><strong>理解财务语言:</strong> 掌握成本、定额、标准成本等基本财务概念,能够与财务人员有效沟通</li>
+                    <li><strong>掌握ABC方法:</strong> 深入理解作业成本法的原理、流程和应用,这是本课题的核心工具</li>
+                    <li><strong>建立成本思维:</strong> 从财务视角理解定额管理的价值,明确定额标准化对成本控制的作用</li>
+                    <li><strong>提升分析能力:</strong> 学会运用财务分析方法评估定额执行效果、识别改进机会</li>
+                    <li><strong>支撑课题实施:</strong> 为课题的模型构建、数据分析、效果评估提供财务理论支持</li>
+                </ul>
+            </div>
+
+            <div class="intro-box">
+                <h2>课程特色</h2>
+                <ul>
+                    <li><strong>理论与实践结合:</strong> 所有理论知识都与轴承制造业实际紧密结合,用课题案例讲解</li>
+                    <li><strong>通俗易懂:</strong> 避免复杂的财务术语,用业务语言解释财务概念</li>
+                    <li><strong>重点突出:</strong> 以作业成本法为核心,聚焦定额管理所需的关键财务知识</li>
+                    <li><strong>工具导向:</strong> 提供实用的分析工具和计算模板,学完即可应用</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="modules-section">
+            <h2 class="modules-title">📖 课程模块导航</h2>
+
+            <div class="modules-grid">
+                <div class="module-card featured">
+                    <div class="module-header">
+                        <div class="module-number">★</div>
+                        <div class="module-title">模块1: 作业成本法(ABC)核心理论</div>
+                    </div>
+                    <div class="module-desc">
+                        <strong>【重点模块】</strong>作业成本法是本课题的核心财务工具。传统成本法按部门归集成本,无法准确反映不同产品、不同工序的真实成本。ABC方法通过"资源-作业-产品"的成本分配链条,实现精准成本核算,这正是工艺定额标准化管理的理论基础。
+                    </div>
+                    <div class="module-topics">
+                        <h4>主要内容:</h4>
+                        <ul>
+                            <li>ABC的产生背景与核心思想</li>
+                            <li>资源、作业、成本动因的概念</li>
+                            <li>ABC成本计算的完整流程</li>
+                            <li>轴承制造业ABC应用案例</li>
+                            <li>ABC与定额管理的关系</li>
+                            <li>作业分析与流程优化方法</li>
+                        </ul>
+                    </div>
+                    <div class="module-file">
+                        <strong>讲义文件:</strong> 财务理论知识讲义-模块1-作业成本法核心理论.html
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-number">2</div>
+                        <div class="module-title">成本核算基础知识</div>
+                    </div>
+                    <div class="module-desc">
+                        成本核算是财务管理的基础。本模块从业务人员的角度,系统讲解成本的构成、分类、核算方法,帮助理解定额标准在成本体系中的位置和作用。
+                    </div>
+                    <div class="module-topics">
+                        <h4>主要内容:</h4>
+                        <ul>
+                            <li>成本的基本概念与分类</li>
+                            <li>制造成本的三大要素</li>
+                            <li>直接成本与间接成本</li>
+                            <li>标准成本与实际成本</li>
+                            <li>成本核算的基本流程</li>
+                            <li>轴承制造成本结构分析</li>
+                        </ul>
+                    </div>
+                    <div class="module-file">
+                        <strong>讲义文件:</strong> 财务理论知识讲义-模块2-成本核算基础.html
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-number">3</div>
+                        <div class="module-title">定额管理与成本控制</div>
+                    </div>
+                    <div class="module-desc">
+                        本模块直接服务于课题核心任务,深入讲解定额在成本管理中的作用、定额标准的制定方法、差异分析技术,以及如何通过定额管理实现成本控制。
+                    </div>
+                    <div class="module-topics">
+                        <h4>主要内容:</h4>
+                        <ul>
+                            <li>定额与标准成本的关系</li>
+                            <li>定额标准的财务属性</li>
+                            <li>成本差异分析方法</li>
+                            <li>定额完成率与成本控制</li>
+                            <li>目标成本管理</li>
+                            <li>持续改进的成本管理机制</li>
+                        </ul>
+                    </div>
+                    <div class="module-file">
+                        <strong>讲义文件:</strong> 财务理论知识讲义-模块3-定额管理与成本控制.html
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-number">4</div>
+                        <div class="module-title">财务分析方法与工具</div>
+                    </div>
+                    <div class="module-desc">
+                        定额管理需要持续监控和评估。本模块介绍课题实施过程中会用到的财务分析方法,包括数据分析技巧、效益评估工具,帮助课题组科学评价管理成效。
+                    </div>
+                    <div class="module-topics">
+                        <h4>主要内容:</h4>
+                        <ul>
+                            <li>财务指标体系设计</li>
+                            <li>本量利分析方法</li>
+                            <li>投资回报率(ROI)计算</li>
+                            <li>成本效益分析</li>
+                            <li>数据可视化技巧</li>
+                            <li>Excel财务分析工具</li>
+                        </ul>
+                    </div>
+                    <div class="module-file">
+                        <strong>讲义文件:</strong> 财务理论知识讲义-模块4-财务分析方法.html
+                    </div>
+                </div>
+            </div>
+
+            <div class="learning-path">
+                <h3>🎯 建议学习路径</h3>
+                <div class="path-steps">
+                    <div class="path-step">
+                        <div class="step-circle">📘</div>
+                        <div class="step-text">第一步<br>成本核算基础</div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                    <div class="path-step">
+                        <div class="step-circle">⭐</div>
+                        <div class="step-text">第二步<br>作业成本法<br>(核心)</div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                    <div class="path-step">
+                        <div class="step-circle">🎯</div>
+                        <div class="step-text">第三步<br>定额与成本控制</div>
+                    </div>
+                    <div class="path-arrow">→</div>
+                    <div class="path-step">
+                        <div class="step-circle">📊</div>
+                        <div class="step-text">第四步<br>财务分析工具</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intro-box" style="margin-top: 40px;">
+                <h2>使用说明</h2>
+                <ul>
+                    <li><strong>学习顺序:</strong> 建议按照上述路径学习,先打好成本基础,再深入ABC核心方法,最后掌握分析工具</li>
+                    <li><strong>重点把握:</strong> 模块1"作业成本法"是核心,需要深入理解并结合课题实践</li>
+                    <li><strong>边学边用:</strong> 每个模块都有轴承制造业案例,建议结合自己的工作实际思考应用</li>
+                    <li><strong>团队讨论:</strong> 课题组可以组织集中学习和讨论,互相交流理解和应用心得</li>
+                    <li><strong>专家支持:</strong> 学习中遇到问题,可以请教东北财经大学的教授团队</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>轴承加工工艺定额标准化管理课题组 财务理论培训教材</strong></p>
+            <p>瓦轴集团 × 东北财经大学</p>
+            <p>2025年 | 课题组内部资料</p>
+        </div>
+    </div>
+</body>
+</html>

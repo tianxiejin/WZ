@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块5：业财融合实践</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei'; background: #f5f7fa; }
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #667eea; padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { color: #667eea; margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; }
+        h3 { color: #2c3e50; margin-top: 25px; margin-bottom: 15px; }
+        p, li { line-height: 1.8; margin: 10px 0; }
+        ul, ol { margin-left: 30px; }
+        .highlight-box {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+        }
+        .example-box {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196F3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .kpi-card {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #ffc107;
+        }
+        .process-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .flow-step {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-content">
+            <div><strong>模块5：业财融合实践</strong></div>
+            <div class="nav-links">
+                <a href="index.html">🏠 首页</a>
+                <a href="module4.html">← 上一模块</a>
+                <a href="module6.html">下一模块 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>🤝 模块5：业财融合实践</h1>
+        
+        <h2>一、什么是业财融合？</h2>
+        <div class="highlight-box">
+            <p><strong>定义：</strong>业财融合是指业务部门与财务部门深度协同，将财务思维嵌入业务决策，实现业务价值最大化。</p>
+            <p><strong>核心理念：</strong>财务不是事后算账，而是事前参谋、事中控制、事后分析的全程伙伴。</p>
+        </div>
+
+        <h2>二、传统模式 vs 业财融合模式</h2>
+        <table>
+            <tr>
+                <th>维度</th>
+                <th>传统模式</th>
+                <th>业财融合模式</th>
+            </tr>
+            <tr>
+                <td><strong>角色定位</strong></td>
+                <td>财务是"记账的"</td>
+                <td>财务是"价值创造伙伴"</td>
+            </tr>
+            <tr>
+                <td><strong>工作时间</strong></td>
+                <td>事后核算</td>
+                <td>全程参与：事前、事中、事后</td>
+            </tr>
+            <tr>
+                <td><strong>信息流动</strong></td>
+                <td>单向：业务→财务</td>
+                <td>双向：业务↔财务</td>
+            </tr>
+            <tr>
+                <td><strong>决策依据</strong></td>
+                <td>经验+直觉</td>
+                <td>数据+财务分析</td>
+            </tr>
+            <tr>
+                <td><strong>考核指标</strong></td>
+                <td>业务指标（产量、交付）</td>
+                <td>业务+财务指标（成本、利润、ROI）</td>
+            </tr>
+        </table>
+
+        <h2>三、业财融合的三个层次</h2>
+        <div class="process-flow">
+            <div class="flow-step">层次1<br>信息共享<br>数据互通</div>
+            <div style="font-size: 2em; color: #667eea;">→</div>
+            <div class="flow-step">层次2<br>流程协同<br>联合决策</div>
+            <div style="font-size: 2em; color: #667eea;">→</div>
+            <div class="flow-step">层次3<br>文化融合<br>共同目标</div>
+        </div>
+
+        <h3>层次1：信息共享</h3>
+        <ul>
+            <li>建立统一的数据平台（ERP、MES、BI）</li>
+            <li>业务数据实时传递给财务</li>
+            <li>财务分析报告及时反馈业务</li>
+        </ul>
+
+        <h3>层次2：流程协同</h3>
+        <ul>
+            <li>预算编制：业务提需求，财务做评估</li>
+            <li>采购决策：财务参与供应商评估、合同审核</li>
+            <li>项目立项：财务做可行性分析、风险评估</li>
+        </ul>
+
+        <h3>层次3：文化融合</h3>
+        <ul>
+            <li>业务人员具备财务思维</li>
+            <li>财务人员理解业务逻辑</li>
+            <li>共同追求企业价值最大化</li>
+        </ul>
+
+        <h2>四、供应链业财融合实践</h2>
+        
+        <h3>1. 采购环节</h3>
+        <div class="example-box">
+            <p><strong>传统做法：</strong>采购部门只关注价格，选择最便宜的供应商</p>
+            <p><strong>融合做法：</strong>采购+财务联合评估TCO，综合考虑质量、交付、服务</p>
+            
+            <table style="margin-top: 15px;">
+                <tr>
+                    <th>评估维度</th>
+                    <th>权重</th>
+                    <th>业务视角</th>
+                    <th>财务视角</th>
+                </tr>
+                <tr>
+                    <td>价格</td>
+                    <td>30%</td>
+                    <td>采购价格</td>
+                    <td>TCO（含质量成本、库存成本）</td>
+                </tr>
+                <tr>
+                    <td>质量</td>
+                    <td>30%</td>
+                    <td>合格率</td>
+                    <td>不良品损失、返工成本</td>
+                </tr>
+                <tr>
+                    <td>交付</td>
+                    <td>20%</td>
+                    <td>准时率</td>
+                    <td>停工损失、加急成本</td>
+                </tr>
+                <tr>
+                    <td>服务</td>
+                    <td>20%</td>
+                    <td>响应速度</td>
+                    <td>沟通成本、风险管理</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>2. 生产环节</h3>
+        <div class="kpi-card">
+            <h4>关键业财融合指标</h4>
+            <ul>
+                <li><strong>单位产品成本：</strong>业务控工艺，财务控核算</li>
+                <li><strong>良品率：</strong>业务提质量，财务算损失</li>
+                <li><strong>设备利用率：</strong>业务排产能，财务算投资回报</li>
+                <li><strong>人效：</strong>业务管人员，财务看产值/人工成本</li>
+            </ul>
+        </div>
+
+        <h3>3. 库存环节</h3>
+        <div class="example-box">
+            <p><strong>融合实践：库存优化项目</strong></p>
+            <ul>
+                <li><strong>业务：</strong>提供需求预测、安全库存标准</li>
+                <li><strong>财务：</strong>计算持有成本、资金占用、呆滞风险</li>
+                <li><strong>共同：</strong>制定ABC分类策略、库存周转目标</li>
+            </ul>
+            
+            <p><strong>瓦轴案例：</strong>通过业财协同，库存周转天数从90天降至60天，释放资金5000万元</p>
+        </div>
+
+        <h2>五、业财融合的关键工具</h2>
+        
+        <h3>1. 滚动预测（Rolling Forecast）</h3>
+        <p>不再是一年一次的预算，而是持续滚动的3-6个月预测，业务+财务每月更新</p>
+
+        <h3>2. 业务BP（Business Partner）</h3>
+        <p>财务人员派驻业务部门，成为业务团队的财务伙伴</p>
+
+        <h3>3. 经营分析会</h3>
+        <p>月度经营分析会，业务讲业绩，财务讲数据，共同找问题、定措施</p>
+
+        <h3>4. 联合KPI</h3>
+        <table>
+            <tr>
+                <th>部门</th>
+                <th>传统KPI</th>
+                <th>融合KPI</th>
+            </tr>
+            <tr>
+                <td>采购</td>
+                <td>降本率</td>
+                <td>降本率 + TCO优化 + 供应商质量成本</td>
+            </tr>
+            <tr>
+                <td>生产</td>
+                <td>产量、合格率</td>
+                <td>产量 + 合格率 + 单位成本 + 资产周转率</td>
+            </tr>
+            <tr>
+                <td>物流</td>
+                <td>准时交付率</td>
+                <td>准时交付率 + 物流成本率 + 库存周转</td>
+            </tr>
+        </table>
+
+        <h2>六、瓦轴业财融合实践案例</h2>
+        <div class="example-box">
+            <h3>案例：新产品定价决策</h3>
+            <p><strong>背景：</strong>瓦轴开发一款新型高速铁路轴承，需要定价</p>
+            
+            <p><strong>传统做法：</strong></p>
+            <ul>
+                <li>技术部门：根据成本加30%利润定价</li>
+                <li>结果：价格过高，客户不接受；或价格过低，实际亏损</li>
+            </ul>
+            
+            <p><strong>业财融合做法：</strong></p>
+            <ol>
+                <li><strong>技术部门：</strong>提供BOM、工艺路线</li>
+                <li><strong>生产部门：</strong>评估产能、人工、设备投入</li>
+                <li><strong>采购部门：</strong>提供材料成本、供应商信息</li>
+                <li><strong>财务部门：</strong>运用ABC成本法精准核算，包括：
+                    <ul>
+                        <li>研发投入分摊</li>
+                        <li>模具、工装分摊</li>
+                        <li>质量成本（首批良品率预估）</li>
+                        <li>销售、物流、售后成本</li>
+                    </ul>
+                </li>
+                <li><strong>销售部门：</strong>提供市场价格、竞品分析</li>
+                <li><strong>联合决策：</strong>综合考虑成本、市场、战略，制定阶梯定价方案</li>
+            </ol>
+            
+            <p><strong>结果：</strong>价格合理、客户满意、首年即实现盈利</p>
+        </div>
+
+        <h2>七、推动业财融合的行动建议</h2>
+        <ol>
+            <li><strong>建立共同语言：</strong>业务学财务基础，财务学业务流程</li>
+            <li><strong>搭建数据平台：</strong>打通ERP、MES、CRM，实现数据共享</li>
+            <li><strong>设计联合KPI：</strong>让业务和财务目标一致</li>
+            <li><strong>组建跨部门团队：</strong>重大项目业财联合攻关</li>
+            <li><strong>培养复合型人才：</strong>既懂业务又懂财务的"双料人才"</li>
+        </ol>
+
+        <h2>八、课后思考</h2>
+        <ol>
+            <li>在您的工作中，哪些环节可以加强业财协同？</li>
+            <li>列举3个您认为重要的业财融合KPI</li>
+            <li>如何在您的团队中推动业财融合文化？</li>
+        </ol>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="module6.html" style="display: inline-block; padding: 15px 40px; background: #667eea; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2em;">
+                继续学习：模块6 综合案例分析 →
+            </a>
+        </div>
+    </div>
+</body>
+</html>

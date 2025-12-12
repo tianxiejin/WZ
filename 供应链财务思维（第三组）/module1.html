@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块1：财务基础知识</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei'; background: #f5f7fa; }
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #667eea; padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { color: #667eea; margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; }
+        h3 { color: #2c3e50; margin-top: 25px; margin-bottom: 15px; }
+        p, li { line-height: 1.8; margin: 10px 0; }
+        ul, ol { margin-left: 30px; }
+        .highlight-box {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+        }
+        .example-box {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196F3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) { background: #f8f9fa; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-content">
+            <div><strong>模块1：财务基础知识</strong></div>
+            <div class="nav-links">
+                <a href="index.html">🏠 首页</a>
+                <a href="module2.html">下一模块 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>📊 模块1：财务基础知识</h1>
+        
+        <h2>一、为什么业务人员要懂财务？</h2>
+        <div class="highlight-box">
+            <p><strong>核心观点：</strong>在现代企业中，财务不仅是财务部门的事，而是全员的责任。</p>
+            <p>懂财务的业务人员能够：</p>
+            <ul>
+                <li>做出更科学的决策</li>
+                <li>识别隐性成本，避免"看起来划算"的陷阱</li>
+                <li>提升盈利能力，为企业创造更大价值</li>
+                <li>更好地与财务部门协作，推动业财融合</li>
+            </ul>
+        </div>
+
+        <h2>二、三大财务报表</h2>
+        <h3>1. 资产负债表（Balance Sheet）</h3>
+        <p><strong>作用：</strong>反映企业某一时点的财务状况</p>
+        <p><strong>核心公式：</strong>资产 = 负债 + 所有者权益</p>
+        
+        <h3>2. 利润表（Income Statement）</h3>
+        <p><strong>作用：</strong>反映企业一段时期的经营成果</p>
+        <p><strong>核心公式：</strong>利润 = 收入 - 成本 - 费用</p>
+        
+        <h3>3. 现金流量表（Cash Flow Statement）</h3>
+        <p><strong>作用：</strong>反映企业现金流入流出情况</p>
+        <p><strong>核心理念：</strong>现金为王！利润只是纸面富贵，现金才是真金白银。</p>
+
+        <h2>三、成本构成</h2>
+        <table>
+            <tr>
+                <th>成本类型</th>
+                <th>定义</th>
+                <th>瓦轴实例</th>
+            </tr>
+            <tr>
+                <td>直接材料</td>
+                <td>构成产品实体的材料</td>
+                <td>轴承钢、保持架材料</td>
+            </tr>
+            <tr>
+                <td>直接人工</td>
+                <td>直接从事生产的工人工资</td>
+                <td>车工、磨工、装配工工资</td>
+            </tr>
+            <tr>
+                <td>制造费用</td>
+                <td>间接生产成本</td>
+                <td>设备折旧、车间管理、水电</td>
+            </tr>
+        </table>
+
+        <h2>四、财务思维三原则</h2>
+        <div class="example-box">
+            <h3>原则1：投入产出思维</h3>
+            <p>每一项支出都要问：能带来什么回报？ROI（投资回报率）是多少？</p>
+            
+            <h3>原则2：风险收益平衡</h3>
+            <p>高收益往往伴随高风险，要在风险可控的前提下追求收益最大化。</p>
+            
+            <h3>原则3：现金流为王</h3>
+            <p>利润是意见，现金流是事实。没有现金流，企业无法生存。</p>
+        </div>
+
+        <h2>五、课后思考</h2>
+        <ol>
+            <li>在您的工作中，哪些决策与财务密切相关？</li>
+            <li>您能举出一个"看起来划算但实际不划算"的例子吗？</li>
+            <li>如何在日常工作中培养财务思维？</li>
+        </ol>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="module2.html" style="display: inline-block; padding: 15px 40px; background: #667eea; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2em;">
+                继续学习：模块2 ABC成本法 →
+            </a>
+        </div>
+    </div>
+</body>
+</html>

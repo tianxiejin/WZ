@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块2：作业成本法（ABC）</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei'; background: #f5f7fa; }
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #667eea; padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { color: #667eea; margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; }
+        h3 { color: #2c3e50; margin-top: 25px; margin-bottom: 15px; }
+        p, li { line-height: 1.8; margin: 10px 0; }
+        ul, ol { margin-left: 30px; }
+        .highlight-box {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+        }
+        .example-box {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196F3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .flow-diagram {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .step {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-content">
+            <div><strong>模块2：作业成本法（ABC）</strong></div>
+            <div class="nav-links">
+                <a href="index.html">🏠 首页</a>
+                <a href="module1.html">← 上一模块</a>
+                <a href="module3.html">下一模块 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>🎯 模块2：作业成本法（Activity-Based Costing, ABC）</h1>
+        
+        <h2>一、什么是ABC成本法？</h2>
+        <div class="highlight-box">
+            <p><strong>核心理念：</strong>产品不消耗资源，作业消耗资源；产品消耗作业。</p>
+            <p><strong>与传统成本法的区别：</strong></p>
+            <ul>
+                <li><strong>传统方法：</strong>按产量或工时简单分摊制造费用</li>
+                <li><strong>ABC方法：</strong>识别具体作业，按作业动因精准分配成本</li>
+            </ul>
+        </div>
+
+        <h2>二、ABC实施四步骤</h2>
+        <div class="flow-diagram">
+            <div class="step">① 识别作业</div>
+            <div style="display: inline-block; font-size: 2em; color: #667eea;">→</div>
+            <div class="step">② 归集成本</div>
+            <div style="display: inline-block; font-size: 2em; color: #667eea;">→</div>
+            <div class="step">③ 确定动因</div>
+            <div style="display: inline-block; font-size: 2em; color: #667eea;">→</div>
+            <div class="step">④ 分配成本</div>
+        </div>
+
+        <h3>步骤详解：</h3>
+        <ol>
+            <li><strong>识别作业：</strong>分析生产流程，识别所有关键作业（如接单、采购、车削、磨削、检验、包装等）</li>
+            <li><strong>归集成本：</strong>将各项资源成本归集到对应作业（人工、设备折旧、能耗等）</li>
+            <li><strong>确定动因：</strong>为每个作业找到最合理的成本动因（如订单数、机时、检验次数等）</li>
+            <li><strong>分配成本：</strong>根据产品实际消耗的作业量，将作业成本分配到产品</li>
+        </ol>
+
+        <h2>三、瓦轴轴承案例</h2>
+        <div class="example-box">
+            <h3>场景：两种轴承产品的成本对比</h3>
+            <p><strong>产品A：</strong>标准圆锥滚子轴承，批量生产，年产10万套</p>
+            <p><strong>产品B：</strong>定制化铁路轴承，小批量，年产2万套</p>
+        </div>
+
+        <h3>传统成本法 vs ABC成本法对比</h3>
+        <table>
+            <tr>
+                <th>项目</th>
+                <th>产品A</th>
+                <th>产品B</th>
+            </tr>
+            <tr>
+                <td><strong>直接成本</strong></td>
+                <td>80元/套</td>
+                <td>120元/套</td>
+            </tr>
+            <tr>
+                <td><strong>传统法制造费用</strong><br>(按工时分摊)</td>
+                <td>20元/套</td>
+                <td>30元/套</td>
+            </tr>
+            <tr>
+                <td><strong>传统法总成本</strong></td>
+                <td>100元/套</td>
+                <td>150元/套</td>
+            </tr>
+            <tr style="background: #ffe6e6;">
+                <td><strong>ABC法制造费用</strong></td>
+                <td>15元/套</td>
+                <td>50元/套</td>
+            </tr>
+            <tr style="background: #ffe6e6;">
+                <td><strong>ABC法总成本</strong></td>
+                <td>95元/套</td>
+                <td>170元/套</td>
+            </tr>
+        </table>
+
+        <h3>差异分析</h3>
+        <div class="highlight-box">
+            <p><strong>关键发现：</strong></p>
+            <ul>
+                <li>产品A（标准件）：传统法<strong>高估</strong>了成本（100元 vs 95元）</li>
+                <li>产品B（定制件）：传统法<strong>低估</strong>了成本（150元 vs 170元）</li>
+            </ul>
+            <p><strong>原因：</strong>产品B虽然工时少，但消耗了大量工程设计、质检、调试等作业，传统方法无法捕捉这些成本。</p>
+        </div>
+
+        <h2>四、ABC的实际应用价值</h2>
+        <table>
+            <tr>
+                <th>应用场景</th>
+                <th>价值</th>
+            </tr>
+            <tr>
+                <td>产品定价</td>
+                <td>基于真实成本定价，避免亏本销售</td>
+            </tr>
+            <tr>
+                <td>产品组合优化</td>
+                <td>识别高利润产品，淘汰亏损产品</td>
+            </tr>
+            <tr>
+                <td>流程改进</td>
+                <td>识别高成本作业，针对性优化</td>
+            </tr>
+            <tr>
+                <td>客户盈利分析</td>
+                <td>识别高价值客户，调整客户策略</td>
+            </tr>
+        </table>
+
+        <h2>五、实施ABC的挑战与对策</h2>
+        <table>
+            <tr>
+                <th>挑战</th>
+                <th>对策</th>
+            </tr>
+            <tr>
+                <td>数据收集难度大</td>
+                <td>借助ERP、MES系统自动采集</td>
+            </tr>
+            <tr>
+                <td>成本动因选择困难</td>
+                <td>先从主要作业入手，逐步细化</td>
+            </tr>
+            <tr>
+                <td>员工抵触情绪</td>
+                <td>加强培训，强调改进而非指责</td>
+            </tr>
+            <tr>
+                <td>维护成本高</td>
+                <td>定期评估，适时调整粒度</td>
+            </tr>
+        </table>
+
+        <h2>六、课后练习</h2>
+        <ol>
+            <li>请列出您所负责业务中的5-10个关键作业</li>
+            <li>为每个作业找到一个合理的成本动因</li>
+            <li>思考：哪些产品可能被传统方法高估或低估了成本？</li>
+        </ol>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="module3.html" style="display: inline-block; padding: 15px 40px; background: #667eea; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2em;">
+                继续学习：模块3 库存成本管理 →
+            </a>
+        </div>
+    </div>
+</body>
+</html>

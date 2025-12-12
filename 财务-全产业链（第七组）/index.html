@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>瓦轴集团降成本课题理论基础知识学习资料</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", SimSun, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-radius: 15px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 4px solid #667eea;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            color: #7f8c8d;
+            margin-top: 15px;
+        }
+
+        .header .meta {
+            font-size: 16px;
+            color: #95a5a6;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #3498db;
+        }
+
+        .intro h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .intro p {
+            line-height: 2;
+            text-indent: 2em;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .chapters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .chapter-card {
+            background: white;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .chapter-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .chapter-desc {
+            color: #7f8c8d;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .chapter-topics {
+            color: #3498db;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .chapter-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .chapter-link:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+            transform: scale(1.05);
+        }
+
+        .guide {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+            border-left: 5px solid #ffc107;
+        }
+
+        .guide h2 {
+            color: #d68910;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .guide-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+
+        .guide-item h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .guide-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .guide-item li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .guide-item li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px solid #ecf0f1;
+            text-align: center;
+            color: #7f8c8d;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            .header h1 {
+                font-size: 32px;
+            }
+            .chapters {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>瓦轴集团全产业链降成本管控课题</h1>
+            <div class="subtitle">理论基础知识学习资料</div>
+            <div class="meta">
+                课题单位：瓦轴集团 × 东北财经大学<br>
+                编制日期：2024年 | 版本：V2.0
+            </div>
+        </div>
+
+        <div class="intro">
+            <h2>📚 学习资料说明</h2>
+            <p>本套学习资料是为"基于工艺优化的全产业链降成本管控"课题专门编制的理论基础知识体系。内容涵盖管理会计、财务会计、成本管理、生产运营、供应链管理、质量管理、战略管理、绩效管理等八大领域，以及持续改进方法论和实践应用指南，为课题组成员提供系统的理论支撑和实践指导。</p>
+            <p>每个章节都独立成文，便于分别学习、打印和查阅。建议按照推荐的学习路径循序渐进学习，并在实践中不断深化理解。</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">章节模块</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">核心理论方法</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">实战案例</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">管理工具</div>
+            </div>
+        </div>
+
+        <div class="guide">
+            <h2>🎯 学习路径建议</h2>
+            <div class="guide-grid">
+                <div class="guide-item">
+                    <h3>第一阶段（1-2周）：理论学习</h3>
+                    <ul>
+                        <li>学习第1-3章（管理会计、财务会计、成本管理）</li>
+                        <li>重点掌握：目标成本法、ABC、价值工程</li>
+                        <li>方式：集中培训 + 自学</li>
+                        <li>考核：理论测试</li>
+                    </ul>
+                </div>
+                <div class="guide-item">
+                    <h3>第二阶段（2-3周）：方法掌握</h3>
+                    <ul>
+                        <li>学习第4-8章（预算、投资、运营、供应链、质量）</li>
+                        <li>重点掌握：精益生产、TOC、SPC</li>
+                        <li>方式：实操演练 + 案例分析</li>
+                        <li>考核：实操考核</li>
+                    </ul>
+                </div>
+                <div class="guide-item">
+                    <h3>第三阶段（持续）：实践应用</h3>
+                    <ul>
+                        <li>学习第9-12章（战略、绩效、改进、应用）</li>
+                        <li>在课题实施中应用所学理论</li>
+                        <li>定期研讨、经验分享</li>
+                        <li>考核：项目成果</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; color: #2c3e50; margin: 40px 0 30px 0; font-size: 28px;">📖 章节目录</h2>
+
+        <div class="chapters">
+            <div class="chapter-card" onclick="window.location.href='第1-3章.html#chapter1'">
+                <span class="chapter-number">第一章</span>
+                <div class="chapter-title">管理会计理论基础</div>
+                <div class="chapter-desc">系统学习管理会计的核心方法，为成本管控提供理论基础。</div>
+                <div class="chapter-topics">
+                    📌 目标成本法 | 作业成本法 | 价值工程 | 标准成本法 | 本量利分析 | 变动成本法
+                </div>
+                <a href="第1-3章.html#chapter1" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第1-3章.html#chapter2'">
+                <span class="chapter-number">第二章</span>
+                <div class="chapter-title">财务会计理论基础</div>
+                <div class="chapter-desc">掌握成本核算方法和财务会计基本原理。</div>
+                <div class="chapter-topics">
+                    📌 成本核算方法 | 分步法详解 | 成本报表体系 | 料工费分析 | 会计科目设置
+                </div>
+                <a href="第1-3章.html#chapter2" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第1-3章.html#chapter3'">
+                <span class="chapter-number">第三章</span>
+                <div class="chapter-title">成本管理理论</div>
+                <div class="chapter-desc">全面成本管理体系和高级成本管理方法。</div>
+                <div class="chapter-topics">
+                    📌 全面成本管理 | 约束理论TOC | 质量成本管理 | 战略成本管理 | 价值链分析
+                </div>
+                <a href="第1-3章.html#chapter3" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第4-6章.html#chapter4'">
+                <span class="chapter-number">第四章</span>
+                <div class="chapter-title">预算管理理论</div>
+                <div class="chapter-desc">建立全面预算管理体系，实现成本事前控制。</div>
+                <div class="chapter-topics">
+                    📌 全面预算管理 | 预算编制方法 | 零基预算 | 滚动预算 | 预算执行控制
+                </div>
+                <a href="第4-6章.html#chapter4" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第4-6章.html#chapter5'">
+                <span class="chapter-number">第五章</span>
+                <div class="chapter-title">投资决策理论</div>
+                <div class="chapter-desc">科学评价降本项目和技术改造的经济效益。</div>
+                <div class="chapter-topics">
+                    📌 货币时间价值 | 净现值法NPV | 内部收益率IRR | 投资回收期 | 敏感性分析
+                </div>
+                <a href="第4-6章.html#chapter5" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第4-6章.html#chapter6'">
+                <span class="chapter-number">第六章</span>
+                <div class="chapter-title">生产运营管理理论</div>
+                <div class="chapter-desc">精益生产和现场管理方法，提升效率降低成本。</div>
+                <div class="chapter-topics">
+                    📌 精益生产 | 七大浪费 | 设备综合效率OEE | 标准工时管理 | TPM | 快速换模SMED
+                </div>
+                <a href="第4-6章.html#chapter6" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第7-9章.html#chapter7'">
+                <span class="chapter-number">第七章</span>
+                <div class="chapter-title">供应链管理理论</div>
+                <div class="chapter-desc">优化采购、库存和物流，降低供应链成本。</div>
+                <div class="chapter-topics">
+                    📌 采购TCO模型 | 供应商管理 | 经济订货批量EOQ | JIT准时化 | VMI | 牛鞭效应
+                </div>
+                <a href="第7-9章.html#chapter7" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第7-9章.html#chapter8'">
+                <span class="chapter-number">第八章</span>
+                <div class="chapter-title">质量管理理论</div>
+                <div class="chapter-desc">通过质量改进降低质量成本，提升产品竞争力。</div>
+                <div class="chapter-topics">
+                    📌 统计过程控制SPC | 六西格玛 | DMAIC | 防错法 | 过程能力分析Cpk | 控制图
+                </div>
+                <a href="第7-9章.html#chapter8" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第7-9章.html#chapter9'">
+                <span class="chapter-number">第九章</span>
+                <div class="chapter-title">战略管理理论</div>
+                <div class="chapter-desc">将成本管理与企业战略相结合，构建竞争优势。</div>
+                <div class="chapter-topics">
+                    📌 波特竞争战略 | 成本领先战略 | SWOT分析 | 平衡计分卡BSC | 战略地图
+                </div>
+                <a href="第7-9章.html#chapter9" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第10-12章.html#chapter10'">
+                <span class="chapter-number">第十章</span>
+                <div class="chapter-title">绩效管理理论</div>
+                <div class="chapter-desc">建立科学的绩效考核体系，驱动成本改进。</div>
+                <div class="chapter-topics">
+                    📌 关键绩效指标KPI | SMART原则 | 目标管理MBO | 绩效考核方法 | 激励机制
+                </div>
+                <a href="第10-12章.html#chapter10" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第10-12章.html#chapter11'">
+                <span class="chapter-number">第十一章</span>
+                <div class="chapter-title">持续改进方法论</div>
+                <div class="chapter-desc">建立持续改进机制，形成降本增效长效机制。</div>
+                <div class="chapter-topics">
+                    📌 PDCA循环 | Kaizen改善 | 5S现场管理 | 8D问题解决 | 根本原因分析
+                </div>
+                <a href="第10-12章.html#chapter11" class="chapter-link">开始学习 →</a>
+            </div>
+
+            <div class="chapter-card" onclick="window.location.href='第10-12章.html#chapter12'">
+                <span class="chapter-number">第十二章</span>
+                <div class="chapter-title">实践应用指南</div>
+                <div class="chapter-desc">理论联系实际，提供具体的实施步骤和工具模板。</div>
+                <div class="chapter-topics">
+                    📌 成本模型建立 | 目标成本制定 | 工艺优化实施 | 案例分析方法 | 工具模板
+                </div>
+                <a href="第10-12章.html#chapter12" class="chapter-link">开始学习 →</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>瓦轴集团 × 东北财经大学</strong></p>
+            <p>基于工艺优化的全产业链降成本管控课题组</p>
+            <p style="margin-top: 15px; font-size: 14px;">理论基础知识学习资料 | 版本 V2.0 | 2024年</p>
+            <p style="margin-top: 10px; font-size: 13px; color: #95a5a6;">本资料供课题组内部学习使用</p>
+        </div>
+    </div>
+</body>
+</html>

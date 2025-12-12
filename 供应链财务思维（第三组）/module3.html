@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块3：库存成本管理</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Microsoft YaHei'; background: #f5f7fa; }
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #667eea; padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { color: #667eea; margin-top: 40px; margin-bottom: 20px; font-size: 1.8em; }
+        h3 { color: #2c3e50; margin-top: 25px; margin-bottom: 15px; }
+        p, li { line-height: 1.8; margin: 10px 0; }
+        ul, ol { margin-left: 30px; }
+        .highlight-box {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #28a745;
+        }
+        .warning-box {
+            background: #f8d7da;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #dc3545;
+        }
+        .example-box {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2196F3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .formula {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="nav-content">
+            <div><strong>模块3：库存成本管理</strong></div>
+            <div class="nav-links">
+                <a href="index.html">🏠 首页</a>
+                <a href="module2.html">← 上一模块</a>
+                <a href="module4.html">下一模块 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>📦 模块3：库存成本管理</h1>
+        
+        <h2>一、库存的双面性</h2>
+        <div class="highlight-box">
+            <h3>✅ 库存的好处</h3>
+            <ul>
+                <li>应对需求波动，保证供应连续性</li>
+                <li>获得批量采购折扣</li>
+                <li>平滑生产，提高设备利用率</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <h3>❌ 库存的隐性成本</h3>
+            <ul>
+                <li><strong>资金占用：</strong>1亿库存 = 500-1000万年利息成本</li>
+                <li><strong>仓储成本：</strong>仓租、人工、设备、水电</li>
+                <li><strong>贬值风险：</strong>技术更新、市场变化、物料老化</li>
+                <li><strong>管理成本：</strong>盘点、搬运、信息系统</li>
+            </ul>
+        </div>
+
+        <h2>二、库存总成本构成</h2>
+        <table>
+            <tr>
+                <th>成本类型</th>
+                <th>包含内容</th>
+                <th>典型比例</th>
+            </tr>
+            <tr>
+                <td>持有成本</td>
+                <td>资金占用、仓储、贬值、保险</td>
+                <td>15-30%/年</td>
+            </tr>
+            <tr>
+                <td>订购成本</td>
+                <td>采购人员、物流运输、质检验收</td>
+                <td>200-500元/次</td>
+            </tr>
+            <tr>
+                <td>缺货成本</td>
+                <td>停工损失、加急采购、客户流失</td>
+                <td>难以量化，影响巨大</td>
+            </tr>
+        </table>
+
+        <h2>三、经济订货批量（EOQ）模型</h2>
+        <div class="formula">
+            EOQ = √(2 × D × S / H)
+        </div>
+        <p><strong>参数说明：</strong></p>
+        <ul>
+            <li><strong>D：</strong>年需求量</li>
+            <li><strong>S：</strong>单次订货成本</li>
+            <li><strong>H：</strong>单位持有成本（年）</li>
+        </ul>
+
+        <div class="example-box">
+            <h3>📌 瓦轴案例：轴承钢采购优化</h3>
+            <p><strong>现状数据：</strong></p>
+            <ul>
+                <li>年需求量（D）= 10,000吨</li>
+                <li>单价 = 5,000元/吨</li>
+                <li>单次订货成本（S）= 2,000元（包括运输、验收等）</li>
+                <li>持有成本率 = 20%/年，即 H = 5,000 × 20% = 1,000元/吨/年</li>
+            </ul>
+
+            <p><strong>计算EOQ：</strong></p>
+            <p>EOQ = √(2 × 10,000 × 2,000 / 1,000) = √40,000 = <strong>200吨</strong></p>
+
+            <p><strong>最优策略：</strong></p>
+            <ul>
+                <li>每次订货200吨</li>
+                <li>年订货次数 = 10,000 / 200 = 50次</li>
+                <li>平均库存 = 200 / 2 = 100吨</li>
+            </ul>
+
+            <p><strong>成本对比：</strong></p>
+            <table style="margin-top: 15px;">
+                <tr>
+                    <th>方案</th>
+                    <th>批量</th>
+                    <th>订货成本</th>
+                    <th>持有成本</th>
+                    <th>总成本</th>
+                </tr>
+                <tr>
+                    <td>原方案（每次100吨）</td>
+                    <td>100吨</td>
+                    <td>20万</td>
+                    <td>5万</td>
+                    <td>25万</td>
+                </tr>
+                <tr style="background: #d4edda;">
+                    <td>EOQ方案（每次200吨）</td>
+                    <td>200吨</td>
+                    <td>10万</td>
+                    <td>10万</td>
+                    <td>20万</td>
+                </tr>
+                <tr>
+                    <td><strong>节省</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><strong>5万/年</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>四、安全库存设定</h2>
+        <div class="formula">
+            安全库存 = 服务水平系数 × √(采购提前期) × 需求标准差
+        </div>
+
+        <table>
+            <tr>
+                <th>服务水平</th>
+                <th>缺货概率</th>
+                <th>系数（Z值）</th>
+                <th>适用场景</th>
+            </tr>
+            <tr>
+                <td>90%</td>
+                <td>10%</td>
+                <td>1.28</td>
+                <td>常规物料</td>
+            </tr>
+            <tr>
+                <td>95%</td>
+                <td>5%</td>
+                <td>1.65</td>
+                <td>重要物料</td>
+            </tr>
+            <tr>
+                <td>99%</td>
+                <td>1%</td>
+                <td>2.33</td>
+                <td>关键物料</td>
+            </tr>
+        </table>
+
+        <h2>五、ABC分类管理</h2>
+        <table>
+            <tr>
+                <th>类别</th>
+                <th>物料占比</th>
+                <th>价值占比</th>
+                <th>管理策略</th>
+            </tr>
+            <tr>
+                <td><strong>A类</strong></td>
+                <td>10-20%</td>
+                <td>70-80%</td>
+                <td>严格控制、每日监控、JIT供应</td>
+            </tr>
+            <tr>
+                <td><strong>B类</strong></td>
+                <td>30%</td>
+                <td>15-20%</td>
+                <td>定期审核、适度库存</td>
+            </tr>
+            <tr>
+                <td><strong>C类</strong></td>
+                <td>50-60%</td>
+                <td>5-10%</td>
+                <td>简化管理、批量采购</td>
+            </tr>
+        </table>
+
+        <h2>六、先进库存管理模式</h2>
+        <h3>1. JIT（Just In Time）准时制生产</h3>
+        <p><strong>核心：</strong>在需要的时候，按需要的量，生产所需的产品</p>
+        <ul>
+            <li>消除浪费，降低库存</li>
+            <li>要求供应链高度协同</li>
+            <li>适用于需求稳定、供应可靠的场景</li>
+        </ul>
+
+        <h3>2. VMI（Vendor Managed Inventory）供应商管理库存</h3>
+        <p><strong>核心：</strong>供应商根据实时库存数据，主动补货</p>
+        <ul>
+            <li>转移库存持有责任</li>
+            <li>提高供应响应速度</li>
+            <li>需要信息系统支撑</li>
+        </ul>
+
+        <h2>七、实战建议</h2>
+        <ol>
+            <li><strong>定期盘点：</strong>A类每周、B类每月、C类每季度</li>
+            <li><strong>呆滞料处理：</strong>超过6个月无动销，启动清理流程</li>
+            <li><strong>数据驱动：</strong>建立库存看板，实时监控周转率</li>
+            <li><strong>协同优化：</strong>与供应商、生产、销售联动，全链优化</li>
+        </ol>
+
+        <h2>八、课后思考</h2>
+        <ol>
+            <li>计算您负责物料的EOQ，看看能否优化订货策略</li>
+            <li>识别3个高价值A类物料，制定重点管控方案</li>
+            <li>分析您的呆滞库存，提出处理建议</li>
+        </ol>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="module4.html" style="display: inline-block; padding: 15px 40px; background: #667eea; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2em;">
+                继续学习：模块4 TCO全生命周期成本 →
+            </a>
+        </div>
+    </div>
+</body>
+</html>
