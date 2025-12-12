@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块1：基础财务知识</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 60px;
+            position: relative;
+        }
+
+        .nav-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 15px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-back:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .module-number {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .header-desc {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 50px 60px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 22px;
+            margin-top: 30px;
+            margin-bottom: 18px;
+            padding-left: 15px;
+            border-left: 4px solid #764ba2;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 16px;
+            color: #444;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e7ff 100%);
+            border-left: 5px solid #667eea;
+            padding: 25px 30px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(102,126,234,0.1);
+        }
+
+        .highlight-box h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 5px solid #4facfe;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .example-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .example-box h4 {
+            color: #28a745;
+            margin-top: 0;
+        }
+
+        ul {
+            margin: 15px 0 15px 40px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: #555;
+        }
+
+        ol {
+            margin: 15px 0 15px 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        table tr:hover {
+            background-color: #e8f4f8;
+        }
+
+        .formula-box {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: "Courier New", monospace;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .formula-title {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: "Microsoft YaHei";
+        }
+
+        .key-concept {
+            background: #fff9e6;
+            border: 2px dashed #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .key-concept strong {
+            color: #ff6b6b;
+            font-size: 17px;
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .comparison-item {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .comparison-item h4 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+        }
+
+        .comparison-item:nth-child(1) {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+        }
+
+        .comparison-item:nth-child(1) h4 {
+            color: #2196f3;
+            border-color: #2196f3;
+        }
+
+        .comparison-item:nth-child(2) {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+        }
+
+        .comparison-item:nth-child(2) h4 {
+            color: #9c27b0;
+            border-color: #9c27b0;
+        }
+
+        .footer-nav {
+            background: #f8f9fa;
+            padding: 30px 60px;
+            border-top: 3px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-nav {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+        }
+
+        @media (max-width: 768px) {
+            .content, .header, .footer-nav {
+                padding: 30px 25px;
+            }
+
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="财务知识讲义-引导页.html" class="nav-back">← 返回引导页</a>
+            <div class="module-number">MODULE 01</div>
+            <h1>基础财务知识</h1>
+            <div class="header-desc">Foundation of Financial Management</div>
+        </div>
+
+        <div class="content">
+            <div class="highlight-box">
+                <h4>📌 学习目标</h4>
+                <p>通过本模块的学习,您将掌握:</p>
+                <ul style="margin-left: 20px;">
+                    <li>理解财务管理的基本概念和目标</li>
+                    <li>掌握成本的分类方法及各类成本的特性</li>
+                    <li>了解制造业成本构成和核算流程</li>
+                    <li>建立基本的财务思维,为后续学习作业成本法打下基础</li>
+                </ul>
+            </div>
+
+            <h2>一、财务管理基本概念</h2>
+
+            <h3>1.1 什么是财务管理?</h3>
+
+            <div class="key-concept">
+                <p><strong>财务管理</strong>是指企业组织资金运动,处理财务关系的一项经济管理工作。简单来说,就是管好企业的钱,让每一分钱都花得值,赚得更多。</p>
+            </div>
+
+            <p>对于瓦轴集团的智能化升级项目,财务管理主要关注:</p>
+            <ul>
+                <li><strong>投资决策:</strong>智能化设备要不要买?买多少?什么时候买?</li>
+                <li><strong>成本控制:</strong>智能化升级的总成本是多少?如何降低成本?</li>
+                <li><strong>效益分析:</strong>投入这么多钱,能带来多少回报?什么时候能回本?</li>
+                <li><strong>风险管理:</strong>有哪些潜在风险?如何应对?</li>
+            </ul>
+
+            <h3>1.2 财务管理的目标</h3>
+
+            <table>
+                <tr>
+                    <th width="20%">目标类型</th>
+                    <th width="35%">具体内容</th>
+                    <th width="45%">在智能化升级中的体现</th>
+                </tr>
+                <tr>
+                    <td><strong>利润最大化</strong></td>
+                    <td>追求企业利润的最大化</td>
+                    <td>通过智能化提高生产效率,降低成本,增加利润</td>
+                </tr>
+                <tr>
+                    <td><strong>企业价值最大化</strong></td>
+                    <td>提升企业的长期价值</td>
+                    <td>智能化升级提升技术能力和市场竞争力,增加企业价值</td>
+                </tr>
+                <tr>
+                    <td><strong>股东财富最大化</strong></td>
+                    <td>为股东创造更多财富</td>
+                    <td>合理的投资回报率,确保股东利益</td>
+                </tr>
+                <tr>
+                    <td><strong>可持续发展</strong></td>
+                    <td>平衡短期利益与长期发展</td>
+                    <td>智能化是长期战略,需要平衡当前投入与未来收益</td>
+                </tr>
+            </table>
+
+            <h2>二、成本的分类与特性</h2>
+
+            <div class="info-box">
+                <p><strong>为什么要对成本进行分类?</strong></p>
+                <p>不同类型的成本有不同的性质和管理方法。准确分类有助于:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>更精确地核算产品成本</li>
+                    <li>找到成本控制的关键点</li>
+                    <li>为决策提供准确的成本信息</li>
+                </ul>
+            </div>
+
+            <h3>2.1 按成本性态分类</h3>
+
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4>固定成本 (Fixed Cost)</h4>
+                    <p><strong>定义:</strong>在一定时期和业务量范围内,成本总额不随业务量变化而变化的成本。</p>
+                    <p><strong>轴承制造中的例子:</strong></p>
+                    <ul style="margin-left: 20px; font-size: 14px;">
+                        <li>厂房租金或折旧</li>
+                        <li>管理人员工资</li>
+                        <li>设备固定折旧</li>
+                        <li>智能化系统年度维护费</li>
+                    </ul>
+                    <p><strong>特点:</strong>生产100个轴承和生产1000个轴承,这些成本基本不变。</p>
+                </div>
+
+                <div class="comparison-item">
+                    <h4>变动成本 (Variable Cost)</h4>
+                    <p><strong>定义:</strong>成本总额随业务量变化而成正比例变化的成本。</p>
+                    <p><strong>轴承制造中的例子:</strong></p>
+                    <ul style="margin-left: 20px; font-size: 14px;">
+                        <li>直接材料(钢材、轴承钢等)</li>
+                        <li>计件工资</li>
+                        <li>加工用电</li>
+                        <li>包装材料</li>
+                    </ul>
+                    <p><strong>特点:</strong>生产越多,这些成本就越高,基本呈线性关系。</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ 半变动成本(混合成本)</h4>
+                <p>有些成本既有固定部分又有变动部分,称为半变动成本。例如:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>电费:</strong>基本电费(固定)+ 用电量费用(变动)</li>
+                    <li><strong>设备维修费:</strong>日常保养(固定)+ 维修配件(随使用强度变化)</li>
+                    <li><strong>销售人员报酬:</strong>基本工资(固定)+ 销售提成(变动)</li>
+                </ul>
+            </div>
+
+            <h3>2.2 按成本与产品的关系分类</h3>
+
+            <table>
+                <tr>
+                    <th width="20%">成本类型</th>
+                    <th width="30%">定义</th>
+                    <th width="25%">轴承制造实例</th>
+                    <th width="25%">核算特点</th>
+                </tr>
+                <tr>
+                    <td><strong>直接成本</strong></td>
+                    <td>能够直接计入某种产品成本的费用</td>
+                    <td>
+                        • 轴承钢材<br>
+                        • 生产工人工资<br>
+                        • 特定型号的模具
+                    </td>
+                    <td>可直接追溯到具体产品</td>
+                </tr>
+                <tr>
+                    <td><strong>间接成本</strong></td>
+                    <td>不能直接计入某种产品,需要分配的费用</td>
+                    <td>
+                        • 车间照明电费<br>
+                        • 车间管理人员工资<br>
+                        • 设备折旧<br>
+                        • 质检部门费用
+                    </td>
+                    <td>需要选择分配标准进行分摊</td>
+                </tr>
+            </table>
+
+            <div class="example-box">
+                <h4>💡 实例说明:直接成本 vs 间接成本</h4>
+                <p><strong>场景:</strong>瓦轴集团同时生产A型号大型轴承和B型号小型轴承。</p>
+                <p><strong>直接成本:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>每个A型号轴承使用5公斤特定规格钢材 → 可直接计入A产品成本</li>
+                    <li>每个B型号轴承使用1公斤另一规格钢材 → 可直接计入B产品成本</li>
+                </ul>
+                <p><strong>间接成本:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>车间主任的月工资10万元 → 如何分配到A和B产品?</li>
+                    <li>智能检测设备的折旧费 → 两种产品都用,怎么分摊?</li>
+                </ul>
+                <p><strong>这就是为什么需要作业成本法!</strong>传统方法简单按产量或工时分摊可能不公平,作业成本法能更准确地分配间接成本。</p>
+            </div>
+
+            <h3>2.3 按成本与决策的关系分类</h3>
+
+            <h4>相关成本与无关成本</h4>
+            <p>在进行智能化升级决策时,需要区分哪些成本是相关的,哪些是无关的:</p>
+
+            <table>
+                <tr>
+                    <th width="25%">成本类型</th>
+                    <th width="35%">定义与特点</th>
+                    <th width="40%">智能化升级决策中的例子</th>
+                </tr>
+                <tr>
+                    <td><strong>相关成本</strong><br>(Relevant Cost)</td>
+                    <td>会因决策方案不同而改变的成本,是决策需要考虑的成本</td>
+                    <td>
+                        • 新设备采购成本<br>
+                        • 智能系统开发费用<br>
+                        • 员工培训费用<br>
+                        • 升级后的运维成本
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>无关成本</strong><br>(Irrelevant Cost)</td>
+                    <td>无论采取哪种方案都会发生的成本,决策时可以忽略</td>
+                    <td>
+                        • 现有厂房折旧(无论是否升级都要承担)<br>
+                        • 已签订的不可撤销的合同费用<br>
+                        • 历史上已发生的研发费用(沉没成本)
+                    </td>
+                </tr>
+            </table>
+
+            <div class="key-concept">
+                <p><strong>沉没成本 (Sunk Cost):</strong>已经发生且无法收回的成本。</p>
+                <p><strong>决策原则:</strong>沉没成本不应影响当前决策!过去已经花的钱收不回来了,决策时只考虑未来的成本和收益。</p>
+                <p><strong>例子:</strong>如果3年前投入500万研发某项技术但失败了,这500万就是沉没成本。现在决策是否采用新技术时,不应考虑这500万,而应只看新方案的成本和效益。</p>
+            </div>
+
+            <h4>机会成本</h4>
+            <div class="info-box">
+                <p><strong>机会成本 (Opportunity Cost):</strong>为了得到某种东西而放弃的其他选择的最大价值。</p>
+                <p><strong>智能化升级中的机会成本:</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>投资5000万进行智能化升级,这5000万本可以用来扩建新厂房,预期收益率15% → 放弃的15%收益就是机会成本</li>
+                    <li>技术团队花6个月实施智能化项目,这6个月本可以开发新产品 → 放弃的新产品收益是机会成本</li>
+                </ul>
+                <p><strong>重要性:</strong>虽然机会成本不在财务报表中体现,但在决策时必须考虑!</p>
+            </div>
+
+            <h2>三、制造业成本构成</h2>
+
+            <h3>3.1 产品成本的基本构成</h3>
+
+            <p>制造业产品成本通常由三个基本要素构成:</p>
+
+            <table>
+                <tr>
+                    <th width="20%">成本要素</th>
+                    <th width="30%">定义</th>
+                    <th width="25%">轴承制造实例</th>
+                    <th width="25%">占比(参考)</th>
+                </tr>
+                <tr>
+                    <td><strong>直接材料</strong><br>(Direct Materials)</td>
+                    <td>构成产品实体的主要原材料及辅助材料</td>
+                    <td>
+                        • 轴承钢<br>
+                        • 滚珠/滚子<br>
+                        • 保持架材料<br>
+                        • 密封圈/防尘盖
+                    </td>
+                    <td>50-65%</td>
+                </tr>
+                <tr>
+                    <td><strong>直接人工</strong><br>(Direct Labor)</td>
+                    <td>直接从事产品生产的工人工资及福利</td>
+                    <td>
+                        • 车床操作工工资<br>
+                        • 磨削工工资<br>
+                        • 装配工工资<br>
+                        • 热处理工工资
+                    </td>
+                    <td>10-20%</td>
+                </tr>
+                <tr>
+                    <td><strong>制造费用</strong><br>(Manufacturing Overhead)</td>
+                    <td>为生产产品而发生的各项间接费用</td>
+                    <td>
+                        • 设备折旧<br>
+                        • 车间管理人员工资<br>
+                        • 水电费<br>
+                        • 维修费<br>
+                        • 质检费用
+                    </td>
+                    <td>20-35%</td>
+                </tr>
+            </table>
+
+            <div class="formula-box">
+                <div class="formula-title">产品成本计算公式</div>
+                产品成本 = 直接材料 + 直接人工 + 制造费用
+            </div>
+
+            <h3>3.2 智能化升级对成本结构的影响</h3>
+
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4>传统制造模式</h4>
+                    <ul style="font-size: 14px; margin-left: 20px;">
+                        <li><strong>直接材料:</strong>60% (浪费较多)</li>
+                        <li><strong>直接人工:</strong>25% (人工密集)</li>
+                        <li><strong>制造费用:</strong>15% (相对较低)</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-size: 14px;"><strong>特点:</strong>人工成本高,材料利用率低,制造费用占比小</p>
+                </div>
+
+                <div class="comparison-item">
+                    <h4>智能化制造模式</h4>
+                    <ul style="font-size: 14px; margin-left: 20px;">
+                        <li><strong>直接材料:</strong>55% (精准加工,减少浪费)</li>
+                        <li><strong>直接人工:</strong>10% (自动化替代)</li>
+                        <li><strong>制造费用:</strong>35% (设备折旧、系统运维增加)</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-size: 14px;"><strong>特点:</strong>人工成本大幅降低,制造费用占比显著提升,成本结构发生根本变化</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ 重要启示</h4>
+                <p>智能化升级后,制造费用占比大幅提升!这意味着:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>传统的人工工时分配法不再适用:</strong>人工少了,按工时分摊制造费用会严重失真</li>
+                    <li><strong>需要更精细的成本分配方法:</strong>这正是作业成本法(ABC)的用武之地!</li>
+                    <li><strong>成本管理重点转移:</strong>从控制人工转向设备效率、能源管理、系统优化</li>
+                </ul>
+            </div>
+
+            <h3>3.3 期间费用</h3>
+
+            <p>除了产品成本,企业还有一些不计入产品成本,直接计入当期损益的费用:</p>
+
+            <table>
+                <tr>
+                    <th width="20%">费用类型</th>
+                    <th width="40%">包含内容</th>
+                    <th width="40%">智能化升级相关费用</th>
+                </tr>
+                <tr>
+                    <td><strong>销售费用</strong></td>
+                    <td>销售商品和材料、提供劳务过程中发生的费用</td>
+                    <td>智能化产品的市场推广费、展会费用</td>
+                </tr>
+                <tr>
+                    <td><strong>管理费用</strong></td>
+                    <td>企业行政管理部门为组织和管理生产经营活动而发生的费用</td>
+                    <td>智能化战略咨询费、高管培训费、管理系统升级费</td>
+                </tr>
+                <tr>
+                    <td><strong>财务费用</strong></td>
+                    <td>为筹集生产经营所需资金而发生的费用</td>
+                    <td>智能化项目贷款利息、融资租赁费用</td>
+                </tr>
+                <tr>
+                    <td><strong>研发费用</strong></td>
+                    <td>企业研究与开发活动发生的费用</td>
+                    <td>智能制造技术研发、工艺创新费用</td>
+                </tr>
+            </table>
+
+            <h2>四、成本核算基本流程</h2>
+
+            <h3>4.1 成本核算的基本程序</h3>
+
+            <p>制造业成本核算遵循以下基本流程:</p>
+
+            <div style="background: white; border: 2px solid #667eea; border-radius: 10px; padding: 30px; margin: 25px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div style="text-align: center; flex: 1; min-width: 150px; margin: 10px;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; width: 60px; height: 60px; line-height: 60px; margin: 0 auto 10px; font-size: 24px; font-weight: bold;">1</div>
+                        <div style="font-weight: 600; color: #333; margin-bottom: 5px;">费用汇集</div>
+                        <div style="font-size: 13px; color: #666;">收集所有生产费用</div>
+                    </div>
+                    <div style="color: #667eea; font-size: 24px; margin: 0 10px;">→</div>
+                    <div style="text-align: center; flex: 1; min-width: 150px; margin: 10px;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; width: 60px; height: 60px; line-height: 60px; margin: 0 auto 10px; font-size: 24px; font-weight: bold;">2</div>
+                        <div style="font-weight: 600; color: #333; margin-bottom: 5px;">费用分配</div>
+                        <div style="font-size: 13px; color: #666;">按一定标准分配</div>
+                    </div>
+                    <div style="color: #667eea; font-size: 24px; margin: 0 10px;">→</div>
+                    <div style="text-align: center; flex: 1; min-width: 150px; margin: 10px;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; width: 60px; height: 60px; line-height: 60px; margin: 0 auto 10px; font-size: 24px; font-weight: bold;">3</div>
+                        <div style="font-weight: 600; color: #333; margin-bottom: 5px;">费用归集</div>
+                        <div style="font-size: 13px; color: #666;">归集到各产品</div>
+                    </div>
+                    <div style="color: #667eea; font-size: 24px; margin: 0 10px;">→</div>
+                    <div style="text-align: center; flex: 1; min-width: 150px; margin: 10px;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 50%; width: 60px; height: 60px; line-height: 60px; margin: 0 auto 10px; font-size: 24px; font-weight: bold;">4</div>
+                        <div style="font-weight: 600; color: #333; margin-bottom: 5px;">成本计算</div>
+                        <div style="font-size: 13px; color: #666;">计算单位成本</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>4.2 传统成本核算方法的局限性</h3>
+
+            <div class="example-box">
+                <h4>💡 案例:为什么传统方法不适合智能化制造?</h4>
+                <p><strong>场景:</strong>瓦轴集团某车间生产两种产品:</p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>产品A:</strong>大批量标准轴承,月产10000件,使用智能生产线</li>
+                    <li><strong>产品B:</strong>小批量定制轴承,月产200件,需要频繁调整和检测</li>
+                </ul>
+
+                <p><strong>当月制造费用:</strong>车间管理费50万、设备折旧80万、质检费30万,合计160万</p>
+
+                <p><strong>传统方法:</strong>按产量分摊</p>
+                <ul style="margin-left: 20px;">
+                    <li>产品A分摊: 160万 × (10000/10200) = 156.86万 → 单位15.69元</li>
+                    <li>产品B分摊: 160万 × (200/10200) = 3.14万 → 单位157元</li>
+                </ul>
+
+                <p><strong>问题:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>产品B需要频繁调整设备、多次质检,实际消耗资源远超产品A</li>
+                    <li>简单按产量分摊,严重低估了产品B的成本</li>
+                    <li>可能导致产品B定价过低,亏本销售而不自知!</li>
+                </ul>
+
+                <p><strong>解决方案:</strong>使用作业成本法,识别不同的成本动因(模块2将详细讲解)</p>
+            </div>
+
+            <h2>五、价值链分析基础</h2>
+
+            <h3>5.1 价值链概念</h3>
+
+            <div class="key-concept">
+                <p><strong>价值链(Value Chain):</strong>企业创造价值的一系列相互关联的活动。从原材料采购到最终产品交付给客户,每个环节都在增加产品的价值。</p>
+            </div>
+
+            <p><strong>轴承制造的价值链:</strong></p>
+
+            <div style="background: linear-gradient(to right, #e3f2fd, #f3e5f5); border-radius: 10px; padding: 25px; margin: 20px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div style="text-align: center; flex: 1; min-width: 100px;">
+                        <div style="background: #2196f3; color: white; padding: 15px 10px; border-radius: 8px; font-size: 14px; font-weight: 600;">采购</div>
+                        <div style="font-size: 12px; color: #666; margin-top: 5px;">钢材采购</div>
+                    </div>
+                    <div style="font-size: 20px; color: #2196f3;">→</div>
+                    <div style="text-align: center; flex: 1; min-width: 100px;">
+                        <div style="background: #9c27b0; color: white; padding: 15px 10px; border-radius: 8px; font-size: 14px; font-weight: 600;">生产</div>
+                        <div style="font-size: 12px; color: #666; margin-top: 5px;">加工制造</div>
+                    </div>
+                    <div style="font-size: 20px; color: #9c27b0;">→</div>
+                    <div style="text-align: center; flex: 1; min-width: 100px;">
+                        <div style="background: #ff9800; color: white; padding: 15px 10px; border-radius: 8px; font-size: 14px; font-weight: 600;">质检</div>
+                        <div style="font-size: 12px; color: #666; margin-top: 5px;">质量检验</div>
+                    </div>
+                    <div style="font-size: 20px; color: #ff9800;">→</div>
+                    <div style="text-align: center; flex: 1; min-width: 100px;">
+                        <div style="background: #4caf50; color: white; padding: 15px 10px; border-radius: 8px; font-size: 14px; font-weight: 600;">仓储</div>
+                        <div style="font-size: 12px; color: #666; margin-top: 5px;">库存管理</div>
+                    </div>
+                    <div style="font-size: 20px; color: #4caf50;">→</div>
+                    <div style="text-align: center; flex: 1; min-width: 100px;">
+                        <div style="background: #f44336; color: white; padding: 15px 10px; border-radius: 8px; font-size: 14px; font-weight: 600;">销售</div>
+                        <div style="font-size: 12px; color: #666; margin-top: 5px;">客户交付</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>5.2 智能化升级的价值创造</h3>
+
+            <table>
+                <tr>
+                    <th width="20%">价值链环节</th>
+                    <th width="40%">智能化改造内容</th>
+                    <th width="40%">价值创造方式</th>
+                </tr>
+                <tr>
+                    <td>采购环节</td>
+                    <td>智能采购系统、供应商协同平台</td>
+                    <td>降低采购成本、减少库存、提高材料质量</td>
+                </tr>
+                <tr>
+                    <td>生产环节</td>
+                    <td>智能生产线、工业机器人、MES系统</td>
+                    <td>提高效率、保证质量稳定性、降低人工成本</td>
+                </tr>
+                <tr>
+                    <td>质检环节</td>
+                    <td>智能检测设备、在线监测系统</td>
+                    <td>提高检测精度和速度、实现全检、减少不良品</td>
+                </tr>
+                <tr>
+                    <td>仓储环节</td>
+                    <td>智能仓储系统、自动化物流</td>
+                    <td>降低仓储成本、提高周转率、减少损耗</td>
+                </tr>
+                <tr>
+                    <td>销售环节</td>
+                    <td>客户关系管理系统、智能订单系统</td>
+                    <td>快速响应、提高客户满意度、增强竞争力</td>
+                </tr>
+            </table>
+
+            <div class="highlight-box">
+                <h4>🎯 价值链分析对成本管理的启示</h4>
+                <ul style="margin-left: 20px;">
+                    <li><strong>全流程视角:</strong>不能只关注生产成本,要关注整个价值链的成本优化</li>
+                    <li><strong>增值与非增值:</strong>识别哪些活动真正创造价值,哪些是浪费(在作业成本法中会详细分析)</li>
+                    <li><strong>协同优化:</strong>智能化升级要考虑各环节的协同,整体优化而非局部优化</li>
+                    <li><strong>战略成本管理:</strong>从战略高度审视成本,不仅要降低成本,更要提升价值</li>
+                </ul>
+            </div>
+
+            <h2>六、本模块小结</h2>
+
+            <div class="highlight-box">
+                <h4>📝 核心要点回顾</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>财务管理目标:</strong>在智能化升级中,要平衡短期成本投入与长期价值创造</li>
+                    <li><strong>成本分类:</strong>
+                        <ul style="margin-top: 8px;">
+                            <li>按性态:固定成本、变动成本、半变动成本</li>
+                            <li>按与产品关系:直接成本、间接成本</li>
+                            <li>按与决策关系:相关成本、无关成本、沉没成本、机会成本</li>
+                        </ul>
+                    </li>
+                    <li><strong>成本构成:</strong>直接材料 + 直接人工 + 制造费用</li>
+                    <li><strong>智能化影响:</strong>成本结构发生重大变化,制造费用占比大幅提升,传统分配方法失效</li>
+                    <li><strong>价值链思维:</strong>全流程视角看待成本,关注价值创造</li>
+                </ol>
+            </div>
+
+            <div class="info-box">
+                <h4>💪 学习检验</h4>
+                <p>请思考以下问题,检验您对本模块的掌握程度:</p>
+                <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li>瓦轴集团购买智能检测设备的费用,属于固定成本还是变动成本?为什么?</li>
+                    <li>如果3年前投入的智能化试点项目失败了,这笔投入在当前新项目决策时应如何考虑?</li>
+                    <li>智能化升级后,人工成本降低但制造费用上升,总成本可能反而增加,这是否意味着不应该升级?</li>
+                    <li>识别轴承生产价值链中的3个关键增值环节,思考智能化如何在这些环节创造价值?</li>
+                </ol>
+                <p style="margin-top: 15px;"><strong>提示:</strong>这些问题没有标准答案,重要的是培养财务思维方式!</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>🔜 下一步学习</h4>
+                <p>恭喜您完成基础财务知识模块的学习!您已经建立了基本的财务概念和成本意识。</p>
+                <p>接下来,我们将进入本课题的<strong>核心内容——作业成本法(ABC)</strong>。您将学习到:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>为什么传统成本法不适合智能化制造?</li>
+                    <li>作业成本法如何更准确地分配间接成本?</li>
+                    <li>如何在瓦轴集团实施作业成本法?</li>
+                </ul>
+                <p style="margin-top: 15px;">准备好了吗?让我们继续前进!</p>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <a href="财务知识讲义-引导页.html" class="btn-nav btn-secondary">← 返回引导页</a>
+            <a href="财务知识讲义-模块2-作业成本法.html" class="btn-nav">下一模块:作业成本法 →</a>
+        </div>
+    </div>
+</body>
+</html>

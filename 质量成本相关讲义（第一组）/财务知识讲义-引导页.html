@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>财务理论知识讲义 - 引导页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "SimSun", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 24px;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .header .course-info {
+            font-size: 16px;
+            opacity: 0.85;
+            margin-top: 20px;
+        }
+
+        .intro-box {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 1.2s ease;
+        }
+
+        .intro-box h2 {
+            color: #667eea;
+            font-size: 26px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+
+        .intro-box p {
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .intro-box ul {
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+
+        .intro-box li {
+            line-height: 2;
+            color: #666;
+            font-size: 15px;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease;
+            position: relative;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .module-header {
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .module-1 .module-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .module-2 .module-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .module-3 .module-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .module-4 .module-header {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .module-number {
+            font-size: 48px;
+            font-weight: bold;
+            opacity: 0.3;
+            margin-bottom: -10px;
+        }
+
+        .module-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .module-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .module-body {
+            padding: 25px 30px 30px 30px;
+        }
+
+        .module-body h4 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .module-body ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .module-body li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .module-body li:before {
+            content: "▸";
+            position: absolute;
+            left: 5px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .module-footer {
+            padding: 0 30px 25px 30px;
+        }
+
+        .btn-link {
+            display: block;
+            text-align: center;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+
+        .module-2 .btn-link {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .module-3 .btn-link {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .module-4 .btn-link {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .btn-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .learning-path {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: fadeIn 1.4s ease;
+        }
+
+        .learning-path h2 {
+            color: #667eea;
+            font-size: 26px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .path-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .path-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .path-step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .path-step-title {
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .path-step-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .tips-box {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: fadeIn 1.6s ease;
+        }
+
+        .tips-box h2 {
+            color: #667eea;
+            font-size: 26px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .module-5 .module-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .module-6 .module-header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+        }
+
+        .module-5 .btn-link {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .module-6 .btn-link {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+        }
+
+        .extra-section {
+            margin-top: 50px;
+            margin-bottom: 40px;
+        }
+
+        .extra-section-title {
+            text-align: center;
+            color: white;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .extra-section-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .tip-item {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .tip-item h3 {
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .tip-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .path-steps {
+                flex-direction: column;
+            }
+
+            .path-step {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>财务理论知识讲义</h1>
+            <div class="subtitle">轴承制造工艺智能化升级成本效益研究</div>
+            <div class="course-info">
+                瓦轴集团 × 东北财经大学 联合课题 | 专为业务人员打造的财务知识体系
+            </div>
+        </div>
+
+        <div class="intro-box">
+            <h2>📚 课程说明</h2>
+            <p><strong>课题背景：</strong>本讲义专为瓦轴集团"轴承制造工艺智能化升级的财务成本与效益平衡研究"课题组设计,课题组成员均为业务出身,无财务背景。</p>
+            <p><strong>课程目标：</strong>帮助课题组成员系统掌握完成本课题所必需的财务理论知识,特别是以<strong>作业成本法(ABC)</strong>为核心的成本管理体系。</p>
+            <p><strong>学习方式：</strong></p>
+            <ul>
+                <li>采用渐进式学习路径,从基础到进阶逐步深入</li>
+                <li>理论与实际案例结合,紧密贴合轴承制造行业</li>
+                <li>重点突出作业成本法在智能化升级项目中的应用</li>
+                <li>配备丰富的图表、公式和实例说明</li>
+            </ul>
+        </div>
+
+        <div class="learning-path">
+            <h2>🎯 建议学习路径</h2>
+            <div class="path-steps">
+                <div class="path-step">
+                    <div class="path-step-number">1</div>
+                    <div class="path-step-title">基础财务知识</div>
+                    <div class="path-step-desc">建立财务思维基础</div>
+                </div>
+                <div class="path-step">
+                    <div class="path-step-number">2</div>
+                    <div class="path-step-title">作业成本法</div>
+                    <div class="path-step-desc">核心方法深度学习</div>
+                </div>
+                <div class="path-step">
+                    <div class="path-step-number">3</div>
+                    <div class="path-step-title">成本效益分析</div>
+                    <div class="path-step-desc">掌握评估工具</div>
+                </div>
+                <div class="path-step">
+                    <div class="path-step-number">4</div>
+                    <div class="path-step-title">财务决策分析</div>
+                    <div class="path-step-desc">实战应用能力</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modules-grid">
+            <div class="module-card module-1">
+                <div class="module-header">
+                    <div class="module-number">01</div>
+                    <div class="module-title">基础财务知识</div>
+                    <div class="module-subtitle">Foundation of Financial Management</div>
+                </div>
+                <div class="module-body">
+                    <h4>📖 模块内容：</h4>
+                    <ul>
+                        <li>财务管理基本概念</li>
+                        <li>成本的分类与特性</li>
+                        <li>财务报表基础知识</li>
+                        <li>成本核算基本方法</li>
+                        <li>制造业成本构成</li>
+                        <li>价值链分析基础</li>
+                    </ul>
+                </div>
+                <div class="module-footer">
+                    <a href="财务知识讲义-模块1-基础财务知识.html" class="btn-link">开始学习 Module 1 →</a>
+                </div>
+            </div>
+
+            <div class="module-card module-2">
+                <div class="module-header">
+                    <div class="module-number">02</div>
+                    <div class="module-title">作业成本法(ABC)</div>
+                    <div class="module-subtitle">Activity-Based Costing</div>
+                </div>
+                <div class="module-body">
+                    <h4>📖 模块内容（核心重点）：</h4>
+                    <ul>
+                        <li>作业成本法的基本原理</li>
+                        <li>资源、作业、成本对象</li>
+                        <li>成本动因识别与选择</li>
+                        <li>作业分析与作业中心</li>
+                        <li>ABC在智能制造中的应用</li>
+                        <li>轴承制造业ABC实施案例</li>
+                    </ul>
+                </div>
+                <div class="module-footer">
+                    <a href="财务知识讲义-模块2-作业成本法.html" class="btn-link">开始学习 Module 2 →</a>
+                </div>
+            </div>
+
+            <div class="module-card module-3">
+                <div class="module-header">
+                    <div class="module-number">03</div>
+                    <div class="module-title">成本效益分析</div>
+                    <div class="module-subtitle">Cost-Benefit Analysis</div>
+                </div>
+                <div class="module-body">
+                    <h4>📖 模块内容：</h4>
+                    <ul>
+                        <li>成本效益分析框架</li>
+                        <li>净现值(NPV)方法</li>
+                        <li>内部收益率(IRR)计算</li>
+                        <li>投资回收期分析</li>
+                        <li>敏感性分析与情景分析</li>
+                        <li>智能化升级效益量化</li>
+                    </ul>
+                </div>
+                <div class="module-footer">
+                    <a href="财务知识讲义-模块3-成本效益分析.html" class="btn-link">开始学习 Module 3 →</a>
+                </div>
+            </div>
+
+            <div class="module-card module-4">
+                <div class="module-header">
+                    <div class="module-number">04</div>
+                    <div class="module-title">财务决策分析</div>
+                    <div class="module-subtitle">Financial Decision Analysis</div>
+                </div>
+                <div class="module-body">
+                    <h4>📖 模块内容：</h4>
+                    <ul>
+                        <li>投资决策评价指标体系</li>
+                        <li>风险评估与管理</li>
+                        <li>多方案比较决策</li>
+                        <li>资本预算与资源配置</li>
+                        <li>财务可行性研究方法</li>
+                        <li>课题实战应用指导</li>
+                    </ul>
+                </div>
+                <div class="module-footer">
+                    <a href="财务知识讲义-模块4-财务决策分析.html" class="btn-link">开始学习 Module 4 →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 专项研究报告区块 -->
+        <div class="extra-section">
+            <h2 class="extra-section-title">📊 专项研究报告</h2>
+            <p class="extra-section-subtitle">行业分析与ABC成本模型实战案例，深入理解轴承制造成本管理</p>
+            
+            <div class="modules-grid">
+                <div class="module-card module-6">
+                    <div class="module-header">
+                        <div class="module-number">📋</div>
+                        <div class="module-title">轴承行业痛点分析</div>
+                        <div class="module-subtitle">Industry Pain Points Report</div>
+                    </div>
+                    <div class="module-body">
+                        <h4>📖 报告内容：</h4>
+                        <ul>
+                            <li>中国轴承市场规模与竞争格局</li>
+                            <li>瓦轴集团战略转型压力分析</li>
+                            <li>质量成本核心痛点识别</li>
+                            <li>传统成本核算的致命缺陷</li>
+                            <li>智能化升级决策困境</li>
+                            <li>ABC成本法的价值与意义</li>
+                        </ul>
+                    </div>
+                    <div class="module-footer">
+                        <a href="中国轴承行业质量成本痛点分析报告.html" class="btn-link">查看报告 →</a>
+                    </div>
+                </div>
+
+                <div class="module-card module-5">
+                    <div class="module-header">
+                        <div class="module-number">📈</div>
+                        <div class="module-title">ABC成本模型案例</div>
+                        <div class="module-subtitle">Activity-Based Costing Model</div>
+                    </div>
+                    <div class="module-body">
+                        <h4>📖 模型内容：</h4>
+                        <ul>
+                            <li>完整模拟数据集(5种产品)</li>
+                            <li>20个作业的成本动因分析</li>
+                            <li>传统成本法 vs ABC法对比</li>
+                            <li>质量成本分类与优化方向</li>
+                            <li>智能化升级投资效益测算</li>
+                            <li>投资回收期与NPV/IRR分析</li>
+                        </ul>
+                    </div>
+                    <div class="module-footer">
+                        <a href="瓦轴集团ABC成本模型.html" class="btn-link">查看模型 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-box">
+            <h2>💡 学习建议</h2>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <h3>循序渐进</h3>
+                    <p>建议按照模块顺序学习,每个模块都是后续学习的基础。特别是模块1的基础概念,对理解作业成本法至关重要。</p>
+                </div>
+                <div class="tip-item">
+                    <h3>重点突出</h3>
+                    <p>模块2的作业成本法是本课题的核心方法,建议投入更多时间深入学习,理解其在智能化升级中的具体应用。</p>
+                </div>
+                <div class="tip-item">
+                    <h3>结合实际</h3>
+                    <p>学习过程中,请结合瓦轴集团的实际业务场景思考,将理论知识与实际工作相联系,有助于深化理解。</p>
+                </div>
+                <div class="tip-item">
+                    <h3>案例学习</h3>
+                    <p>每个模块都包含轴承制造行业的实际案例,这些案例将帮助您更好地理解抽象的财务概念。</p>
+                </div>
+                <div class="tip-item">
+                    <h3>团队讨论</h3>
+                    <p>建议课题组成员定期组织学习讨论会,分享学习心得,共同解决疑难问题,提升团队整体水平。</p>
+                </div>
+                <div class="tip-item">
+                    <h3>实践应用</h3>
+                    <p>学完每个模块后,尝试将所学知识应用到课题研究中,通过实践来巩固和检验学习成果。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
