@@ -1,0 +1,9 @@
+product_id,product_name,product_type,diameter_mm,application_industry,precision_level,material,cost_price,sales_price,status
+BP001,"轨道交通轴承 TZ6204",深沟球轴承,52,轨道交通,P6,GCr15SiMn,18.50,35.00,active
+BP002,"风电主轴轴承 WNU2322",圆柱滚子轴承,110,风电新能源,P5,GCr15SiMn,55.80,110.00,active
+BP003,"汽车轮毂轴承 HU22320",调心滚子轴承,100,汽车车辆,P6,GCr15+Mo,78.20,145.00,active
+BP004,"工业装备轴承 G32208",圆锥滚子轴承,67.25,工业装备,P0,GCr15,32.75,62.00,active
+BP005,"精密机床轴承 P51205",推力球轴承,35,精密机械,P5,GCr15,25.90,48.00,active
+BP006,"工程机械轴承 EGE20DO",关节轴承,40,工程机械,P0,GCr15,38.60,72.00,active
+BP007,"冶金轧机轴承 YR32016",圆锥滚子轴承,80,冶金行业,P4,GCr15SiMn,88.50,168.00,active
+BP008,"水泥机械轴承 C22330",调心滚子轴承,150,水泥机械,P0,GCr15+Mo,95.20,178.00,active

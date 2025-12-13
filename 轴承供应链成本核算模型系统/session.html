@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIGC模型生成过程 - 轴承供应链成本核算模型系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e4e4e4;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(94, 129, 172, 0.3), rgba(129, 178, 154, 0.3));
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            background: linear-gradient(135deg, #81b29a, #3d5a80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+        
+        .header .subtitle {
+            color: #a0a0a0;
+            font-size: 1.1em;
+        }
+        
+        .ai-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .intro-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .intro-section h2 {
+            color: #81b29a;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .intro-section h2::before {
+            content: "🤖";
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            color: #a0a0a0;
+            margin-top: 5px;
+        }
+        
+        .conversation {
+            margin-top: 30px;
+        }
+        
+        .conversation h2 {
+            color: #81b29a;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .conversation h2::before {
+            content: "💬";
+        }
+        
+        .message {
+            margin-bottom: 25px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message-user {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .message-ai {
+            display: flex;
+            justify-content: flex-start;
+        }
+        
+        .message-bubble {
+            max-width: 85%;
+            padding: 20px 25px;
+            border-radius: 20px;
+            position: relative;
+        }
+        
+        .message-user .message-bubble {
+            background: linear-gradient(135deg, #3d5a80, #293241);
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message-ai .message-bubble {
+            background: linear-gradient(135deg, rgba(129, 178, 154, 0.2), rgba(61, 90, 128, 0.2));
+            border: 1px solid rgba(129, 178, 154, 0.3);
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: #81b29a;
+        }
+        
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+        
+        .avatar-user {
+            background: linear-gradient(135deg, #3d5a80, #293241);
+        }
+        
+        .avatar-ai {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .message-content {
+            color: #e4e4e4;
+        }
+        
+        .message-content h3 {
+            color: #81b29a;
+            margin: 15px 0 10px;
+            font-size: 1.1em;
+        }
+        
+        .message-content ul, .message-content ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .message-content li {
+            margin-bottom: 8px;
+        }
+        
+        .message-content code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+        
+        .message-content pre {
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 3px solid #81b29a;
+        }
+        
+        .message-content pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .highlight-box {
+            background: rgba(129, 178, 154, 0.15);
+            border-left: 4px solid #81b29a;
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+        
+        .phase-timeline {
+            margin: 30px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .phase-timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2, #81b29a);
+        }
+        
+        .phase-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+        
+        .phase-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #81b29a;
+            border: 2px solid #1a1a2e;
+        }
+        
+        .phase-title {
+            color: #81b29a;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .tech-tag {
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .search-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.5);
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.9em;
+            color: #ffc107;
+        }
+        
+        .search-indicator::before {
+            content: "🔍";
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.6em;
+            }
+            
+            .message-bubble {
+                max-width: 95%;
+                padding: 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏭 轴承供应链成本核算模型系统</h1>
+            <p class="subtitle">利用 AIGC 技术构建的智能化成本管理解决方案</p>
+            <span class="ai-badge">✨ Powered by AI Generated Content</span>
+        </div>
+        
+        <div class="intro-section">
+            <h2>项目概述</h2>
+            <p>本系统是一个基于<strong>作业成本法（Activity-Based Costing）</strong>的轴承供应链成本核算模型，通过与AI的协作对话，从零开始设计并生成了完整的系统架构、数据模型和可视化界面。</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">CSV数据表</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">分析页面</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">成本模型</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">AI辅助生成</div>
+                </div>
+            </div>
+            
+            <h3 style="color: #81b29a; margin-top: 25px;">技术栈</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Chart.js</span>
+                <span class="tech-tag">PapaParse</span>
+                <span class="tech-tag">CSV数据</span>
+                <span class="tech-tag">响应式设计</span>
+            </div>
+        </div>
+        
+        <div class="conversation">
+            <h2>AI交互会话过程</h2>
+            
+            <!-- 第一轮对话 -->
+            <div class="message message-user">
+                <div class="message-bubble">
+                    <div class="message-header">
+                        <span class="avatar avatar-user">👤</span>
+                        <span>用户</span>
+                    </div>
+                    <div class="message-content">
+                        我看到你生成的知识内容了，我想针对这些知识点内容做一个关于轴承供应链管理的相关模型，请给我一些建议。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="message message-ai">
+                <div class="message-bubble">
+                    <div class="message-header">
+                        <span class="avatar avatar-ai">🤖</span>
+                        <span>AI 助手</span>
+                    </div>
+                    <div class="message-content">
+                        <p>很高兴您对生成的内容感到满意！针对轴承行业的供应链管理，结合财务理论知识和作业成本法，我为您提供以下几个模型建议：</p>
+                        
+                        <h3>1. 轴承供应链总成本管控模型</h3>
+                        <div class="highlight-box">
+                            <strong>模型框架：</strong>
+                            <ul>
+                                <li><strong>直接材料成本</strong>：钢材、滚珠、保持架等原材料采购成本</li>
+                                <li><strong>间接作业成本</strong>：订单处理、供应商管理、质量检验、库存管理、运输配送等作业</li>
+                            </ul>
+                        </div>
+                        
+                        <h3>2. 轴承产品族成本核算模型</h3>
+                        <p>根据轴承的尺寸、精度等级、应用场景等维度划分产品族，针对不同产品族设计差异化的成本核算方法。</p>
+                        
+                        <h3>3. 价值采购分析模型</h3>
+                        <p>分析总拥有成本(TCO)，包括采购价格、运输成本、质量成本、库存持有成本等。</p>
+                        
+                        <h3>4. 辅材消耗成本精细化管理模型</h3>
+                        <p>管理切削液、润滑油、砂轮、刀具等消耗性工具和低值易耗品。</p>
+                        
+                        <h3>5. 资金占用成本量化模型</h3>
+                        <pre><code>资金占用成本 = 平均库存金额 × 资金成本率</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第二轮对话 -->
+            <div class="message message-user">
+                <div class="message-bubble">
+                    <div class="message-header">
+                        <span class="avatar avatar-user">👤</span>
+                        <span>用户</span>
+                    </div>
+                    <div class="message-content">
+                        那让我们先做一个轴承供应链总成本管控模型
+                    </div>
+                </div>
+            </div>
+            
+            <div class="message message-ai">
+                <div class="message-bubble">
+                    <div class="message-header">
+                        <span class="avatar avatar-ai">🤖</span>
+                        <span>AI 助手</span>
+                    </div>
+                    <div class="message-content">
+                        <p>好的，让我们一起来设计一个<strong>轴承供应链总成本管控模型</strong>。</p>
+                        
+                        <h3>一、成本构成体系</h3>
+                        <div class="highlight-box">
+                            <p><strong>直接成本：</strong>原材料成本、直接人工成本、直接制造费用</p>
+                            <p><strong>间接作业成本：</strong>采购作业、质检作业、仓储作业、运输作业、订单作业</p>
+                            <p><strong>资金成本：</strong>库存资金占用、应收账款资金成本</p>
+                            <p><strong>风险成本：</strong>质量损失、供应中断、价格波动</p>
+                        </div>
+                        
+                        <h3>二、核心算法</h3>
+                        <pre><code>总成本 = 直接材料成本 + 直接人工成本 + 直接制造费用 + 作业成本 + 资金成本 + 风险成本
+
+作业成本 = ∑(作业成本池金额 × 作业动因消耗量 ÷ 作业动因总量)</code></pre>
+                        
+                        <h3>三、实施路径</h3>
+                        <div class="phase-timeline">
+                            <div class="phase-item">
+                                <div class="phase-title">第一阶段：基础数据体系建设</div>
+                                <p>物料分类标准化、成本动因识别</p>
+                            </div>
+                            <div class="phase-item">
+                                <div class="phase-title">第二阶段：成本核算模型搭建</div>
+                                <p>建立作业成本池、确定成本分配率</p>
+                            </div>
+                            <div class="phase-item">
+                                <div class="phase-title">第三阶段：系统化实施</div>
+                                <p>信息系统集成、建立监控指标体系</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 数据生成阶段 -->
+            <div class="message message-ai">
+                <div class="message-bubble">
+                    <div class="message-header">
+                        <span class="avatar avatar-ai">🤖</span>
+                        <span>AI 助手 - 数据研究阶段</span>
+                    </div>
+                    <div class="message-content">
+                        <p>为了生成更贴近实际的模拟数据，AI进行了多轮信息搜索：</p>
+                        
+                        <div class="search-indicator">搜索"瓦房店轴承集团 瓦轴集团 企业规模 产品类型"</div>
+                        <div class="search-indicator">搜索"瓦轴集团 主要产品类型 轴承分类 应用领域"</div>
+                        <div class="search-indicator">搜索"瓦轴集团 供应链管理 原材料采购 生产工艺流程"</div>
+                        <div class="search-indicator">搜索"轴承制造 工艺流程 锻造 车加工 热处理"</div>
+                        <div class="search-indicator">搜索"轴承 原材料 零部件 轴承钢 保持架"</div>
+                        <div class="search-indicator">搜索"轴承制造 成本结构 直接材料成本 间接成本"</div>
+                        
+                        <div class="highlight-box" style="margin-top: 20px;">
+                            <p>基于搜索结果，AI了解到瓦轴集团是中国知名的轴承制造商，产品种类丰富，广泛应用于<strong>轨道交通、风电、汽车</strong>等领域。随后生成了贴近实际情况的模拟数据。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="intro-section" style="margin-top: 40px;">
+            <h2 style="margin-bottom: 20px;">📊 生成的系统组件</h2>
+            
+            <h3 style="color: #81b29a; margin: 20px 0 15px;">数据文件 (CSV)</h3>
+            <ul style="margin-left: 20px;">
+                <li><code>bearing_products.csv</code> - 轴承产品目录（8种产品）</li>
+                <li><code>suppliers.csv</code> - 供应商信息（8家供应商）</li>
+                <li><code>raw_materials.csv</code> - 原材料清单（8种材料）</li>
+                <li><code>production_processes.csv</code> - 生产工序（11道工序）</li>
+                <li><code>activities.csv</code> - 作业活动定义（12项作业）</li>
+                <li><code>cost_allocation_rates.csv</code> - 成本分摊费率</li>
+                <li><code>sample_production_orders.csv</code> - 生产订单样本</li>
+                <li><code>material_consumption_details.csv</code> - 材料消耗明细</li>
+                <li><code>process_consumption_details.csv</code> - 工序消耗明细</li>
+            </ul>
+            
+            <h3 style="color: #81b29a; margin: 25px 0 15px;">分析页面 (HTML)</h3>
+            <ul style="margin-left: 20px;">
+                <li><a href="product_cost_analysis.html" style="color: #81b29a;">产品成本分析</a> - 产品成本价、销售价、毛利率分析</li>
+                <li><a href="supplier_cost_analysis.html" style="color: #81b29a;">供应商成本分析</a> - 供应商评价与原材料成本</li>
+                <li><a href="activity_cost_analysis.html" style="color: #81b29a;">作业成本分析</a> - 基于ABC法的作业成本归集</li>
+                <li><a href="process_cost_analysis.html" style="color: #81b29a;">工序成本分析</a> - 生产工序资源消耗分析</li>
+                <li><a href="order_cost_analysis.html" style="color: #81b29a;">订单成本分析</a> - 生产订单成本追踪</li>
+                <li><a href="cost_optimization.html" style="color: #81b29a;">成本优化建议</a> - AI驱动的优化建议</li>
+            </ul>
+            
+            <h3 style="color: #81b29a; margin: 25px 0 15px;">核心模块 (JavaScript)</h3>
+            <ul style="margin-left: 20px;">
+                <li><code>js/data-loader.js</code> - 数据加载模块，支持CSV解析、缓存、动态类型转换</li>
+            </ul>
+        </div>
+        
+        <div class="intro-section">
+            <h2>💡 AIGC 应用价值</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div class="stat-card">
+                    <div style="font-size: 2em; margin-bottom: 10px;">⚡</div>
+                    <h4 style="color: #81b29a;">快速原型</h4>
+                    <p style="font-size: 0.9em; color: #a0a0a0;">从概念到可运行系统仅需数小时</p>
+                </div>
+                <div class="stat-card">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🎯</div>
+                    <h4 style="color: #81b29a;">专业知识</h4>
+                    <p style="font-size: 0.9em; color: #a0a0a0;">融合作业成本法等专业理论</p>
+                </div>
+                <div class="stat-card">
+                    <div style="font-size: 2em; margin-bottom: 10px;">📈</div>
+                    <h4 style="color: #81b29a;">数据驱动</h4>
+                    <p style="font-size: 0.9em; color: #a0a0a0;">生成贴近实际的模拟数据</p>
+                </div>
+                <div class="stat-card">
+                    <div style="font-size: 2em; margin-bottom: 10px;">🔄</div>
+                    <h4 style="color: #81b29a;">迭代优化</h4>
+                    <p style="font-size: 0.9em; color: #a0a0a0;">通过对话持续改进系统</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>本系统通过人机协作对话生成，展示了AIGC在企业级应用开发中的潜力</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">© 2025 瓦轴集团供应链成本核算模型系统</p>
+            <a href="cost_model_index.html" class="back-link">🏠 返回系统首页</a>
+        </div>
+    </div>
+</body>
+</html>

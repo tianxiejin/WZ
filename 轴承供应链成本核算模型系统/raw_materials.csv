@@ -1,0 +1,9 @@
+material_id,material_name,material_type,specification,unit,unit_cost_yuan,inventory_quantity,supplier_id,application
+RM001,"GCr15轴承钢",钢材,"Φ25mm圆钢",kg,8.5,5000,SUP001,内外圈制造
+RM002,"GCr15SiMn轴承钢",钢材,"Φ35mm圆钢",kg,9.8,3500,SUP001,高精度轴承
+RM003,"08优质碳素钢薄板",钢材,"1.2mm厚板材",kg,6.2,2000,SUP002,保持架冲压
+RM004,"黄铜板",有色金属,"2mm厚板材",kg,45.0,800,SUP003,保持架制造
+RM005,"高速钢",钢材,"Φ12mm圆钢",kg,28.0,1200,SUP001,精密刀具
+RM006,"陶瓷材料",非金属材料,"氮化硅粉末",kg,280.0,300,SUP004,陶瓷球制造
+RM007,"防锈油",化工材料,"20L/桶",桶,180.0,150,SUP005,成品防护
+RM008,"包装纸箱",辅材,"500×500×400mm",个,12.5,5000,SUP006,成品包装

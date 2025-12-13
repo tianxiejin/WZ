@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用说明 - 轴承供应链成本核算模型系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .nav-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background: white;
+            font-size: 1em;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav-tab:hover {
+            background: #f8f9fa;
+        }
+        
+        .nav-tab.active {
+            color: #11998e;
+            border-bottom-color: #11998e;
+            font-weight: bold;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section h2 {
+            color: #11998e;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h3 {
+            color: #333;
+            margin: 25px 0 15px;
+            font-size: 1.2em;
+        }
+        
+        .section h4 {
+            color: #555;
+            margin: 20px 0 10px;
+        }
+        
+        .step-list {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .step-list li {
+            position: relative;
+            padding: 15px 15px 15px 60px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #11998e;
+        }
+        
+        .step-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .code-block .comment {
+            color: #6a9955;
+        }
+        
+        .code-block .command {
+            color: #dcdcaa;
+        }
+        
+        .code-block .path {
+            color: #ce9178;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(17, 153, 142, 0.1), rgba(56, 239, 125, 0.1));
+            border-left: 4px solid #11998e;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196f3;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        
+        .method-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .method-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .method-header.python {
+            background: linear-gradient(135deg, #306998, #FFD43B);
+        }
+        
+        .method-header.node {
+            background: linear-gradient(135deg, #68a063, #3c873a);
+        }
+        
+        .method-header.vscode {
+            background: linear-gradient(135deg, #007acc, #1e90ff);
+        }
+        
+        .method-body {
+            padding: 20px;
+        }
+        
+        .file-tree {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 14px;
+        }
+        
+        .file-tree .folder {
+            color: #e6a700;
+        }
+        
+        .file-tree .file-html {
+            color: #e34c26;
+        }
+        
+        .file-tree .file-csv {
+            color: #217346;
+        }
+        
+        .file-tree .file-js {
+            color: #f7df1e;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .faq-question::before {
+            content: "Q";
+            background: #11998e;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .faq-answer {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+        
+        .back-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(90deg, #1e5799, #2989d8);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 87, 153, 0.3);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .badge-recommend {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-easy {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .nav-tab {
+                flex: 1 1 50%;
+            }
+            
+            .code-block {
+                font-size: 12px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📖 使用说明</h1>
+        <p>轴承供应链成本核算模型系统 - 完整使用指南</p>
+    </div>
+    
+    <div class="container">
+        <!-- 快速开始 -->
+        <div class="section">
+            <h2>🚀 快速开始</h2>
+            <p>本系统是一个纯前端Web应用，需要通过HTTP服务器访问。由于浏览器安全策略，直接双击打开HTML文件会导致CSV数据无法加载。</p>
+            
+            <div class="warning-box">
+                <strong>⚠️ 重要提示：</strong>请勿直接双击HTML文件打开！必须通过HTTP服务器访问才能正常加载CSV数据。
+            </div>
+        </div>
+        
+        <!-- 运行环境搭建 -->
+        <div class="section">
+            <h2>🔧 运行环境搭建</h2>
+            <p>以下提供多种HTTP服务器搭建方式，选择您熟悉的任意一种即可：</p>
+            
+            <!-- 方法1: Python -->
+            <div class="method-card">
+                <div class="method-header python">
+                    🐍 方法一：Python HTTP 服务器
+                    <span class="badge badge-recommend">推荐</span>
+                    <span class="badge badge-easy">最简单</span>
+                </div>
+                <div class="method-body">
+                    <p><strong>前提条件：</strong>已安装 Python 3.x</p>
+                    
+                    <h4>步骤：</h4>
+                    <ol class="step-list">
+                        <li>打开命令提示符（CMD）或 PowerShell</li>
+                        <li>进入项目目录</li>
+                        <li>启动HTTP服务器</li>
+                        <li>在浏览器中访问系统</li>
+                    </ol>
+                    
+                    <div class="code-block">
+<span class="comment"># 进入项目目录</span>
+<span class="command">cd</span> <span class="path">D:\轴承供应链成本核算模型系统</span>
+
+<span class="comment"># 启动HTTP服务器（Python 3）</span>
+<span class="command">python</span> -m http.server 8080
+
+<span class="comment"># 或者使用 Python 2</span>
+<span class="command">python</span> -m SimpleHTTPServer 8080
+                    </div>
+                    
+                    <div class="highlight-box">
+                        服务器启动后，在浏览器访问：<strong>http://localhost:8080/cost_model_index.html</strong>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 方法2: Node.js -->
+            <div class="method-card">
+                <div class="method-header node">
+                    📦 方法二：Node.js HTTP 服务器
+                </div>
+                <div class="method-body">
+                    <p><strong>前提条件：</strong>已安装 Node.js</p>
+                    
+                    <h4>使用 http-server（推荐）：</h4>
+                    <div class="code-block">
+<span class="comment"># 全局安装 http-server</span>
+<span class="command">npm</span> install -g http-server
+
+<span class="comment"># 进入项目目录并启动</span>
+<span class="command">cd</span> <span class="path">D:\轴承供应链成本核算模型系统</span>
+<span class="command">http-server</span> -p 8080
+
+<span class="comment"># 或使用 npx 无需安装</span>
+<span class="command">npx</span> http-server -p 8080
+                    </div>
+                    
+                    <h4>使用 serve：</h4>
+                    <div class="code-block">
+<span class="comment"># 使用 npx 直接运行</span>
+<span class="command">npx</span> serve -p 8080
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 方法3: VS Code -->
+            <div class="method-card">
+                <div class="method-header vscode">
+                    💻 方法三：VS Code Live Server 插件
+                    <span class="badge badge-easy">可视化</span>
+                </div>
+                <div class="method-body">
+                    <ol class="step-list">
+                        <li>在 VS Code 中打开项目文件夹</li>
+                        <li>安装 "Live Server" 插件（作者：Ritwick Dey）</li>
+                        <li>右键点击 <code>cost_model_index.html</code></li>
+                        <li>选择 "Open with Live Server"</li>
+                    </ol>
+                    
+                    <div class="info-box">
+                        Live Server 会自动打开浏览器并在文件修改时自动刷新页面，非常适合开发调试。
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 方法4: 其他 -->
+            <div class="method-card">
+                <div class="method-header" style="background: linear-gradient(135deg, #434343, #000000);">
+                    🌐 方法四：其他 Web 服务器
+                </div>
+                <div class="method-body">
+                    <p>您也可以使用以下任意 Web 服务器：</p>
+                    <ul>
+                        <li><strong>Apache</strong> - 将项目放入 htdocs 目录</li>
+                        <li><strong>Nginx</strong> - 配置 root 指向项目目录</li>
+                        <li><strong>IIS</strong> - Windows 自带，添加网站指向项目目录</li>
+                        <li><strong>XAMPP / WAMP</strong> - 一键安装的本地开发环境</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 项目结构 -->
+        <div class="section">
+            <h2>📁 项目文件结构</h2>
+            
+            <div class="file-tree">
+                <span class="folder">📂 轴承供应链成本核算模型系统/</span><br>
+                ├── <span class="folder">📂 js/</span><br>
+                │   └── <span class="file-js">📄 data-loader.js</span> &nbsp;&nbsp;<em style="color:#888;">// 数据加载模块</em><br>
+                ├── <span class="file-html">📄 cost_model_index.html</span> &nbsp;&nbsp;<em style="color:#888;">// 系统首页 ⭐</em><br>
+                ├── <span class="file-html">📄 product_cost_analysis.html</span> &nbsp;&nbsp;<em style="color:#888;">// 产品成本分析</em><br>
+                ├── <span class="file-html">📄 supplier_cost_analysis.html</span> &nbsp;&nbsp;<em style="color:#888;">// 供应商成本分析</em><br>
+                ├── <span class="file-html">📄 activity_cost_analysis.html</span> &nbsp;&nbsp;<em style="color:#888;">// 作业成本分析</em><br>
+                ├── <span class="file-html">📄 process_cost_analysis.html</span> &nbsp;&nbsp;<em style="color:#888;">// 工序成本分析</em><br>
+                ├── <span class="file-html">📄 order_cost_analysis.html</span> &nbsp;&nbsp;<em style="color:#888;">// 订单成本分析</em><br>
+                ├── <span class="file-html">📄 cost_optimization.html</span> &nbsp;&nbsp;<em style="color:#888;">// 成本优化建议</em><br>
+                ├── <span class="file-html">📄 session.html</span> &nbsp;&nbsp;<em style="color:#888;">// AIGC生成过程</em><br>
+                ├── <span class="file-html">📄 user_guide.html</span> &nbsp;&nbsp;<em style="color:#888;">// 使用说明（本页）</em><br>
+                ├── <span class="file-csv">📄 bearing_products.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 产品数据</em><br>
+                ├── <span class="file-csv">📄 suppliers.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 供应商数据</em><br>
+                ├── <span class="file-csv">📄 raw_materials.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 原材料数据</em><br>
+                ├── <span class="file-csv">📄 production_processes.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 生产工序</em><br>
+                ├── <span class="file-csv">📄 activities.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 作业活动</em><br>
+                ├── <span class="file-csv">📄 cost_allocation_rates.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 成本分摊费率</em><br>
+                ├── <span class="file-csv">📄 sample_production_orders.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 生产订单</em><br>
+                ├── <span class="file-csv">📄 material_consumption_details.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 材料消耗</em><br>
+                └── <span class="file-csv">📄 process_consumption_details.csv</span> &nbsp;&nbsp;<em style="color:#888;">// 工序消耗</em>
+            </div>
+        </div>
+        
+        <!-- 数据文件说明 -->
+        <div class="section">
+            <h2>📊 数据文件说明</h2>
+            <p>系统使用CSV文件存储数据，您可以直接编辑这些文件来更新数据。</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>文件名</th>
+                        <th>说明</th>
+                        <th>主要字段</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>bearing_products.csv</code></td>
+                        <td>轴承产品信息</td>
+                        <td>产品ID、名称、类型、成本价、销售价</td>
+                    </tr>
+                    <tr>
+                        <td><code>suppliers.csv</code></td>
+                        <td>供应商信息</td>
+                        <td>供应商ID、名称、类型、评级、可靠性评分</td>
+                    </tr>
+                    <tr>
+                        <td><code>raw_materials.csv</code></td>
+                        <td>原材料信息</td>
+                        <td>材料ID、名称、规格、单价、供应商</td>
+                    </tr>
+                    <tr>
+                        <td><code>production_processes.csv</code></td>
+                        <td>生产工序</td>
+                        <td>工序ID、名称、部门、设备、标准工时</td>
+                    </tr>
+                    <tr>
+                        <td><code>activities.csv</code></td>
+                        <td>作业活动定义</td>
+                        <td>作业ID、名称、成本动因、计量单位</td>
+                    </tr>
+                    <tr>
+                        <td><code>cost_allocation_rates.csv</code></td>
+                        <td>成本分摊费率</td>
+                        <td>分配ID、成本池、作业ID、分配基础、费率</td>
+                    </tr>
+                    <tr>
+                        <td><code>sample_production_orders.csv</code></td>
+                        <td>生产订单</td>
+                        <td>订单ID、产品ID、数量、状态、优先级</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="info-box">
+                <strong>💡 提示：</strong>编辑CSV文件时，请使用UTF-8编码保存，避免中文乱码问题。推荐使用 VS Code 或 Excel 编辑。
+            </div>
+        </div>
+        
+        <!-- 功能模块说明 -->
+        <div class="section">
+            <h2>🎯 功能模块说明</h2>
+            
+            <h3>1. 产品成本分析</h3>
+            <ul>
+                <li>查看所有轴承产品的成本价、销售价、毛利率</li>
+                <li>支持按产品类型、精度等级筛选</li>
+                <li>图表展示成本结构和毛利率分布</li>
+            </ul>
+            
+            <h3>2. 供应商成本分析</h3>
+            <ul>
+                <li>供应商综合评价表（评级、可靠性评分）</li>
+                <li>各供应商提供的原材料清单</li>
+                <li>供应商类型分布可视化</li>
+            </ul>
+            
+            <h3>3. 作业成本分析</h3>
+            <ul>
+                <li>基于ABC法的作业活动清单</li>
+                <li>成本动因分析</li>
+                <li>成本池分摊费率表</li>
+            </ul>
+            
+            <h3>4. 工序成本分析</h3>
+            <ul>
+                <li>生产工序流程可视化</li>
+                <li>各工序的标准工时和资源成本</li>
+                <li>工序消耗明细追踪</li>
+            </ul>
+            
+            <h3>5. 订单成本分析</h3>
+            <ul>
+                <li>生产订单状态跟踪</li>
+                <li>订单预估成本计算</li>
+                <li>材料消耗明细</li>
+            </ul>
+            
+            <h3>6. 成本优化建议</h3>
+            <ul>
+                <li>基于数据的智能优化建议</li>
+                <li>风险预警提示</li>
+                <li>潜在节约金额估算</li>
+            </ul>
+        </div>
+        
+        <!-- 常见问题 -->
+        <div class="section">
+            <h2>❓ 常见问题解答</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">页面显示"数据加载失败"或空白怎么办？</div>
+                <div class="faq-answer">
+                    <p>这通常是因为没有通过HTTP服务器访问。请按照"运行环境搭建"部分的说明启动HTTP服务器，然后通过 <code>http://localhost:8080</code> 访问。</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">CSV文件编辑后数据没有更新？</div>
+                <div class="faq-answer">
+                    <p>请尝试以下操作：</p>
+                    <ol>
+                        <li>按 <code>Ctrl + F5</code> 强制刷新页面</li>
+                        <li>在浏览器控制台（F12）中执行 <code>DataLoader.clearCache()</code> 清除缓存</li>
+                        <li>确保CSV文件保存为UTF-8编码</li>
+                    </ol>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">表格中出现"undefined"或空白数据？</div>
+                <div class="faq-answer">
+                    <p>这可能是CSV文件末尾有空行。请打开CSV文件，删除末尾的空行后保存，然后刷新页面。</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">如何添加新的产品或供应商数据？</div>
+                <div class="faq-answer">
+                    <p>直接编辑对应的CSV文件（如 <code>bearing_products.csv</code>），按照现有格式添加新行即可。保存后刷新页面生效。</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">系统支持哪些浏览器？</div>
+                <div class="faq-answer">
+                    <p>推荐使用现代浏览器：</p>
+                    <ul>
+                        <li>Google Chrome（推荐）</li>
+                        <li>Microsoft Edge</li>
+                        <li>Firefox</li>
+                        <li>Safari</li>
+                    </ul>
+                    <p>不支持 IE 浏览器。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 技术架构 -->
+        <div class="section">
+            <h2>🏗️ 技术架构</h2>
+            
+            <h3>前端技术栈</h3>
+            <ul>
+                <li><strong>HTML5 + CSS3</strong> - 页面结构与样式</li>
+                <li><strong>JavaScript (ES6+)</strong> - 交互逻辑</li>
+                <li><strong>Chart.js</strong> - 数据可视化图表</li>
+                <li><strong>PapaParse</strong> - CSV文件解析</li>
+            </ul>
+            
+            <h3>数据加载流程</h3>
+            <div class="highlight-box">
+                <code>页面加载 → DataLoader初始化 → Fetch请求CSV → PapaParse解析 → 数据渲染 → 图表生成</code>
+            </div>
+            
+            <h3>核心模块：DataLoader</h3>
+            <p>位于 <code>js/data-loader.js</code>，提供以下功能：</p>
+            <ul>
+                <li><code>loadProducts()</code> - 加载产品数据</li>
+                <li><code>loadSuppliers()</code> - 加载供应商数据</li>
+                <li><code>loadMaterials()</code> - 加载原材料数据</li>
+                <li><code>loadProcesses()</code> - 加载工序数据</li>
+                <li><code>loadActivities()</code> - 加载作业活动数据</li>
+                <li><code>loadOrders()</code> - 加载订单数据</li>
+                <li><code>loadAll()</code> - 加载所有数据</li>
+                <li><code>clearCache()</code> - 清除缓存</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 瓦轴集团供应链成本核算模型系统</p>
+            <a href="cost_model_index.html" class="back-link">🏠 返回系统首页</a>
+        </div>
+    </div>
+</body>
+</html>

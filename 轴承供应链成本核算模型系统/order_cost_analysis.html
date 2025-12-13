@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单成本分析 - 轴承供应链成本核算模型系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="js/data-loader.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #1e5799 0%, #207cca 51%, #2989d8 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            letter-spacing: 1px;
+        }
+        
+        .nav {
+            background: #2c3e50;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .nav a {
+            display: inline-block;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .nav a:hover, .nav a.active {
+            background: #34495e;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .card h2 {
+            color: #1e5799;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #1e5799;
+        }
+        
+        tr:hover {
+            background-color: #f5f7fa;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        select, input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #1e5799, #2989d8);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(90deg, #2989d8, #1e5799);
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .summary-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .summary-card h3 {
+            margin-top: 0;
+            color: #1e5799;
+        }
+        
+        .summary-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .data-source {
+            background: #e8f4f8;
+            border-left: 4px solid #1e5799;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-completed { background: #27ae60; color: white; }
+        .status-in_progress { background: #f39c12; color: white; }
+        .status-planned { background: #3498db; color: white; }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .priority-high { background: #e74c3c; color: white; }
+        .priority-normal { background: #95a5a6; color: white; }
+        .priority-low { background: #1abc9c; color: white; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>订单成本分析</h1>
+        <p>轴承供应链成本核算模型系统</p>
+    </div>
+    
+    <div class="nav">
+        <a href="cost_model_index.html">首页</a>
+        <a href="product_cost_analysis.html">产品成本分析</a>
+        <a href="activity_cost_analysis.html">作业成本分析</a>
+        <a href="supplier_cost_analysis.html">供应商成本分析</a>
+        <a href="process_cost_analysis.html">工序成本分析</a>
+        <a href="order_cost_analysis.html" class="active">订单成本分析</a>
+        <a href="cost_optimization.html">成本优化建议</a>
+    </div>
+    
+    <div class="container">
+        <div class="data-source">
+            📊 数据来源：实时从 <strong>sample_production_orders.csv</strong>、<strong>material_consumption_details.csv</strong> 和 <strong>bearing_products.csv</strong> 动态加载
+        </div>
+
+        <div class="controls">
+            <select id="statusFilter">
+                <option value="all">所有订单状态</option>
+                <option value="completed">已完成</option>
+                <option value="in_progress">进行中</option>
+                <option value="planned">已计划</option>
+            </select>
+            
+            <select id="priorityFilter">
+                <option value="all">所有优先级</option>
+                <option value="high">高优先级</option>
+                <option value="normal">普通优先级</option>
+                <option value="low">低优先级</option>
+            </select>
+
+            <button class="btn" onclick="refreshData()">🔄 刷新数据</button>
+        </div>
+        
+        <div class="summary-cards">
+            <div class="summary-card">
+                <h3>订单总数</h3>
+                <div class="value" id="totalOrders">-</div>
+                <p>个生产订单</p>
+            </div>
+            <div class="summary-card">
+                <h3>总生产数量</h3>
+                <div class="value" id="totalQuantity">-</div>
+                <p>件产品</p>
+            </div>
+            <div class="summary-card">
+                <h3>已完成订单</h3>
+                <div class="value" id="completedOrders">-</div>
+                <p>个订单</p>
+            </div>
+            <div class="summary-card">
+                <h3>预估总成本</h3>
+                <div class="value" id="totalCost">-</div>
+                <p>元</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>订单状态分布</h2>
+            <div class="chart-container">
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>订单生产数量对比</h2>
+            <div class="chart-container">
+                <canvas id="quantityChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>生产订单明细表</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>订单编号</th>
+                        <th>产品名称</th>
+                        <th>生产数量</th>
+                        <th>批次号</th>
+                        <th>开始日期</th>
+                        <th>结束日期</th>
+                        <th>状态</th>
+                        <th>优先级</th>
+                        <th>预估成本</th>
+                    </tr>
+                </thead>
+                <tbody id="orderTableBody">
+                    <tr><td colspan="9" class="loading">数据加载中...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>订单材料消耗明细</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>明细编号</th>
+                        <th>订单编号</th>
+                        <th>材料名称</th>
+                        <th>单位消耗量</th>
+                        <th>总消耗量</th>
+                        <th>成本中心</th>
+                        <th>材料成本</th>
+                    </tr>
+                </thead>
+                <tbody id="consumptionTableBody">
+                    <tr><td colspan="7" class="loading">数据加载中...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 瓦轴集团供应链成本核算模型系统 | 基于作业成本法构建 | 数据动态加载自CSV</p>
+    </div>
+    
+    <script>
+        // 全局数据存储
+        let allOrders = [];
+        let allProducts = [];
+        let allMaterials = [];
+        let allMaterialConsumption = [];
+        let statusChart = null;
+        let quantityChart = null;
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadAllData();
+            bindEvents();
+        });
+
+        // 绑定事件
+        function bindEvents() {
+            document.getElementById('statusFilter').addEventListener('change', filterAndDisplay);
+            document.getElementById('priorityFilter').addEventListener('change', filterAndDisplay);
+        }
+
+        // 加载所有数据
+        async function loadAllData() {
+            try {
+                const [orders, products, materials, materialConsumption] = await Promise.all([
+                    DataLoader.loadOrders(),
+                    DataLoader.loadProducts(),
+                    DataLoader.loadMaterials(),
+                    DataLoader.loadMaterialConsumption()
+                ]);
+                
+                allOrders = orders;
+                allProducts = products;
+                allMaterials = materials;
+                allMaterialConsumption = materialConsumption;
+                
+                // 显示数据
+                filterAndDisplay();
+                
+                DataUtils.showToast('订单数据加载成功！');
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                document.getElementById('orderTableBody').innerHTML = 
+                    '<tr><td colspan="9" class="error">数据加载失败，请检查CSV文件</td></tr>';
+            }
+        }
+
+        // 筛选并显示数据
+        function filterAndDisplay() {
+            const status = document.getElementById('statusFilter').value;
+            const priority = document.getElementById('priorityFilter').value;
+
+            let filteredOrders = allOrders;
+
+            if (status !== 'all') {
+                filteredOrders = filteredOrders.filter(o => o.status === status);
+            }
+            if (priority !== 'all') {
+                filteredOrders = filteredOrders.filter(o => o.priority === priority);
+            }
+
+            // 筛选相关材料消耗
+            const orderIds = filteredOrders.map(o => o.order_id);
+            const filteredConsumption = allMaterialConsumption.filter(c => orderIds.includes(c.order_id));
+
+            updateSummaryCards(filteredOrders);
+            updateOrderTable(filteredOrders);
+            updateConsumptionTable(filteredConsumption);
+            updateCharts(filteredOrders);
+        }
+
+        // 获取产品名称
+        function getProductName(productId) {
+            const product = allProducts.find(p => p.product_id === productId);
+            return product ? product.product_name : productId;
+        }
+
+        // 获取产品成本价
+        function getProductCost(productId) {
+            const product = allProducts.find(p => p.product_id === productId);
+            return product ? product.cost_price : 0;
+        }
+
+        // 获取材料名称
+        function getMaterialName(materialId) {
+            const material = allMaterials.find(m => m.material_id === materialId);
+            return material ? material.material_name : materialId;
+        }
+
+        // 获取材料单价
+        function getMaterialCost(materialId) {
+            const material = allMaterials.find(m => m.material_id === materialId);
+            return material ? material.unit_cost_yuan : 0;
+        }
+
+        // 更新汇总卡片
+        function updateSummaryCards(data) {
+            document.getElementById('totalOrders').textContent = data.length;
+            
+            const totalQuantity = DataUtils.sum(data, 'quantity');
+            document.getElementById('totalQuantity').textContent = DataUtils.formatNumber(totalQuantity);
+
+            const completedCount = data.filter(o => o.status === 'completed').length;
+            document.getElementById('completedOrders').textContent = completedCount;
+
+            // 计算预估总成本
+            let totalCost = 0;
+            data.forEach(order => {
+                const unitCost = getProductCost(order.product_id);
+                totalCost += unitCost * order.quantity;
+            });
+            document.getElementById('totalCost').textContent = DataUtils.formatCurrency(totalCost);
+        }
+
+        // 更新订单表格
+        function updateOrderTable(data) {
+            const tbody = document.getElementById('orderTableBody');
+            
+            // 过滤无效数据（支持字符串和数值类型ID）
+            const validData = data.filter(o => o && o.order_id != null && String(o.order_id).trim() !== '');
+            
+            if (validData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">暂无数据</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = validData.map(order => {
+                const productName = getProductName(order.product_id);
+                const unitCost = getProductCost(order.product_id);
+                const estimatedCost = unitCost * (parseFloat(order.quantity) || 0);
+                
+                const statusText = {
+                    'completed': '已完成',
+                    'in_progress': '进行中',
+                    'planned': '已计划'
+                }[order.status] || order.status || '';
+
+                const priorityText = {
+                    'high': '高',
+                    'normal': '普通',
+                    'low': '低'
+                }[order.priority] || order.priority || '';
+                
+                return `
+                    <tr>
+                        <td>${order.order_id != null ? order.order_id : ''}</td>
+                        <td>${productName != null ? productName : ''}</td>
+                        <td>${DataUtils.formatNumber(order.quantity)}</td>
+                        <td>${order.batch_number != null ? order.batch_number : ''}</td>
+                        <td>${order.start_date != null ? order.start_date : ''}</td>
+                        <td>${order.end_date != null ? order.end_date : ''}</td>
+                        <td><span class="status-badge status-${order.status || ''}">${statusText}</span></td>
+                        <td><span class="priority-badge priority-${order.priority || ''}">${priorityText}</span></td>
+                        <td>${DataUtils.formatCurrency(estimatedCost)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 更新材料消耗表格
+        function updateConsumptionTable(data) {
+            const tbody = document.getElementById('consumptionTableBody');
+            
+            // 过滤无效数据（支持字符串和数值类型ID）
+            const validData = data.filter(i => i && i.detail_id != null && String(i.detail_id).trim() !== '');
+            
+            if (validData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;">暂无数据</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = validData.map(item => {
+                const materialName = getMaterialName(item.material_id);
+                const materialCost = getMaterialCost(item.material_id);
+                const totalMaterialCost = materialCost * (parseFloat(item.total_consumption) || 0);
+                
+                return `
+                    <tr>
+                        <td>${item.detail_id != null ? item.detail_id : ''}</td>
+                        <td>${item.order_id != null ? item.order_id : ''}</td>
+                        <td>${materialName != null ? materialName : ''}</td>
+                        <td>${item.consumption_per_unit != null ? item.consumption_per_unit : ''}</td>
+                        <td>${item.total_consumption != null ? item.total_consumption : ''}</td>
+                        <td>${item.cost_center != null ? item.cost_center : ''}</td>
+                        <td>${DataUtils.formatCurrency(totalMaterialCost)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 更新图表
+        function updateCharts(data) {
+            // 销毁旧图表
+            if (statusChart) statusChart.destroy();
+            if (quantityChart) quantityChart.destroy();
+
+            // 订单状态分布图
+            const statusGroups = DataUtils.groupBy(data, 'status');
+            const statusLabels = {
+                'completed': '已完成',
+                'in_progress': '进行中',
+                'planned': '已计划'
+            };
+            const statusColors = {
+                'completed': '#27ae60',
+                'in_progress': '#f39c12',
+                'planned': '#3498db'
+            };
+
+            const ctx1 = document.getElementById('statusChart').getContext('2d');
+            statusChart = new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(statusGroups).map(s => statusLabels[s] || s),
+                    datasets: [{
+                        data: Object.values(statusGroups).map(arr => arr.length),
+                        backgroundColor: Object.keys(statusGroups).map(s => statusColors[s] || '#95a5a6')
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '订单状态分布'
+                        },
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+
+            // 订单数量对比图
+            const ctx2 = document.getElementById('quantityChart').getContext('2d');
+            quantityChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: data.map(o => o.order_id),
+                    datasets: [{
+                        label: '生产数量',
+                        data: data.map(o => o.quantity),
+                        backgroundColor: data.map(o => {
+                            switch(o.priority) {
+                                case 'high': return '#e74c3c';
+                                case 'normal': return '#3498db';
+                                case 'low': return '#1abc9c';
+                                default: return '#95a5a6';
+                            }
+                        }),
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '各订单生产数量对比（颜色表示优先级：红=高，蓝=普通，青=低）'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '生产数量'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 刷新数据
+        async function refreshData() {
+            DataLoader.clearCache();
+            await loadAllData();
+        }
+    </script>
+</body>
+</html>

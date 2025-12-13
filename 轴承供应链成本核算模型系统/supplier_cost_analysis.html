@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>供应商成本分析 - 轴承供应链成本核算模型系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="js/data-loader.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #1e5799 0%, #207cca 51%, #2989d8 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            letter-spacing: 1px;
+        }
+        
+        .nav {
+            background: #2c3e50;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .nav a {
+            display: inline-block;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .nav a:hover, .nav a.active {
+            background: #34495e;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .card h2 {
+            color: #1e5799;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #1e5799;
+        }
+        
+        tr:hover {
+            background-color: #f5f7fa;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        select, input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #1e5799, #2989d8);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(90deg, #2989d8, #1e5799);
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .summary-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .summary-card h3 {
+            margin-top: 0;
+            color: #1e5799;
+        }
+        
+        .summary-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .rating-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .rating-一级 { background: #27ae60; color: white; }
+        .rating-二级 { background: #f39c12; color: white; }
+        .rating-三级 { background: #e74c3c; color: white; }
+
+        .reliability-bar {
+            width: 100%;
+            height: 20px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .reliability-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .data-source {
+            background: #e8f4f8;
+            border-left: 4px solid #1e5799;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>供应商成本分析</h1>
+        <p>轴承供应链成本核算模型系统</p>
+    </div>
+    
+    <div class="nav">
+        <a href="cost_model_index.html">首页</a>
+        <a href="product_cost_analysis.html">产品成本分析</a>
+        <a href="activity_cost_analysis.html">作业成本分析</a>
+        <a href="supplier_cost_analysis.html" class="active">供应商成本分析</a>
+        <a href="process_cost_analysis.html">工序成本分析</a>
+        <a href="order_cost_analysis.html">订单成本分析</a>
+        <a href="cost_optimization.html">成本优化建议</a>
+    </div>
+    
+    <div class="container">
+        <div class="data-source">
+            📊 数据来源：实时从 <strong>suppliers.csv</strong> 和 <strong>raw_materials.csv</strong> 动态加载
+        </div>
+
+        <div class="controls">
+            <select id="supplierType">
+                <option value="all">所有供应商类型</option>
+            </select>
+            
+            <select id="ratingFilter">
+                <option value="all">所有评级</option>
+                <option value="一级">一级供应商</option>
+                <option value="二级">二级供应商</option>
+                <option value="三级">三级供应商</option>
+            </select>
+
+            <button class="btn" onclick="refreshData()">🔄 刷新数据</button>
+        </div>
+        
+        <div class="summary-cards">
+            <div class="summary-card">
+                <h3>供应商总数</h3>
+                <div class="value" id="totalSuppliers">-</div>
+                <p>家合作供应商</p>
+            </div>
+            <div class="summary-card">
+                <h3>一级供应商</h3>
+                <div class="value" id="tier1Count">-</div>
+                <p>家核心供应商</p>
+            </div>
+            <div class="summary-card">
+                <h3>平均可靠性评分</h3>
+                <div class="value" id="avgReliability">-</div>
+                <p>满分 1.00</p>
+            </div>
+            <div class="summary-card">
+                <h3>最高可靠性供应商</h3>
+                <div class="value" id="topSupplier">-</div>
+                <p id="topSupplierScore">-</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>供应商可靠性评分分布</h2>
+            <div class="chart-container">
+                <canvas id="reliabilityChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>供应商类型分布</h2>
+            <div class="chart-container">
+                <canvas id="typeDistributionChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>供应商综合评价表</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>供应商编号</th>
+                        <th>供应商名称</th>
+                        <th>供应商类型</th>
+                        <th>联系人</th>
+                        <th>联系电话</th>
+                        <th>地址</th>
+                        <th>评级</th>
+                        <th>可靠性评分</th>
+                    </tr>
+                </thead>
+                <tbody id="supplierTableBody">
+                    <tr><td colspan="8" class="loading">数据加载中...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>供应商供应的原材料</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>材料编号</th>
+                        <th>材料名称</th>
+                        <th>材料类型</th>
+                        <th>规格</th>
+                        <th>单位</th>
+                        <th>单价(¥)</th>
+                        <th>库存数量</th>
+                        <th>供应商</th>
+                        <th>用途</th>
+                    </tr>
+                </thead>
+                <tbody id="materialTableBody">
+                    <tr><td colspan="9" class="loading">数据加载中...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 瓦轴集团供应链成本核算模型系统 | 基于作业成本法构建 | 数据动态加载自CSV</p>
+    </div>
+    
+    <script>
+        // 全局数据存储
+        let allSuppliers = [];
+        let allMaterials = [];
+        let reliabilityChart = null;
+        let typeDistributionChart = null;
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadAllData();
+            bindEvents();
+        });
+
+        // 绑定事件
+        function bindEvents() {
+            document.getElementById('supplierType').addEventListener('change', filterAndDisplay);
+            document.getElementById('ratingFilter').addEventListener('change', filterAndDisplay);
+        }
+
+        // 加载所有数据
+        async function loadAllData() {
+            try {
+                const [suppliers, materials] = await Promise.all([
+                    DataLoader.loadSuppliers(),
+                    DataLoader.loadMaterials()
+                ]);
+                
+                allSuppliers = suppliers;
+                allMaterials = materials;
+                
+                // 调试：打印数据结构
+                console.log('供应商数据:', suppliers);
+                console.log('第一条供应商数据字段:', suppliers.length > 0 ? Object.keys(suppliers[0]) : '无数据');
+                
+                // 初始化筛选器选项
+                initFilters();
+                
+                // 显示数据
+                filterAndDisplay();
+                
+                DataUtils.showToast('供应商数据加载成功！');
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                document.getElementById('supplierTableBody').innerHTML = 
+                    '<tr><td colspan="8" class="error">数据加载失败，请检查CSV文件</td></tr>';
+            }
+        }
+
+        // 初始化筛选器
+        function initFilters() {
+            const supplierTypes = DataUtils.unique(allSuppliers, 'supplier_type');
+            const supplierTypeSelect = document.getElementById('supplierType');
+            supplierTypes.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.textContent = type;
+                supplierTypeSelect.appendChild(option);
+            });
+        }
+
+        // 筛选并显示数据
+        function filterAndDisplay() {
+            const supplierType = document.getElementById('supplierType').value;
+            const rating = document.getElementById('ratingFilter').value;
+
+            let filteredSuppliers = allSuppliers;
+
+            if (supplierType !== 'all') {
+                filteredSuppliers = filteredSuppliers.filter(s => s.supplier_type === supplierType);
+            }
+            if (rating !== 'all') {
+                filteredSuppliers = filteredSuppliers.filter(s => s.rating === rating);
+            }
+
+            // 筛选相关材料
+            const supplierIds = filteredSuppliers.map(s => s.supplier_id);
+            const filteredMaterials = allMaterials.filter(m => supplierIds.includes(m.supplier_id));
+
+            updateSummaryCards(filteredSuppliers);
+            updateSupplierTable(filteredSuppliers);
+            updateMaterialTable(filteredMaterials, filteredSuppliers);
+            updateCharts(filteredSuppliers);
+        }
+
+        // 更新汇总卡片
+        function updateSummaryCards(data) {
+            // 过滤有效数据（支持字符串和数值类型ID）
+            const validData = data.filter(s => s && s.supplier_id != null && String(s.supplier_id).trim() !== '');
+            
+            document.getElementById('totalSuppliers').textContent = validData.length;
+            
+            const tier1Count = validData.filter(s => s.rating === '一级').length;
+            document.getElementById('tier1Count').textContent = tier1Count;
+
+            const avgReliability = DataUtils.average(validData, 'reliability_score');
+            document.getElementById('avgReliability').textContent = avgReliability.toFixed(2);
+
+            if (validData.length > 0) {
+                const topSupplier = validData.reduce((max, s) => 
+                    parseFloat(s.reliability_score) > parseFloat(max.reliability_score) ? s : max);
+                document.getElementById('topSupplier').textContent = topSupplier.supplier_name || '';
+                document.getElementById('topSupplierScore').textContent = `评分: ${topSupplier.reliability_score || 0}`;
+            }
+        }
+
+        // 更新供应商表格
+        function updateSupplierTable(data) {
+            const tbody = document.getElementById('supplierTableBody');
+            
+            // 过滤无效数据（支持字符串和数值类型ID）
+            const validData = data.filter(supplier => 
+                supplier && 
+                supplier.supplier_id != null && 
+                String(supplier.supplier_id).trim() !== ''
+            );
+            
+            if (validData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">暂无数据</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = validData.map(supplier => {
+                const reliabilityScore = parseFloat(supplier.reliability_score) || 0;
+                const reliabilityPercent = (reliabilityScore * 100).toFixed(0);
+                const barColor = reliabilityScore >= 0.9 ? '#27ae60' : 
+                                 reliabilityScore >= 0.8 ? '#f39c12' : '#e74c3c';
+                
+                return `
+                    <tr>
+                        <td>${supplier.supplier_id != null ? supplier.supplier_id : ''}</td>
+                        <td>${supplier.supplier_name != null ? supplier.supplier_name : ''}</td>
+                        <td>${supplier.supplier_type != null ? supplier.supplier_type : ''}</td>
+                        <td>${supplier.contact_person != null ? supplier.contact_person : ''}</td>
+                        <td>${supplier.phone != null ? supplier.phone : ''}</td>
+                        <td>${supplier.address != null ? supplier.address : ''}</td>
+                        <td><span class="rating-badge rating-${supplier.rating || ''}">${supplier.rating != null ? supplier.rating : ''}</span></td>
+                        <td>
+                            <div class="reliability-bar">
+                                <div class="reliability-fill" style="width: ${reliabilityPercent}%; background: ${barColor};"></div>
+                            </div>
+                            <small>${reliabilityScore}</small>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 更新材料表格
+        function updateMaterialTable(materials, suppliers) {
+            const tbody = document.getElementById('materialTableBody');
+            
+            if (materials.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">暂无数据</td></tr>';
+                return;
+            }
+
+            // 创建供应商ID到名称的映射
+            const supplierMap = {};
+            suppliers.forEach(s => {
+                supplierMap[s.supplier_id] = s.supplier_name;
+            });
+
+            // 过滤无效数据（支持字符串和数值类型ID）
+            const validMaterials = materials.filter(m => m && m.material_id != null && String(m.material_id).trim() !== '');
+            
+            tbody.innerHTML = validMaterials.map(material => `
+                <tr>
+                    <td>${material.material_id != null ? material.material_id : ''}</td>
+                    <td>${material.material_name != null ? material.material_name : ''}</td>
+                    <td>${material.material_type != null ? material.material_type : ''}</td>
+                    <td>${material.specification != null ? material.specification : ''}</td>
+                    <td>${material.unit != null ? material.unit : ''}</td>
+                    <td>${DataUtils.formatCurrency(material.unit_cost_yuan)}</td>
+                    <td>${DataUtils.formatNumber(material.inventory_quantity)}</td>
+                    <td>${supplierMap[material.supplier_id] || material.supplier_id || ''}</td>
+                    <td>${material.application != null ? material.application : ''}</td>
+                </tr>
+            `).join('');
+        }
+
+        // 更新图表
+        function updateCharts(data) {
+            // 销毁旧图表
+            if (reliabilityChart) reliabilityChart.destroy();
+            if (typeDistributionChart) typeDistributionChart.destroy();
+
+            // 可靠性评分图
+            const ctx1 = document.getElementById('reliabilityChart').getContext('2d');
+            reliabilityChart = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: data.map(s => s.supplier_name),
+                    datasets: [{
+                        label: '可靠性评分',
+                        data: data.map(s => s.reliability_score),
+                        backgroundColor: data.map(s => 
+                            s.reliability_score >= 0.9 ? '#27ae60' : 
+                            s.reliability_score >= 0.8 ? '#f39c12' : '#e74c3c'
+                        ),
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '供应商可靠性评分排名'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1,
+                            title: {
+                                display: true,
+                                text: '可靠性评分'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 供应商类型分布图
+            const typeGroups = DataUtils.groupBy(data, 'supplier_type');
+            const typeLabels = Object.keys(typeGroups);
+            const typeCounts = typeLabels.map(type => typeGroups[type].length);
+
+            const ctx2 = document.getElementById('typeDistributionChart').getContext('2d');
+            typeDistributionChart = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: typeLabels,
+                    datasets: [{
+                        data: typeCounts,
+                        backgroundColor: [
+                            '#1e5799', '#2989d8', '#7db9e8', '#f39c12', 
+                            '#e74c3c', '#9b59b6', '#1abc9c', '#34495e'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '供应商类型分布'
+                        },
+                        legend: {
+                            position: 'right'
+                        }
+                    }
+                }
+            });
+        }
+
+        // 刷新数据
+        async function refreshData() {
+            DataLoader.clearCache();
+            await loadAllData();
+        }
+    </script>
+</body>
+</html>

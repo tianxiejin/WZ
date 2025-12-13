@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品成本分析 - 轴承供应链成本核算模型系统</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="js/data-loader.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #1e5799 0%, #207cca 51%, #2989d8 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2em;
+            letter-spacing: 1px;
+        }
+        
+        .nav {
+            background: #2c3e50;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .nav a {
+            display: inline-block;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .nav a:hover, .nav a.active {
+            background: #34495e;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .card h2 {
+            color: #1e5799;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #1e5799;
+        }
+        
+        tr:hover {
+            background-color: #f5f7fa;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        select, input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .btn {
+            background: linear-gradient(90deg, #1e5799, #2989d8);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(90deg, #2989d8, #1e5799);
+        }
+        
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .summary-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .summary-card h3 {
+            margin-top: 0;
+            color: #1e5799;
+        }
+        
+        .summary-card .value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .data-source {
+            background: #e8f4f8;
+            border-left: 4px solid #1e5799;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>产品成本分析</h1>
+        <p>轴承供应链成本核算模型系统</p>
+    </div>
+    
+    <div class="nav">
+        <a href="cost_model_index.html">首页</a>
+        <a href="product_cost_analysis.html" class="active">产品成本分析</a>
+        <a href="activity_cost_analysis.html">作业成本分析</a>
+        <a href="supplier_cost_analysis.html">供应商成本分析</a>
+        <a href="process_cost_analysis.html">工序成本分析</a>
+        <a href="order_cost_analysis.html">订单成本分析</a>
+        <a href="cost_optimization.html">成本优化建议</a>
+    </div>
+    
+    <div class="container">
+        <div class="data-source">
+            📊 数据来源：实时从 <strong>bearing_products.csv</strong> 动态加载
+        </div>
+
+        <div class="controls">
+            <select id="productType">
+                <option value="all">所有产品类型</option>
+            </select>
+            
+            <select id="industryFilter">
+                <option value="all">所有应用行业</option>
+            </select>
+
+            <button class="btn" onclick="refreshData()">🔄 刷新数据</button>
+        </div>
+        
+        <div class="summary-cards">
+            <div class="summary-card">
+                <h3>总产品种类</h3>
+                <div class="value" id="totalProducts">-</div>
+                <p>种轴承产品</p>
+            </div>
+            <div class="summary-card">
+                <h3>平均单位成本</h3>
+                <div class="value" id="avgCost">-</div>
+                <p>元/件</p>
+            </div>
+            <div class="summary-card">
+                <h3>最高毛利率</h3>
+                <div class="value" id="maxMargin">-</div>
+                <p id="maxMarginProduct">-</p>
+            </div>
+            <div class="summary-card">
+                <h3>最低毛利率</h3>
+                <div class="value" id="minMargin">-</div>
+                <p id="minMarginProduct">-</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>产品成本与价格对比</h2>
+            <div class="chart-container">
+                <canvas id="costPriceChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>各产品毛利率分析</h2>
+            <div class="chart-container">
+                <canvas id="marginChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>产品成本明细表</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>产品编号</th>
+                        <th>产品名称</th>
+                        <th>产品类型</th>
+                        <th>应用行业</th>
+                        <th>精度等级</th>
+                        <th>成本价(¥)</th>
+                        <th>销售价(¥)</th>
+                        <th>毛利率</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <tr><td colspan="9" class="loading">数据加载中...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 瓦轴集团供应链成本核算模型系统 | 基于作业成本法构建 | 数据动态加载自CSV</p>
+    </div>
+    
+    <script>
+        // 全局数据存储
+        let allProducts = [];
+        let costPriceChart = null;
+        let marginChart = null;
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadProductData();
+            bindEvents();
+        });
+
+        // 绑定事件
+        function bindEvents() {
+            document.getElementById('productType').addEventListener('change', filterAndDisplay);
+            document.getElementById('industryFilter').addEventListener('change', filterAndDisplay);
+        }
+
+        // 加载产品数据
+        async function loadProductData() {
+            try {
+                allProducts = await DataLoader.loadProducts();
+                
+                // 初始化筛选器选项
+                initFilters();
+                
+                // 显示数据
+                filterAndDisplay();
+                
+                DataUtils.showToast('产品数据加载成功！');
+            } catch (error) {
+                console.error('加载产品数据失败:', error);
+                document.getElementById('productTableBody').innerHTML = 
+                    '<tr><td colspan="9" class="error">数据加载失败，请检查CSV文件</td></tr>';
+            }
+        }
+
+        // 初始化筛选器
+        function initFilters() {
+            // 产品类型筛选器
+            const productTypes = DataUtils.unique(allProducts, 'product_type');
+            const productTypeSelect = document.getElementById('productType');
+            productTypes.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type;
+                option.textContent = type;
+                productTypeSelect.appendChild(option);
+            });
+
+            // 应用行业筛选器
+            const industries = DataUtils.unique(allProducts, 'application_industry');
+            const industrySelect = document.getElementById('industryFilter');
+            industries.forEach(industry => {
+                const option = document.createElement('option');
+                option.value = industry;
+                option.textContent = industry;
+                industrySelect.appendChild(option);
+            });
+        }
+
+        // 筛选并显示数据
+        function filterAndDisplay() {
+            const productType = document.getElementById('productType').value;
+            const industry = document.getElementById('industryFilter').value;
+
+            let filteredData = allProducts;
+
+            if (productType !== 'all') {
+                filteredData = filteredData.filter(p => p.product_type === productType);
+            }
+            if (industry !== 'all') {
+                filteredData = filteredData.filter(p => p.application_industry === industry);
+            }
+
+            updateSummaryCards(filteredData);
+            updateTable(filteredData);
+            updateCharts(filteredData);
+        }
+
+        // 更新汇总卡片
+        function updateSummaryCards(data) {
+            document.getElementById('totalProducts').textContent = data.length;
+            
+            const avgCost = DataUtils.average(data, 'cost_price');
+            document.getElementById('avgCost').textContent = DataUtils.formatCurrency(avgCost);
+
+            // 计算毛利率
+            const margins = data.map(p => ({
+                ...p,
+                margin: DataUtils.calculateMargin(p.cost_price, p.sales_price)
+            }));
+
+            if (margins.length > 0) {
+                const maxMarginProduct = margins.reduce((max, p) => p.margin > max.margin ? p : max);
+                const minMarginProduct = margins.reduce((min, p) => p.margin < min.margin ? p : min);
+
+                document.getElementById('maxMargin').textContent = DataUtils.formatPercent(maxMarginProduct.margin);
+                document.getElementById('maxMarginProduct').textContent = maxMarginProduct.product_name;
+                document.getElementById('minMargin').textContent = DataUtils.formatPercent(minMarginProduct.margin);
+                document.getElementById('minMarginProduct').textContent = minMarginProduct.product_name;
+            }
+        }
+
+        // 更新表格
+        function updateTable(data) {
+            const tbody = document.getElementById('productTableBody');
+            
+            // 过滤无效数据（支持字符串和数值类型ID）
+            const validData = data.filter(p => p && p.product_id != null && String(p.product_id).trim() !== '');
+            
+            if (validData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">暂无数据</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = validData.map(product => {
+                const margin = DataUtils.calculateMargin(product.cost_price, product.sales_price);
+                const statusClass = product.status === 'active' ? 'color: green;' : 'color: gray;';
+                const statusText = product.status === 'active' ? '在产' : '停产';
+                
+                return `
+                    <tr>
+                        <td>${product.product_id != null ? product.product_id : ''}</td>
+                        <td>${product.product_name != null ? product.product_name : ''}</td>
+                        <td>${product.product_type != null ? product.product_type : ''}</td>
+                        <td>${product.application_industry != null ? product.application_industry : ''}</td>
+                        <td>${product.precision_level != null ? product.precision_level : ''}</td>
+                        <td>${DataUtils.formatCurrency(product.cost_price)}</td>
+                        <td>${DataUtils.formatCurrency(product.sales_price)}</td>
+                        <td>${DataUtils.formatPercent(margin)}</td>
+                        <td style="${statusClass}">${statusText}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 更新图表
+        function updateCharts(data) {
+            const labels = data.map(p => p.product_name.substring(0, 10));
+            const costData = data.map(p => p.cost_price);
+            const priceData = data.map(p => p.sales_price);
+            const marginData = data.map(p => DataUtils.calculateMargin(p.cost_price, p.sales_price));
+
+            // 销毁旧图表
+            if (costPriceChart) costPriceChart.destroy();
+            if (marginChart) marginChart.destroy();
+
+            // 成本价格对比图
+            const ctx1 = document.getElementById('costPriceChart').getContext('2d');
+            costPriceChart = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '成本价 (¥)',
+                        data: costData,
+                        backgroundColor: '#1e5799',
+                        borderRadius: 4
+                    }, {
+                        label: '销售价 (¥)',
+                        data: priceData,
+                        backgroundColor: '#2989d8',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '产品成本与销售价格对比'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '价格 (¥)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 毛利率分析图
+            const ctx2 = document.getElementById('marginChart').getContext('2d');
+            marginChart = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '毛利率 (%)',
+                        data: marginData,
+                        backgroundColor: marginData.map(m => m >= 50 ? '#27ae60' : m >= 30 ? '#f39c12' : '#e74c3c'),
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '各产品毛利率分析'
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '毛利率 (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 刷新数据
+        async function refreshData() {
+            DataLoader.clearCache();
+            await loadProductData();
+        }
+    </script>
+</body>
+</html>

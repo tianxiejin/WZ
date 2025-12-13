@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构建业财融合的供应链管理体系</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 30px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        .card h2 {
+            color: #667eea;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        .card ul {
+            padding-left: 25px;
+        }
+        .card li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .nav-section {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        h2.section-title {
+            text-align: center;
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .nav-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        .model-section {
+            background: linear-gradient(135deg, #1e5799 0%, #2989d8 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 40px;
+            margin-bottom: 30px;
+            color: white;
+            text-align: center;
+        }
+        .model-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .model-section p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 25px;
+        }
+        .model-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .model-feature {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+        .model-btn {
+            display: inline-block;
+            background: white;
+            color: #1e5799;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .model-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .model-badge {
+            display: inline-block;
+            background: #27ae60;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-left: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .highlight {
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>构建业财融合的供应链管理体系</h1>
+            <div class="subtitle">建立采购总成本分析管控模型及价值采购分析方法</div>
+        </header>
+        
+        <div class="content">
+            <div class="card">
+                <h2>课题背景</h2>
+                <div class="highlight">
+                    <p>本课题针对瓦轴集团面临的供应链管理挑战而设计</p>
+                </div>
+                <ul>
+                    <li>轴承产品品类繁多，物料复杂，难以实现科学成本归集</li>
+                    <li>财务成本归集与实际业务存在偏差</li>
+                    <li>缺乏科学的供应链总成本管控模型和价值采购分析方法</li>
+                    <li>采购降成本过度依赖价格降低，忽视总体成本优化</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h2>课题目标</h2>
+                <div class="highlight">
+                    <p>建立业财融合的供应链管理体系，实现精细化成本管控</p>
+                </div>
+                <ul>
+                    <li>掌握业财融合的供应链管理理念</li>
+                    <li>理解并应用作业成本法进行成本核算</li>
+                    <li>建立供应链总成本管控模型</li>
+                    <li>运用价值采购分析方法优化采购决策</li>
+                    <li>完善财务成本科目归集分类</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="nav-section">
+            <h2 class="section-title">课程内容导航</h2>
+            <div class="nav-links">
+                <a href="chapter1.html" class="nav-link">第一章：财务基础理论</a>
+                <a href="chapter2.html" class="nav-link">第二章：作业成本法详解</a>
+                <a href="chapter3.html" class="nav-link">第三章：供应链总成本管控模型</a>
+                <a href="chapter4.html" class="nav-link">第四章：价值采购分析方法</a>
+                <a href="chapter5.html" class="nav-link">第五章：辅材消耗成本归集</a>
+                <a href="chapter6.html" class="nav-link">第六章：信息系统应用</a>
+            </div>
+        </div>
+
+        <div class="model-section">
+            <h2>🚀 轴承供应链成本核算模型系统 <span class="model-badge">动态数据版</span></h2>
+            <p>基于作业成本法(ABC)的智能成本管理平台，实时从CSV数据文件动态加载，支持交互式分析与可视化</p>
+            <div class="model-features">
+                <span class="model-feature">📦 产品成本分析</span>
+                <span class="model-feature">🏭 供应商评价</span>
+                <span class="model-feature">⚙️ 作业成本核算</span>
+                <span class="model-feature">🔧 工序成本追踪</span>
+                <span class="model-feature">📋 订单成本管理</span>
+                <span class="model-feature">💡 智能优化建议</span>
+            </div>
+            <a href="cost_model_index.html" class="model-btn">进入成本核算模型系统 →</a>
+        </div>
+        
+        <footer>
+            <p>瓦轴集团供应链管理课题组 © 2023 | 构建业财融合的供应链管理体系</p>
+        </footer>
+    </div>
+</body>
+</html>

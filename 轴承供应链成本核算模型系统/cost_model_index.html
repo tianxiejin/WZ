@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轴承供应链成本核算模型系统 - 动态数据版</title>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="js/data-loader.js"></script>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, #1e5799 0%, #207cca 51%, #2989d8 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .intro {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .intro h2 {
+            color: #1e5799;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1e5799;
+        }
+
+        .feature-item h4 {
+            margin: 0 0 8px 0;
+            color: #1e5799;
+        }
+
+        .feature-item p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .data-status {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .data-status h3 {
+            margin-top: 0;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .status-item {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .status-item .number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .status-item .label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .module-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .module-header {
+            background: linear-gradient(90deg, #1e5799, #2989d8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .module-header h3 {
+            margin: 0;
+        }
+        
+        .module-body {
+            padding: 20px;
+        }
+        
+        .module-body ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .module-body li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #1e5799, #2989d8);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(90deg, #2989d8, #1e5799);
+        }
+
+        .csv-files {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .csv-files h2 {
+            color: #1e5799;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .csv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .csv-item {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .csv-item .icon {
+            font-size: 24px;
+        }
+
+        .csv-item .info h4 {
+            margin: 0;
+            color: #1e5799;
+        }
+
+        .csv-item .info p {
+            margin: 5px 0 0 0;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>轴承供应链成本核算模型系统</h1>
+        <p>基于作业成本法(ABC)的智能成本管理平台</p>
+        <span class="version-badge">🚀 动态数据版 V2.0</span>
+    </div>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>📊 系统特点</h2>
+            <p>本系统采用纯前端动态数据加载技术，实时从CSV文件读取数据，无需后端服务器支持。</p>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h4>🔄 动态数据加载</h4>
+                    <p>使用PapaParse库实时解析CSV文件，数据更新即时生效</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📈 智能图表分析</h4>
+                    <p>基于Chart.js的交互式图表，支持多维度数据可视化</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🎯 筛选与过滤</h4>
+                    <p>支持多条件动态筛选，快速定位目标数据</p>
+                </div>
+                <div class="feature-item">
+                    <h4>💡 智能优化建议</h4>
+                    <p>基于数据分析自动生成成本优化建议和风险预警</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="data-status" id="dataStatus">
+            <h3>📁 数据加载状态</h3>
+            <div class="status-grid">
+                <div class="status-item">
+                    <div class="number" id="productCount">-</div>
+                    <div class="label">产品种类</div>
+                </div>
+                <div class="status-item">
+                    <div class="number" id="supplierCount">-</div>
+                    <div class="label">供应商数</div>
+                </div>
+                <div class="status-item">
+                    <div class="number" id="processCount">-</div>
+                    <div class="label">生产工序</div>
+                </div>
+                <div class="status-item">
+                    <div class="number" id="orderCount">-</div>
+                    <div class="label">生产订单</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modules">
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>📦 产品成本分析</h3>
+                </div>
+                <div class="module-body">
+                    <ul>
+                        <li>产品成本构成分析</li>
+                        <li>毛利率计算与对比</li>
+                        <li>多维度筛选过滤</li>
+                        <li>成本趋势可视化</li>
+                    </ul>
+                    <a href="product_cost_analysis.html" class="btn">进入分析 →</a>
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>🏭 供应商成本分析</h3>
+                </div>
+                <div class="module-body">
+                    <ul>
+                        <li>供应商综合评价</li>
+                        <li>可靠性评分分析</li>
+                        <li>原材料供应追踪</li>
+                        <li>供应商类型分布</li>
+                    </ul>
+                    <a href="supplier_cost_analysis.html" class="btn">进入分析 →</a>
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>⚙️ 作业成本分析</h3>
+                </div>
+                <div class="module-body">
+                    <ul>
+                        <li>作业活动管理</li>
+                        <li>成本动因分析</li>
+                        <li>成本池分配</li>
+                        <li>ABC成本法应用</li>
+                    </ul>
+                    <a href="activity_cost_analysis.html" class="btn">进入分析 →</a>
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>🔧 工序成本分析</h3>
+                </div>
+                <div class="module-body">
+                    <ul>
+                        <li>生产工序流程图</li>
+                        <li>工时与成本分析</li>
+                        <li>车间成本占比</li>
+                        <li>工序效率评估</li>
+                    </ul>
+                    <a href="process_cost_analysis.html" class="btn">进入分析 →</a>
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>📋 订单成本分析</h3>
+                </div>
+                <div class="module-body">
+                    <ul>
+                        <li>订单状态跟踪</li>
+                        <li>生产成本估算</li>
+                        <li>材料消耗明细</li>
+                        <li>优先级管理</li>
+                    </ul>
+                    <a href="order_cost_analysis.html" class="btn">进入分析 →</a>
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-header">
+                    <h3>💡 成本优化建议</h3>
+                </div>
+                <div class="module-body">
+                    <ul>
+                        <li>智能分析建议</li>
+                        <li>风险预警系统</li>
+                        <li>潜在节约测算</li>
+                        <li>综合绩效评估</li>
+                    </ul>
+                    <a href="cost_optimization.html" class="btn">进入分析 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="modules" style="grid-template-columns: repeat(2, 1fr); margin-top: 25px;">
+            <div class="module-card">
+                <div class="module-header" style="background: linear-gradient(90deg, #667eea, #764ba2);">
+                    <h3>🤖 AIGC生成过程</h3>
+                </div>
+                <div class="module-body">
+                    <ul>
+                        <li>AI交互会话记录</li>
+                        <li>模型设计思路</li>
+                        <li>数据生成过程</li>
+                        <li>AIGC应用价值</li>
+                    </ul>
+                    <a href="session.html" class="btn" style="background: linear-gradient(90deg, #667eea, #764ba2);">查看详情 →</a>
+                </div>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-header" style="background: linear-gradient(90deg, #11998e, #38ef7d);">
+                    <h3>📖 使用说明</h3>
+                </div>
+                <div class="module-body">
+                    <ul>
+                        <li>运行环境搭建</li>
+                        <li>HTTP服务器配置</li>
+                        <li>数据文件管理</li>
+                        <li>常见问题解答</li>
+                    </ul>
+                    <a href="user_guide.html" class="btn" style="background: linear-gradient(90deg, #11998e, #38ef7d);">查看说明 →</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="csv-files">
+            <h2>📄 数据文件说明</h2>
+            <p>系统从以下CSV文件动态加载数据，您可以直接编辑这些文件来更新数据：</p>
+            
+            <div class="csv-grid">
+                <div class="csv-item">
+                    <span class="icon">📊</span>
+                    <div class="info">
+                        <h4>bearing_products.csv</h4>
+                        <p>轴承产品基础信息</p>
+                    </div>
+                </div>
+                <div class="csv-item">
+                    <span class="icon">🏢</span>
+                    <div class="info">
+                        <h4>suppliers.csv</h4>
+                        <p>供应商信息</p>
+                    </div>
+                </div>
+                <div class="csv-item">
+                    <span class="icon">📦</span>
+                    <div class="info">
+                        <h4>raw_materials.csv</h4>
+                        <p>原材料信息</p>
+                    </div>
+                </div>
+                <div class="csv-item">
+                    <span class="icon">⚙️</span>
+                    <div class="info">
+                        <h4>production_processes.csv</h4>
+                        <p>生产工序定义</p>
+                    </div>
+                </div>
+                <div class="csv-item">
+                    <span class="icon">📋</span>
+                    <div class="info">
+                        <h4>sample_production_orders.csv</h4>
+                        <p>生产订单数据</p>
+                    </div>
+                </div>
+                <div class="csv-item">
+                    <span class="icon">🔄</span>
+                    <div class="info">
+                        <h4>activities.csv</h4>
+                        <p>作业活动定义</p>
+                    </div>
+                </div>
+                <div class="csv-item">
+                    <span class="icon">💰</span>
+                    <div class="info">
+                        <h4>cost_allocation_rates.csv</h4>
+                        <p>成本分摊费率</p>
+                    </div>
+                </div>
+                <div class="csv-item">
+                    <span class="icon">📝</span>
+                    <div class="info">
+                        <h4>material/process_consumption</h4>
+                        <p>消耗明细数据</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2025 瓦轴集团供应链成本核算模型系统 | 基于作业成本法构建</p>
+        <p>技术栈：HTML5 + CSS3 + JavaScript + Chart.js + PapaParse</p>
+    </div>
+
+    <script>
+        // 页面加载时获取数据统计
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const data = await DataLoader.loadAll();
+                
+                document.getElementById('productCount').textContent = data.products.length;
+                document.getElementById('supplierCount').textContent = data.suppliers.length;
+                document.getElementById('processCount').textContent = data.processes.length;
+                document.getElementById('orderCount').textContent = data.orders.length;
+            } catch (error) {
+                console.error('加载数据统计失败:', error);
+            }
+        });
+    </script>
+</body>
+</html>

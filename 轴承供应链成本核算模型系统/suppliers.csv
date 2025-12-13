@@ -1,0 +1,9 @@
+supplier_id,supplier_name,supplier_type,contact_person,phone,email,address,rating,reliability_score
+SUP001,"东北特钢集团",钢材供应商,"张经理","0411-88889999","zhang@dbsteel.com","辽宁省大连市","一级",0.95
+SUP002,"鞍钢集团",钢材供应商,"李主管","0412-77776666","li@anshansteel.com","辽宁省鞍山市","一级",0.92
+SUP003,"洛阳铜加工厂",有色金属供应商,"王科长","0379-66668888","wang@luotong.com","河南省洛阳市","二级",0.88
+SUP004,"中科院上海硅酸盐研究所",特殊材料供应商,"陈博士","021-55553333","chen@siccas.cn","上海市","一级",0.96
+SUP005,"大连石化公司",化工材料供应商,"赵主任","0411-33335555","zhao@dalianpetro.com","辽宁省大连市","二级",0.85
+SUP006,"瓦房店包装厂",辅材供应商,"孙厂长","0411-22224444","sun@wzpacking.com","辽宁省瓦房店市","三级",0.80
+SUP007,"日本NSK材料公司",进口材料供应商,"田中先生","+81-3-44445555","tanaka@nsk.co.jp","日本东京","一级",0.98
+SUP008,"德国Schaeffler",进口轴承钢供应商,"Mueller","+49-9824-66667777","mueller@schaeffler.de","德国巴登符腾堡州","一级",0.97
